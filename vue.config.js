@@ -7,7 +7,7 @@ module.exports = {
   },
   pwa: {
     name: "astroz",
-    themeColor: "#3260a8",
+    themeColor: "#285eb5",
     msTileColor: "#000000",
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: "black",
