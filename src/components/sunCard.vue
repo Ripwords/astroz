@@ -187,7 +187,7 @@ onUnmounted(() => {
 
 <style scoped>
 .RA_DEC {
-  width: 8rem;
+  width: 9rem;
   display: block;
 }
 
