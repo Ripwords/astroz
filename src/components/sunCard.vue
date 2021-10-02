@@ -82,7 +82,8 @@ const getSunTimes = () => {
       sunRiseTimes.value.sec = result.time.sec
     })
     .then(() => {
-      sunRise.value = (new Date(`${sunRiseTimes.value.month}/${sunRiseTimes.value.day}/${sunRiseTimes.value.year} ${sunRiseTimes.value.hour}:${sunRiseTimes.value.min}:${sunRiseTimes.value.sec} UTC`)).toString()
+      const setTime = (new Date(`${sunRiseTimes.value.month}/${sunRiseTimes.value.day}/${sunRiseTimes.value.year} ${sunRiseTimes.value.hour}:${sunRiseTimes.value.min}:${sunRiseTimes.value.sec} UTC`)).toString().split(" ")
+      sunRise.value = `${setTime[0]}, ${setTime[4]}`
     })
 
   sol.value.getSetUpperLimb(location.value)
@@ -95,7 +96,8 @@ const getSunTimes = () => {
       sunSetTimes.value.sec = result.time.sec
     })
     .then(() => {
-      sunSet.value = (new Date(`${sunSetTimes.value.month}/${sunSetTimes.value.day}/${sunSetTimes.value.year} ${sunSetTimes.value.hour}:${sunSetTimes.value.min}:${sunSetTimes.value.sec} UTC`)).toString()
+      const setTime = (new Date(`${sunSetTimes.value.month}/${sunSetTimes.value.day}/${sunSetTimes.value.year} ${sunSetTimes.value.hour}:${sunSetTimes.value.min}:${sunSetTimes.value.sec} UTC`)).toString().split(" ")
+      sunSet.value = `${setTime[0]}, ${setTime[4]}`
     })
 }
 
@@ -159,6 +161,7 @@ onUnmounted(() => {
         <p>
           Set &nbsp;&nbsp;: &nbsp;{{ sunSet }} 
         </p>
+        <br>
         <div>
           <div v-if="store.units">
             <div class="RA_DEC">
