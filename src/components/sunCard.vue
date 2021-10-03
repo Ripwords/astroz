@@ -172,10 +172,10 @@ onUnmounted(() => {
             </div>
           </div>
           <div v-else>
-            <div class="RA_DEC">
+            <div class="RA_DEC_Degree">
               RA&nbsp;&nbsp;&nbsp; : <div class="noAlign">{{ solRA.degree }}&deg;</div>
             </div>
-            <div class="RA_DEC">
+            <div class="RA_DEC_Degree">
               DEC : <div class="noAlign">{{ solDec.degree }}&deg;</div>
             </div>
           </div>
@@ -184,14 +184,3 @@ onUnmounted(() => {
     </ion-card-header>
   </ion-card>
 </template>
-
-<style scoped>
-.RA_DEC {
-  width: 9rem;
-  display: block;
-}
-
-.noAlign {
-  float: right;
-}
-</style>
