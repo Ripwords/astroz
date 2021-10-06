@@ -26,7 +26,8 @@ export const useMainStore = defineStore('main', {
       userLat: "",
       userLong: "",
       hemisphere: false,
-      meridian: false
+      meridian: false,
+      gps: false,
     }
   },
 })

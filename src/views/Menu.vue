@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { IonSplitPane, IonMenu, IonHeader, IonToolbar, IonContent, IonRouterOutlet, IonTitle, IonItem, IonList, IonMenuToggle } from "@ionic/vue";
+import { IonSplitPane, IonMenu, IonHeader, IonToolbar, IonContent, IonRouterOutlet, IonTitle, IonItem, IonList, IonMenuToggle, IonIcon } from "@ionic/vue";
+import { telescopeOutline, cogOutline } from "ionicons/icons";
 import { useMainStore } from "../store/pinia";
 import { useRoute, useRouter } from "vue-router";
 
@@ -26,13 +27,19 @@ const isActive = (path: string) => path === route.fullPath
               class="noselect"
               @click="router.replace(page.path)"
               :class="{ active: isActive(page.path) }"
-            >⚙ &nbsp;{{ page.title }}</ion-item>
+            >
+              <ion-icon :icon="cogOutline"></ion-icon>
+              &nbsp;&nbsp;{{ page.title }}
+            </ion-item>
             <ion-item
               v-else
               class="noselect"
               @click="router.replace(page.path)"
               :class="{ active: isActive(page.path) }"
-            >🔭 &nbsp;{{ page.title }}</ion-item>
+            >
+              <ion-icon :icon="telescopeOutline"></ion-icon>
+              &nbsp;&nbsp;{{ page.title }}
+            </ion-item>
           </ion-menu-toggle>
         </ion-list>
       </ion-content>

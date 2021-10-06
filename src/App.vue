@@ -1,5 +1,24 @@
 <script lang="ts" setup>
-import { IonApp, IonRouterOutlet } from "@ionic/vue";
+import { IonApp, IonRouterOutlet, toastController } from "@ionic/vue";
+import { onMounted } from "@vue/runtime-core";
+import { ref } from "vue";
+
+const interval = ref()
+const presentToast = async () => {
+  const toast = await toastController
+    .create({
+      header: "GPS :",
+      message: "If no GPS data is available, you may enter manually in the settings\n\nOtherwise Lat: 0, Long: 0 will be used",
+      duration: 5000
+    })
+  await toast.present()
+}
+onMounted(() => {
+  interval.value = setInterval(() => {
+    presentToast()
+    clearInterval(interval.value)
+  }, 2000)
+})
 </script>
 
 <template>
@@ -9,16 +28,6 @@ import { IonApp, IonRouterOutlet } from "@ionic/vue";
 </template>
 
 <style>
-.RA_DEC {
-  width: 9rem;
-  display: block;
-}
-
-.RA_DEC_Degree {
-  width: 8rem;
-  display: block;
-}
-
 .noAlign {
   float: right;
 }

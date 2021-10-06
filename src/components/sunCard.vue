@@ -21,6 +21,8 @@ const solDec = ref({
   arcMin: 0,
   arcSec: 0
 })
+const solAlt = ref()
+const solAz = ref()
 const interval = ref()
 const sunTimeInterval = ref()
 const location = ref()
@@ -66,6 +68,12 @@ const updateSolPos = () => {
     solDec.value.degree = parseFloat(result.declination.toFixed(decimal.value))
     convertRA2Time(solRA.value)
     convertDec2Arc(solDec.value)
+  }, () => {
+    console.log("Error getting location and/or time information")
+  })
+  sol.value.getApparentTopocentricHorizontalCoordinates(location.value).then(result => {
+    solAlt.value = parseFloat(result.altitude.toFixed(decimal.value))
+    solAz.value = parseFloat(result.azimuth.toFixed(decimal.value))
   }, () => {
     console.log("Error getting location and/or time information")
   })
@@ -151,34 +159,67 @@ onUnmounted(() => {
   <ion-card>
     <ion-card-header>
       <ion-card-header>
-        <ion-card-title>Solar 🔆</ion-card-title>
+        <ion-card-title>Sol 🔆</ion-card-title>
         <ion-card-subtitle>Shining as always</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <p>
-          Rise : &nbsp;{{ sunRise }}
-        </p>
-        <p>
-          Set &nbsp;&nbsp;: &nbsp;{{ sunSet }} 
-        </p>
+        <div style="display: flex; justify-content: flex-start; max-width: 145px;">
+          <div style="display: flex; justify-content: space-between; width: 40px">
+            <div>Rise</div>
+            <div>:</div>
+          </div>
+          <span style="width: 10px;"></span>
+          <div>&nbsp;{{ sunRise }}</div>
+        </div>
+        <div style="display: flex; justify-content: flex-start; max-width: 145px;">
+          <div style="display: flex; justify-content: space-between; width: 40px">
+            <div>Set</div>
+            <div>:</div>
+          </div>
+          <span style="width: 10px;"></span>
+          <div>&nbsp;{{ sunSet }}</div>
+        </div>
         <br>
-        <div>
-          <div v-if="store.units">
-            <div class="RA_DEC">
-              RA&nbsp;&nbsp;&nbsp; : <div class="noAlign">{{ solRA.hour }}h {{ solRA.min }}m {{ solRA.sec }}s</div>
+        <div v-if="!store.units">
+          <div style="display: flex; justify-content: space-between; max-width: 270px;">
+            <div style="display: flex; justify-content: flex-start; width: 135px;">
+              <div style="display: flex; justify-content: space-between; width: 30px;">
+                <div>RA</div>
+                <div>:</div>
+              </div>
+              <span style="width: 10px;"></span>
+              <div class="noAlign">{{ solRA.degree }}&deg;</div>
             </div>
-            <div class="RA_DEC">
-              DEC : <div class="noAlign">{{ solDec.degreeInt }}&deg; {{ solDec.arcMin }}' {{ solDec.arcSec }}"</div>
+            <div style="display: flex; justify-content: flex-start; width: 135px;">
+              <div style="display: flex; justify-content: space-between; width: 35px">
+                <div>Dec</div>
+                <div>:</div>
+              </div>
+              <span style="width: 10px;"></span>
+              <div class="noAlign">{{ solDec.degree }}&deg;</div>
             </div>
           </div>
-          <div v-else>
-            <div class="RA_DEC_Degree">
-              RA&nbsp;&nbsp;&nbsp; : <div class="noAlign">{{ solRA.degree }}&deg;</div>
+          <div style="display: flex; justify-content: space-between; max-width: 270px;">
+            <div style="display: flex; justify-content: flex-start; width: 135px;">
+              <div style="display: flex; justify-content: space-between; width: 30px;">
+                <div>Alt</div>
+                <div>:</div>
+              </div>
+              <span style="width: 10px;"></span>
+              <div class="noAlign">{{ solAlt }}&deg;</div>
             </div>
-            <div class="RA_DEC_Degree">
-              DEC : <div class="noAlign">{{ solDec.degree }}&deg;</div>
+            <div style="display: flex; justify-content: flex-start; width: 135px;">
+              <div style="display: flex; justify-content: space-between; width: 35px">
+                <div>Az</div>
+                <div>:</div>
+              </div>
+              <span style="width: 10px;"></span>
+              <div class="noAlign">{{ solAz }}&deg;</div>
             </div>
           </div>
+        </div>
+        <div v-else>
+
         </div>
       </ion-card-content>
     </ion-card-header>
