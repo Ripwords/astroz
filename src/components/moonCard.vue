@@ -160,7 +160,7 @@ onUnmounted(() => {
                 <div>:</div>
               </div>
               <span style="width: 10px;"></span>
-              <div class="noAlign">{{ lunaAlt }}&deg;</div>
+              <div class="noAlign">{{ lunaAlt.degree }}&deg;</div>
             </div>
             <div style="display: flex; justify-content: flex-start; width: 135px;">
               <div style="display: flex; justify-content: space-between; width: 35px">
@@ -168,7 +168,7 @@ onUnmounted(() => {
                 <div>:</div>
               </div>
               <span style="width: 10px;"></span>
-              <div class="noAlign">{{ lunaAz }}&deg;</div>
+              <div class="noAlign">{{ lunaAz.degree }}&deg;</div>
             </div>
           </div>
         </div>

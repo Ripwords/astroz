@@ -163,7 +163,7 @@ onUnmounted(() => {
         <ion-card-subtitle>Shining as always</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <div style="display: flex; justify-content: flex-start; max-width: 145px;">
+        <div style="display: flex; justify-content: flex-start; max-width: 175px;">
           <div style="display: flex; justify-content: space-between; width: 40px">
             <div>Rise</div>
             <div>:</div>
@@ -171,7 +171,7 @@ onUnmounted(() => {
           <span style="width: 10px;"></span>
           <div>&nbsp;{{ sunRise }}</div>
         </div>
-        <div style="display: flex; justify-content: flex-start; max-width: 145px;">
+        <div style="display: flex; justify-content: flex-start; max-width: 175px;">
           <div style="display: flex; justify-content: space-between; width: 40px">
             <div>Set</div>
             <div>:</div>
