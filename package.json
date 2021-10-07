@@ -2,7 +2,7 @@
   "name": "astroz",
   "version": "0.0.2",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "npm run build && serve dist"
   },

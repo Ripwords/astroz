@@ -16,16 +16,12 @@ const close = async () => {
 
 <template>
   <div v-if="offlineReady || needRefresh" class="pwa-toast" role="alert">
-    <ion-list>
-      <ion-item>
-        <div class="message">
-          <ion-text v-if="offlineReady">App ready to work offline</ion-text>
-          <ion-text v-else>New content available, click on reload button to update.</ion-text>
-        </div>
-      </ion-item>
-    </ion-list>
-    <ion-button v-if="needRefresh" @click="updateServiceWorker()">Reload</ion-button>
-    <ion-button @click="close">Close</ion-button>
+    <div class="message">
+      <span v-if="offlineReady">App ready to work offline</span>
+      <span v-else>New content available, click on reload button to update.</span>
+    </div>
+    <ion-button size="small" v-if="needRefresh" @click="updateServiceWorker()">Reload</ion-button>
+    <ion-button size="small" @click="close">Close</ion-button>
   </div>
 </template>
 
@@ -53,7 +49,8 @@ const close = async () => {
   box-shadow: 3px 4px 5px 0 #8885;
 }
 .pwa-toast .message {
-  margin-bottom: 8px;
+  margin: 8px;
+  margin-top: 4px;
 }
 .pwa-toast button {
   border: 1px solid #8885;
