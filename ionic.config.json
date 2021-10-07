@@ -1,7 +1,5 @@
 {
   "name": "astroz",
-  "integrations": {
-    "capacitor": {}
-  },
+  "integrations": {},
   "type": "vue"
 }

@@ -2,6 +2,7 @@
 import { IonApp, IonRouterOutlet, toastController } from "@ionic/vue";
 import { onMounted } from "@vue/runtime-core";
 import { ref } from "vue";
+import ReloadPrompt from "./components/ReloadPrompt.vue";
 
 const interval = ref()
 const presentToast = async () => {
@@ -23,6 +24,7 @@ onMounted(() => {
 
 <template>
   <ion-app>
+    <reload-prompt />
     <ion-router-outlet></ion-router-outlet>
   </ion-app>
 </template>
