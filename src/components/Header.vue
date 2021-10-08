@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 import { IonToolbar, IonHeader, IonTitle, IonMenuButton, IonButtons, IonIcon } from "@ionic/vue";
 import { menu } from "ionicons/icons";
-import { defineProps } from "vue";
-defineProps<{ title: string }>()
+
+interface Props {
+  title: string
+}
+defineProps<Props>()
 </script>
 
 <template>

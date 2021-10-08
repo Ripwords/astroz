@@ -5,8 +5,11 @@ import { createLocation } from "astronomy-bundle/earth";
 import { useMainStore } from "../store/pinia";
 // Components
 import Header from "../components/Header.vue";
+import { usePagesStore } from "../store/pinia";
 
 const store = useMainStore()
+const page = usePagesStore().pages
+const title = page[page.length - 1].title
 const hemisphere = ref("N")
 const merd = ref("E")
 const location = ref()
@@ -75,7 +78,7 @@ onMounted(() => {
 <template>
   <ion-page>
     <ion-content>
-      <Header title="Settings" />
+      <Header :title="title" />
       <ion-list class="noselect">
           <ion-item>
             <ion-label>Units : </ion-label>

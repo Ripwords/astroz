@@ -1,13 +1,12 @@
 <script lang="ts" setup>
 import { IonSplitPane, IonMenu, IonHeader, IonToolbar, IonContent, IonRouterOutlet, IonTitle, IonItem, IonList, IonMenuToggle, IonIcon } from "@ionic/vue";
 import { telescopeOutline, cogOutline } from "ionicons/icons";
-import { useMainStore } from "../store/pinia";
+import { usePagesStore } from "../store/pinia";
 import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute()
 const router = useRouter()
-const store = useMainStore()
-const pages = store.pages
+const pages = usePagesStore().pages
 const isActive = (path: string) => path === route.fullPath
 </script>
 

@@ -16,8 +16,12 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../views/Home.vue'),
       },
       {
-        path: 'page1',
-        component: () => import('../views/Page1.vue')
+        path: 'optics',
+        component: () => import('../views/Optics.vue')
+      },
+      {
+        path: 'magni',
+        component: () => import('../views/Magnification.vue')
       },
       {
         path: 'settings',
