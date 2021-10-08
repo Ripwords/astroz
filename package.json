@@ -19,7 +19,6 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.2",
     "https-localhost": "^4.7.0",
-    "naive-ui": "^2.19.5",
     "typescript": "^4.4.3",
     "vite": "^2.6.0",
     "vite-plugin-pwa": "^0.11.3",
