@@ -33,4 +33,8 @@ onMounted(() => {
 .noAlign {
   float: right;
 }
+
+._ {
+  border: 2px dashed red;
+}
 </style>

@@ -1,6 +1,6 @@
 {
   "name": "astroz",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
@@ -9,7 +9,7 @@
   "dependencies": {
     "@ionic/vue": "^6.0.0-beta.7",
     "@ionic/vue-router": "^6.0.0-beta.7",
-    "astronomy-bundle": "^6.6.3",
+    "astronomy-bundle": "^6.7.1",
     "lunarphase-js": "^1.0.8",
     "pinia": "^2.0.0-rc.11",
     "register-service-worker": "^1.7.2",
@@ -19,8 +19,9 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.2",
     "https-localhost": "^4.7.0",
+    "naive-ui": "^2.19.5",
     "typescript": "^4.4.3",
-    "vite": "^2.6.0",
+    "vite": "^2.6.5",
     "vite-plugin-pwa": "^0.11.3",
     "vue-tsc": "^0.3.0"
   }

@@ -41,7 +41,7 @@ const getFLength = computed(() => {
         </ion-card-header>
       </ion-card>
       <ion-list>
-        <ion-item>
+        <ion-item class="_">
           <ion-label>Aperture : </ion-label>
           <ion-input v-if="!getAperture" v-model="aperture" type="number" placeholder="mm"></ion-input>
           <ion-input v-else :value="getAperture" readonly></ion-input>
