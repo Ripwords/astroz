@@ -1,18 +1,19 @@
 import { defineStore } from "pinia"
+import { useStorage } from "@vueuse/core";
 
 export const useMainStore = defineStore('main', {
   state: () => {
     return {
-      decimal: 4,
-      appName: "AstroCalc",
-      units: false,
-      userLat: "",
-      userLong: "",
-      hemisphere: false,
-      meridian: false,
-      gps: false,
+      decimal: useStorage('decimal', 4),
+      appName: useStorage('appName', "AstroCalc"),
+      units: useStorage('units', false),
+      userLat: useStorage('userLat', ""),
+      userLong: useStorage('userLong', ""),
+      hemisphere: useStorage('hemisphere', false),
+      meridian: useStorage('meridian', false),
+      gps: useStorage('gps', false),
     }
-  },
+  }
 })
 
 export const usePagesStore = defineStore('pages', {
