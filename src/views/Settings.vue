@@ -2,9 +2,9 @@
 import { IonPage, IonContent, IonList, IonItem, IonLabel, IonInput, IonToggle, IonSelect, IonSelectOption } from "@ionic/vue";
 import { computed, ref, watch } from "vue";
 import { useMainStore } from "../store/pinia";
+import { usePagesStore } from "../store/pinia";
 // Components
 import Header from "../components/Header.vue";
-import { usePagesStore } from "../store/pinia";
 
 const store = useMainStore()
 const page = usePagesStore().pages
