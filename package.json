@@ -13,7 +13,7 @@
     "@vueuse/core": "^6.5.3",
     "astronomy-bundle": "^6.7.1",
     "lunarphase-js": "^1.0.8",
-    "pinia": "^2.0.0-rc.11",
+    "pinia": "^2.0.0-rc.10",
     "register-service-worker": "^1.7.2",
     "vue": "^3.2.16",
     "vue-router": "4"
