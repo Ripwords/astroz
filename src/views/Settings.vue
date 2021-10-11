@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { IonPage, IonContent, IonList, IonItem, IonLabel, IonInput, IonToggle } from "@ionic/vue";
-import { computed, onMounted, ref, watch } from "vue";
-import { createLocation } from "astronomy-bundle/earth";
+import { IonPage, IonContent, IonList, IonItem, IonLabel, IonInput, IonToggle, IonSelect, IonSelectOption } from "@ionic/vue";
+import { computed, ref, watch } from "vue";
 import { useMainStore } from "../store/pinia";
 // Components
 import Header from "../components/Header.vue";
@@ -12,7 +11,6 @@ const page = usePagesStore().pages
 const title = page[page.length - 1].title
 const hemisphere = ref("N")
 const merd = ref("E")
-const location = ref()
 const changeBool = (x: boolean) => {
   if (x) {
     return false
@@ -40,20 +38,8 @@ const eastOrWest = () => {
   merd.value = store.meridian ? "W" : "E"
 }
 
-const getLoc = () => {
-  if ((parseFloat(store.userLat) == 0 && parseFloat(store.userLong) == 0) || (store.userLat == "" && store.userLong == "")) {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        store.userLat = pos.coords.latitude.toFixed(store.decimal).toString()
-        store.userLong = pos.coords.longitude.toFixed(store.decimal).toString()
-        location.value = createLocation(pos.coords.latitude, pos.coords.longitude)
-      })
-    } else {
-      console.log("Geolocation is unavailable")
-    }
-  } else {
-    location.value = createLocation(parseFloat(store.userLat), parseFloat(store.userLong))
-  }
+const manualLoc = () => {
+  store.manual = changeBool(store.manual)
 }
 
 // Watcher functions
@@ -68,11 +54,7 @@ watch(computed(() => store.userLong), () => {
     store.userLong = (parseFloat(store.userLong) * -1).toString()
   }
 })
-
-// Lifecycle hooks
-onMounted(() => {
-  getLoc()
-})
+const units = ref(store.units ? 'time' : 'deg')
 </script>
 
 <template>
@@ -82,23 +64,28 @@ onMounted(() => {
       <ion-list class="noselect">
           <ion-item>
             <ion-label>Units : </ion-label>
-            Deg &deg;
-            <ion-toggle :checked="store.units" @ionChange="decOrFull"></ion-toggle>
-            &nbsp;Time 🕧
+            <ion-select v-model="units" @ionChange="decOrFull">
+              <ion-select-option value='deg'>Deg &deg;</ion-select-option>
+              <ion-select-option value='time'>Time 🕑</ion-select-option>
+            </ion-select>
           </ion-item>
           <ion-item>
+            <ion-label>Manual Coords. : </ion-label>
+            <ion-toggle :checked="store.manual" @ionChange="manualLoc"></ion-toggle>
+          </ion-item>
+          <ion-item v-show="store.manual">
             <ion-label>Hemisphere :</ion-label>
             N &deg;
             <ion-toggle :checked="store.hemisphere" @ionChange="northOrSouth"></ion-toggle>
             S &deg;
           </ion-item>
-          <ion-item>
+          <ion-item v-show="store.manual">
             <ion-label>Meridian :</ion-label>
             E &deg;
             <ion-toggle :checked="store.meridian" @ionChange="eastOrWest"></ion-toggle>
             W &deg;
           </ion-item>
-          <ion-item>
+          <ion-item v-show="store.manual">
             <ion-label>Coordinates : </ion-label>
             <ion-input class="ion-text-right" v-model="store.userLat" type="number" placeholder="lat" min="0" max="90"></ion-input><span>{{ hemisphere }}</span>
             <ion-input class="ion-text-right" v-model="store.userLong" type="number" placeholder="long" min="0" max="180"></ion-input><span>{{ merd }}</span>

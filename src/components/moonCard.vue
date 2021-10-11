@@ -1,4 +1,4 @@
-scripte <script lang="ts" setup>
+<script lang="ts" setup>
 import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from "@ionic/vue";
 import { onMounted, onUnmounted, computed, ref, watch } from "vue";
 import { createMoon } from "astronomy-bundle/moon";
@@ -38,7 +38,7 @@ const lunaAz = ref({
   arcSec: 0
 })
 const interval = ref()
-const location = ref()
+const location = ref(createLocation(parseFloat(store.userLat), parseFloat(store.userLong)))
 const hemi = store.hemisphere ? Hemisphere.SOUTHERN : Hemisphere.NORTHERN
 const phaseEmoji = Moon.lunarPhaseEmoji(new Date(), hemi)
 const phase = Moon.lunarPhase(new Date(), hemi)
@@ -50,28 +50,7 @@ const nextFullMoon = ref({
 })
 
 // Functions
-const getLoc = () => {
-  if ((parseFloat(store.userLat) == 0 && parseFloat(store.userLong) == 0) || (store.userLat == "" && store.userLong == "")) {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        store.userLat = pos.coords.latitude.toFixed(decimal.value)
-        store.userLong = pos.coords.longitude.toFixed(decimal.value)
-        location.value = createLocation(pos.coords.latitude, pos.coords.longitude)
-      }, () => {
-        location.value = createLocation(0, 0)
-      })
-    } else {
-      console.log("Geolocation information is not available")
-    }
-  } else {
-    location.value = createLocation(parseFloat(store.userLat), parseFloat(store.userLong))
-  }
-}
-
 const updateMoonPos = () => {
-  if ((parseFloat(store.userLat) == 0 && parseFloat(store.userLong) == 0) || (store.userLat == "" && store.userLong == "")) {
-    location.value = createLocation(0, 0)
-  }
   luna.value = createMoon()
   luna.value.getTopocentricEquatorialSphericalCoordinates(location.value).then(result => {
     lunaRA.value.degree = parseFloat(result.rightAscension.toFixed(decimal.value))
@@ -103,16 +82,14 @@ const getFullMoon = () => {
 
 // Watcher functions
 watch(computed(() => store.userLat), () => {
-  getLoc()
+  location.value = createLocation(parseFloat(store.userLat), parseFloat(store.userLong))
 })
-
 watch(computed(() => store.userLong), () => {
-  getLoc()
+  location.value = createLocation(parseFloat(store.userLat), parseFloat(store.userLong))
 })
 
 // Lifecycle hooks
 onMounted(() => {
-  getLoc()
   updateMoonPos()
   getFullMoon()
   interval.value = setInterval(() => {
@@ -173,7 +150,42 @@ onUnmounted(() => {
           </div>
         </div>
         <div v-else>
-
+          <div style="display: flex; justify-content: space-between; max-width: 280px;">
+            <div style="display: flex; justify-content: flex-start; width: 135px;">
+              <div style="display: flex; justify-content: space-between; width: 30px;">
+                <div>RA</div>
+                <div>:</div>
+              </div>
+              <span style="width: 10px;"></span>
+              <div class="noAlign">{{ lunaRA.hour }}h {{ lunaRA.min }}m {{ lunaRA.sec }}s</div>
+            </div>
+            <div style="display: flex; justify-content: flex-start; width: 135px;">
+              <div style="display: flex; justify-content: space-between; width: 35px">
+                <div>Dec</div>
+                <div>:</div>
+              </div>
+              <span style="width: 10px;"></span>
+              <div class="noAlign">{{ lunaDec.degreeInt }}&deg; {{ lunaDec.arcMin }}' {{ lunaDec.arcSec }}"</div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; max-width: 280px;">
+            <div style="display: flex; justify-content: flex-start; width: 135px;">
+              <div style="display: flex; justify-content: space-between; width: 30px;">
+                <div>Alt</div>
+                <div>:</div>
+              </div>
+              <span style="width: 10px;"></span>
+              <div class="noAlign">{{ lunaAlt.degreeInt }}&deg; {{ lunaAlt.arcMin }}' {{ lunaAlt.arcSec }}"</div>
+            </div>
+            <div style="display: flex; justify-content: flex-start; width: 135px;">
+              <div style="display: flex; justify-content: space-between; width: 35px">
+                <div>Az</div>
+                <div>:</div>
+              </div>
+              <span style="width: 10px;"></span>
+              <div class="noAlign">{{ lunaAz.degreeInt }}&deg; {{ lunaAz.arcMin }}' {{ lunaAz.arcSec }}"</div>
+            </div>
+          </div>
         </div>
       </ion-card-content>
     </ion-card-header>
