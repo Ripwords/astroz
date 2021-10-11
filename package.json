@@ -2,7 +2,8 @@
   "name": "astroz",
   "version": "0.0.4",
   "scripts": {
-    "dev": "vite --host --https",
+    "dev-h": "vite --host --https",
+    "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "npm run build && serve dist"
   },
