@@ -113,7 +113,7 @@ onUnmounted(() => {
       <ion-card-content>
         <div v-if="!store.units">
           <div style="display: flex; justify-content: space-between; max-width: 270px;">
-            <div style="display: flex; justify-content: flex-start; width: 135px;">
+            <div style="display: flex; justify-content: flex-start; width: 135px; margin-bottom: 5%;">
               <div style="display: flex; justify-content: space-between; width: 30px;">
                 <div>RA</div>
                 <div>:</div>
@@ -151,12 +151,12 @@ onUnmounted(() => {
         </div>
         <div v-else>
           <div style="display: flex; justify-content: space-between; max-width: 285px;">
-            <div style="display: flex; justify-content: flex-start; width: 135px;">
+            <div style="display: flex; justify-content: flex-start; width: 135px; margin-bottom: 5%;">
               <div style="display: flex; justify-content: space-between; width: 30px;">
                 <div>RA</div>
                 <div>:</div>
               </div>
-              <span style="width: 10px;"></span>
+              <span style="width: 5px;"></span>
               <div class="noAlign">{{ lunaRA.hour }}<sub>h</sub> {{ lunaRA.min }}<sub>m</sub> {{ lunaRA.sec }}<sub>s</sub></div>
             </div>
             <div style="display: flex; justify-content: flex-start; width: 135px;">
@@ -164,7 +164,7 @@ onUnmounted(() => {
                 <div>Dec</div>
                 <div>:</div>
               </div>
-              <span style="width: 10px;"></span>
+              <span style="width: 5px;"></span>
               <div class="noAlign">{{ lunaDec.degreeInt }}&deg; {{ lunaDec.arcMin }}' {{ lunaDec.arcSec }}"</div>
             </div>
           </div>
@@ -174,7 +174,7 @@ onUnmounted(() => {
                 <div>Alt</div>
                 <div>:</div>
               </div>
-              <span style="width: 10px;"></span>
+              <span style="width: 5px;"></span>
               <div class="noAlign">{{ lunaAlt.degreeInt }}&deg; {{ lunaAlt.arcMin }}' {{ lunaAlt.arcSec }}"</div>
             </div>
             <div style="display: flex; justify-content: flex-start; width: 135px;">
@@ -182,7 +182,7 @@ onUnmounted(() => {
                 <div>Az</div>
                 <div>:</div>
               </div>
-              <span style="width: 10px;"></span>
+              <span style="width: 5px;"></span>
               <div class="noAlign">{{ lunaAz.degreeInt }}&deg; {{ lunaAz.arcMin }}' {{ lunaAz.arcSec }}"</div>
             </div>
           </div>
