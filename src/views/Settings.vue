@@ -65,7 +65,7 @@ watch(computed(() => store.userLong), () => {
       <ion-list class="noselect">
           <ion-item>
             <ion-label>Units : </ion-label>
-            <ion-select v-model="units" @ionChange="decOrFull">
+            <ion-select v-model="units" @ionChange="decOrFull" placeholder="Pick Unit to use">
               <ion-select-option value='deg'>Deg &deg;</ion-select-option>
               <ion-select-option value='time'>Time 🕑</ion-select-option>
             </ion-select>
