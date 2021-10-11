@@ -1,10 +1,25 @@
 <script lang="ts" setup>
 import { IonApp, IonRouterOutlet, toastController } from "@ionic/vue";
-import { onMounted } from "@vue/runtime-core";
-import { ref } from "vue";
+import { ref, onMounted, watch, computed } from "vue";
 import ReloadPrompt from "./components/ReloadPrompt.vue";
+import { useMainStore } from "./store/pinia";
 
+const store = useMainStore()
+const decimal = store.decimal
 const interval = ref()
+const locInterval = ref()
+
+const getLoc = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      store.userLat = pos.coords.latitude.toFixed(decimal)
+      store.userLong = pos.coords.longitude.toFixed(decimal)
+    })
+  } else {
+    console.log("Geolocation information is not available")
+  }
+}
+
 const presentToast = async () => {
   const toast = await toastController
     .create({
@@ -14,11 +29,33 @@ const presentToast = async () => {
     })
   await toast.present()
 }
+
+const startLocInterval = () => {
+  locInterval.value = setInterval(() => {
+    getLoc()
+  }, 5000)
+}
+
+watch(computed(() => store.manual), () => {
+  if (store.manual) {
+    clearInterval(locInterval.value)
+  } else {
+    clearInterval(locInterval.value)
+    startLocInterval()
+  }
+})
+
 onMounted(() => {
-  interval.value = setInterval(() => {
-    presentToast()
-    clearInterval(interval.value)
-  }, 2000)
+  getLoc()
+  if (!store.toast) {
+    store.toast = !store.toast
+    interval.value = setInterval(() => {
+      presentToast()
+      clearInterval(interval.value)
+    }, 2000)
+  }
+
+  startLocInterval()
 })
 </script>
 

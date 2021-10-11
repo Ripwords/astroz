@@ -5,13 +5,14 @@ export const useMainStore = defineStore('main', {
   state: () => {
     return {
       decimal: useStorage('decimal', 4),
-      appName: useStorage('appName', "AstroCalc"),
+      appName: "AstroCalc",
       units: useStorage('units', false),
-      userLat: useStorage('userLat', ""),
-      userLong: useStorage('userLong', ""),
+      userLat: useStorage('userLat', "0"),
+      userLong: useStorage('userLong', "0"),
       hemisphere: useStorage('hemisphere', false),
       meridian: useStorage('meridian', false),
-      gps: useStorage('gps', false),
+      toast: useStorage('toast', false),
+      manual: useStorage('manual', false)
     }
   }
 })

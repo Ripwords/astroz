@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRegisterSW } from 'virtual:pwa-register/vue'
-import { IonButton, IonText, IonList, IonItem } from "@ionic/vue";
+import { IonButton } from "@ionic/vue";
 
 const {
   offlineReady,

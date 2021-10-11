@@ -4,6 +4,7 @@ import { createSun } from "astronomy-bundle/sun";
 import { createLocation } from "astronomy-bundle/earth";
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { useMainStore } from "../store/pinia";
+import { convertAlt2Arc, convertAz2Arc } from "../utilFunctions/convert";
 
 // Variables
 const store = useMainStore()
@@ -21,11 +22,21 @@ const solDec = ref({
   arcMin: 0,
   arcSec: 0
 })
-const solAlt = ref()
-const solAz = ref()
+const solAlt = ref({
+  degree: 0,
+  degreeInt: 0,
+  arcMin: 0,
+  arcSec: 0
+})
+const solAz = ref({
+  degree: 0,
+  degreeInt: 0,
+  arcMin: 0,
+  arcSec: 0
+})
 const interval = ref()
 const sunTimeInterval = ref()
-const location = ref()
+const location = ref(createLocation(parseFloat(store.userLat), parseFloat(store.userLong)))
 const sunRise = ref("")
 const sunSet = ref("")
 const sunRiseTimes = ref({
@@ -59,9 +70,6 @@ const convertDec2Arc = (Dec: {degree: number; degreeInt: number; arcMin: number;
 }
 
 const updateSolPos = () => {
-  if ((parseFloat(store.userLat) == 0 && parseFloat(store.userLong) == 0) || (store.userLat == "" && store.userLong == "")) {
-    location.value = createLocation(0, 0)
-  }
   sol.value = createSun()
   sol.value.getTopocentricEquatorialSphericalCoordinates(location.value).then(result => {
     solRA.value.degree = parseFloat(result.rightAscension.toFixed(decimal.value))
@@ -72,8 +80,10 @@ const updateSolPos = () => {
     console.log("Error getting location and/or time information")
   })
   sol.value.getApparentTopocentricHorizontalCoordinates(location.value).then(result => {
-    solAlt.value = parseFloat(result.altitude.toFixed(decimal.value))
-    solAz.value = parseFloat(result.azimuth.toFixed(decimal.value))
+    solAlt.value.degree = parseFloat(result.altitude.toFixed(decimal.value))
+    solAz.value.degree = parseFloat(result.azimuth.toFixed(decimal.value))
+    solAlt.value = convertAlt2Arc(solAlt.value.degree)
+    solAz.value = convertAz2Arc(solAz.value.degree)
   }, () => {
     console.log("Error getting location and/or time information")
   })
@@ -109,36 +119,18 @@ const getSunTimes = () => {
     })
 }
 
-const getLoc = () => {
-  if ((parseFloat(store.userLat) == 0 && parseFloat(store.userLong) == 0) || (store.userLat == "" && store.userLong == "")) {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        store.userLat = pos.coords.latitude.toFixed(decimal.value)
-        store.userLong = pos.coords.longitude.toFixed(decimal.value)
-        location.value = createLocation(pos.coords.latitude, pos.coords.longitude)
-      }, () => {
-        location.value = createLocation(0, 0)
-      })
-    } else {
-      console.log("Geolocation information is not available")
-    }
-  } else {
-    location.value = createLocation(parseFloat(store.userLat), parseFloat(store.userLong))
-  }
-  updateSolPos()
-}
-
 // Watcher functions
 watch(computed(() => store.userLat), () => {
-  getLoc()
+  location.value = createLocation(parseFloat(store.userLat), parseFloat(store.userLong))
+  getSunTimes()
 })
 
 watch(computed(() => store.userLong), () => {
-  getLoc()
+  location.value = createLocation(parseFloat(store.userLat), parseFloat(store.userLong))
+  getSunTimes()
 })
 
 onMounted(() => {
-  getLoc()
   sunTimeInterval.value = setInterval(() => {
     getSunTimes()
     if (sunRise.value != "" && sunSet.value != "") {
@@ -206,7 +198,7 @@ onUnmounted(() => {
                 <div>:</div>
               </div>
               <span style="width: 10px;"></span>
-              <div class="noAlign">{{ solAlt }}&deg;</div>
+              <div class="noAlign">{{ solAlt.degree }}&deg;</div>
             </div>
             <div style="display: flex; justify-content: flex-start; width: 135px;">
               <div style="display: flex; justify-content: space-between; width: 35px">
@@ -214,12 +206,47 @@ onUnmounted(() => {
                 <div>:</div>
               </div>
               <span style="width: 10px;"></span>
-              <div class="noAlign">{{ solAz }}&deg;</div>
+              <div class="noAlign">{{ solAz.degree }}&deg;</div>
             </div>
           </div>
         </div>
         <div v-else>
-
+          <div style="display: flex; justify-content: space-between; max-width: 280px;">
+            <div style="display: flex; justify-content: flex-start; width: 135px;">
+              <div style="display: flex; justify-content: space-between; width: 30px;">
+                <div>RA</div>
+                <div>:</div>
+              </div>
+              <span style="width: 10px;"></span>
+              <div class="noAlign">{{ solRA.hour }}h {{ solRA.min }}m {{ solRA.sec }}s</div>
+            </div>
+            <div style="display: flex; justify-content: flex-start; width: 135px;">
+              <div style="display: flex; justify-content: space-between; width: 35px">
+                <div>Dec</div>
+                <div>:</div>
+              </div>
+              <span style="width: 10px;"></span>
+              <div class="noAlign">{{ solDec.degreeInt }}&deg; {{ solDec.arcMin }}' {{ solDec.arcSec }}"</div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; max-width: 280px;">
+            <div style="display: flex; justify-content: flex-start; width: 135px;">
+              <div style="display: flex; justify-content: space-between; width: 30px;">
+                <div>Alt</div>
+                <div>:</div>
+              </div>
+              <span style="width: 10px;"></span>
+              <div class="noAlign">{{ solAlt.degreeInt }}&deg; {{ solAlt.arcMin }}' {{ solAlt.arcSec }}"</div>
+            </div>
+            <div style="display: flex; justify-content: flex-start; width: 135px;">
+              <div style="display: flex; justify-content: space-between; width: 35px">
+                <div>Az</div>
+                <div>:</div>
+              </div>
+              <span style="width: 10px;"></span>
+              <div class="noAlign">{{ solAz.degreeInt }}&deg; {{ solAz.arcMin }}' {{ solAz.arcSec }}"</div>
+            </div>
+          </div>
         </div>
       </ion-card-content>
     </ion-card-header>

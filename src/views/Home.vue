@@ -2,6 +2,7 @@
 import { IonPage, IonContent } from "@ionic/vue";
 import Header from "../components/Header.vue";
 import MoonCard from "../components/moonCard.vue";
+import CoordCard from "../components/coordCard.vue";
 import SunCard from "../components/sunCard.vue";
 import { usePagesStore } from "../store/pinia";
 
@@ -12,9 +13,9 @@ const page = usePagesStore().pages[0]
   <ion-page>
     <ion-content>
       <Header :title="page.title" />
-      <!-- ion-cards -->
       <MoonCard />
       <SunCard />
+      <CoordCard />
     </ion-content>
   </ion-page>
 </template>
