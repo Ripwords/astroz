@@ -150,14 +150,14 @@ onUnmounted(() => {
           </div>
         </div>
         <div v-else>
-          <div style="display: flex; justify-content: space-between; max-width: 280px;">
+          <div style="display: flex; justify-content: space-between; max-width: 285px;">
             <div style="display: flex; justify-content: flex-start; width: 135px;">
               <div style="display: flex; justify-content: space-between; width: 30px;">
                 <div>RA</div>
                 <div>:</div>
               </div>
               <span style="width: 10px;"></span>
-              <div class="noAlign">{{ lunaRA.hour }}h {{ lunaRA.min }}m {{ lunaRA.sec }}s</div>
+              <div class="noAlign">{{ lunaRA.hour }}<sub>h</sub> {{ lunaRA.min }}<sub>m</sub> {{ lunaRA.sec }}<sub>s</sub></div>
             </div>
             <div style="display: flex; justify-content: flex-start; width: 135px;">
               <div style="display: flex; justify-content: space-between; width: 35px">
@@ -168,7 +168,7 @@ onUnmounted(() => {
               <div class="noAlign">{{ lunaDec.degreeInt }}&deg; {{ lunaDec.arcMin }}' {{ lunaDec.arcSec }}"</div>
             </div>
           </div>
-          <div style="display: flex; justify-content: space-between; max-width: 280px;">
+          <div style="display: flex; justify-content: space-between; max-width: 285px;">
             <div style="display: flex; justify-content: flex-start; width: 135px;">
               <div style="display: flex; justify-content: space-between; width: 30px;">
                 <div>Alt</div>

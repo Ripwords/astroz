@@ -173,7 +173,7 @@ onUnmounted(() => {
         </div>
         <br>
         <div v-if="!store.units">
-          <div style="display: flex; justify-content: space-between; max-width: 270px;">
+          <div style="display: flex; justify-content: space-between; max-width: 275px;">
             <div style="display: flex; justify-content: flex-start; width: 135px;">
               <div style="display: flex; justify-content: space-between; width: 30px;">
                 <div>RA</div>
@@ -191,7 +191,7 @@ onUnmounted(() => {
               <div class="noAlign">{{ solDec.degree }}&deg;</div>
             </div>
           </div>
-          <div style="display: flex; justify-content: space-between; max-width: 270px;">
+          <div style="display: flex; justify-content: space-between; max-width: 275px;">
             <div style="display: flex; justify-content: flex-start; width: 135px;">
               <div style="display: flex; justify-content: space-between; width: 30px;">
                 <div>Alt</div>
@@ -211,14 +211,14 @@ onUnmounted(() => {
           </div>
         </div>
         <div v-else>
-          <div style="display: flex; justify-content: space-between; max-width: 280px;">
+          <div style="display: flex; justify-content: space-between; max-width: 285px;">
             <div style="display: flex; justify-content: flex-start; width: 135px;">
               <div style="display: flex; justify-content: space-between; width: 30px;">
                 <div>RA</div>
                 <div>:</div>
               </div>
               <span style="width: 10px;"></span>
-              <div class="noAlign">{{ solRA.hour }}h {{ solRA.min }}m {{ solRA.sec }}s</div>
+              <div class="noAlign">{{ solRA.hour }}<sub>h</sub> {{ solRA.min }}<sub>m</sub> {{ solRA.sec }}<sub>s</sub></div>
             </div>
             <div style="display: flex; justify-content: flex-start; width: 135px;">
               <div style="display: flex; justify-content: space-between; width: 35px">
@@ -229,7 +229,7 @@ onUnmounted(() => {
               <div class="noAlign">{{ solDec.degreeInt }}&deg; {{ solDec.arcMin }}' {{ solDec.arcSec }}"</div>
             </div>
           </div>
-          <div style="display: flex; justify-content: space-between; max-width: 280px;">
+          <div style="display: flex; justify-content: space-between; max-width: 285px;">
             <div style="display: flex; justify-content: flex-start; width: 135px;">
               <div style="display: flex; justify-content: space-between; width: 30px;">
                 <div>Alt</div>

@@ -11,6 +11,8 @@ const page = usePagesStore().pages
 const title = page[page.length - 1].title
 const hemisphere = ref("N")
 const merd = ref("E")
+const units = ref(store.units ? 'time' : 'deg')
+
 const changeBool = (x: boolean) => {
   if (x) {
     return false
@@ -54,7 +56,6 @@ watch(computed(() => store.userLong), () => {
     store.userLong = (parseFloat(store.userLong) * -1).toString()
   }
 })
-const units = ref(store.units ? 'time' : 'deg')
 </script>
 
 <template>
@@ -64,7 +65,7 @@ const units = ref(store.units ? 'time' : 'deg')
       <ion-list class="noselect">
           <ion-item>
             <ion-label>Units : </ion-label>
-            <ion-select v-model="units" @ionChange="decOrFull" interface="popover">
+            <ion-select v-model="units" @ionChange="decOrFull">
               <ion-select-option value='deg'>Deg &deg;</ion-select-option>
               <ion-select-option value='time'>Time 🕑</ion-select-option>
             </ion-select>
