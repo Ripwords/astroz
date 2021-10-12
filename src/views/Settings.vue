@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { IonPage, IonContent, IonList, IonItem, IonLabel, IonInput, IonToggle, IonSelect, IonSelectOption } from "@ionic/vue";
+import { IonPage, IonContent, IonList, IonItem, IonLabel, IonInput, IonToggle, IonSelect, IonSelectOption, IonRadioGroup, IonRadio, IonListHeader } from "@ionic/vue";
 import { computed, ref, watch } from "vue";
 import { useMainStore } from "../store/pinia";
 import { usePagesStore } from "../store/pinia";
@@ -63,13 +63,26 @@ watch(computed(() => store.userLong), () => {
     <ion-content>
       <Header :title="title" />
       <ion-list class="noselect">
-          <ion-item>
+          <ion-radio-group v-model="units">
+            <ion-list-header>
+              <ion-label>Units : </ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-label>Degree &deg;</ion-label>
+              <ion-radio slot="start" value="deg" @click="decOrFull"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Time 🕐</ion-label>
+              <ion-radio slot="start" value="time" @click="decOrFull"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <!-- <ion-item>
             <ion-label>Units : </ion-label>
             <ion-select v-model="units" @ionChange="decOrFull" placeholder="Pick Unit to use">
               <ion-select-option value='deg'>Deg &deg;</ion-select-option>
               <ion-select-option value='time'>Time 🕑</ion-select-option>
             </ion-select>
-          </ion-item>
+          </ion-item> -->
           <ion-item>
             <ion-label>Manual Coords. : </ion-label>
             <ion-toggle :checked="store.manual" @ionChange="manualLoc"></ion-toggle>

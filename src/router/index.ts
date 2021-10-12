@@ -24,6 +24,14 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../views/Magnification.vue')
       },
       {
+        path: 'telescope',
+        component: () => import('../views/Telescope.vue')
+      },
+      {
+        path: 'ccd',
+        component: () => import('../views/CCD.vue')
+      },
+      {
         path: 'settings',
         component: () => import('../views/Settings.vue')
       }

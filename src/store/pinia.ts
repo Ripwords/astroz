@@ -37,6 +37,16 @@ export const usePagesStore = defineStore('pages', {
           sub: "Magnification calculations"
         },
         {
+          title: "Telescope",
+          path: "/menu/telescope",
+          sub: "Telescope capabilities calculations"
+        },
+        {
+          title: "CCD Calculations",
+          path: "/menu/ccd",
+          sub: "CCD suitability"
+        },
+        {
           title: "Settings",
           path: "/menu/settings",
           sub: "Settings"

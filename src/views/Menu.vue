@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { IonSplitPane, IonMenu, IonHeader, IonToolbar, IonContent, IonRouterOutlet, IonTitle, IonItem, IonList, IonMenuToggle, IonIcon } from "@ionic/vue";
-import { telescopeOutline, cogOutline } from "ionicons/icons";
+import { IonSplitPane, IonMenu, IonHeader, IonToolbar, IonContent, IonRouterOutlet, IonTitle, IonItem, IonList, IonMenuToggle, IonIcon, IonFooter } from "@ionic/vue";
+import { telescopeOutline, cogOutline, logoGithub } from "ionicons/icons";
 import { usePagesStore } from "../store/pinia";
 import { useRoute, useRouter } from "vue-router";
 
@@ -8,6 +8,9 @@ const route = useRoute()
 const router = useRouter()
 const pages = usePagesStore().pages
 const isActive = (path: string) => path === route.fullPath
+const redirect = () => {
+  window.open("https://github.com/Ripwords/astroz")
+}
 </script>
 
 <template>
@@ -15,7 +18,7 @@ const isActive = (path: string) => path === route.fullPath
     <ion-menu content-id="main-content">
       <ion-header color="primary">
         <ion-toolbar>
-          <ion-title>Astro Calc 🌌</ion-title>
+          <ion-title>Astroz 🌌</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
@@ -42,6 +45,13 @@ const isActive = (path: string) => path === route.fullPath
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
+      <ion-footer mode="md">
+        <ion-toolbar>
+          <ion-item slot="end">
+            <ion-icon :icon="logoGithub" @click="redirect"></ion-icon>
+          </ion-item>
+        </ion-toolbar>
+      </ion-footer>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
