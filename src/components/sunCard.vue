@@ -89,35 +89,47 @@ const updateSolPos = () => {
   })
 }
 
-const getSunTimes = () => {
-  sol.value.getRiseUpperLimb(location.value)
-    .then(result => {
-      sunRiseTimes.value.month = result.time.month
-      sunRiseTimes.value.day = result.time.day
-      sunRiseTimes.value.year = result.time.year
-      sunRiseTimes.value.hour = result.time.hour
-      sunRiseTimes.value.min = result.time.min
-      sunRiseTimes.value.sec = result.time.sec
-    })
-    .then(() => {
-      const setTime = (new Date(`${sunRiseTimes.value.month}/${sunRiseTimes.value.day}/${sunRiseTimes.value.year} ${sunRiseTimes.value.hour}:${sunRiseTimes.value.min}:${sunRiseTimes.value.sec} UTC`)).toString().split(" ")
-      sunRise.value = `${setTime[0]}, ${setTime[4]}`
-    })
-
-  sol.value.getSetUpperLimb(location.value)
-    .then(result => {
-      sunSetTimes.value.month = result.time.month
-      sunSetTimes.value.day = result.time.day
-      sunSetTimes.value.year = result.time.year
-      sunSetTimes.value.hour = result.time.hour
-      sunSetTimes.value.min = result.time.min
-      sunSetTimes.value.sec = result.time.sec
-    })
-    .then(() => {
-      const setTime = (new Date(`${sunSetTimes.value.month}/${sunSetTimes.value.day}/${sunSetTimes.value.year} ${sunSetTimes.value.hour}:${sunSetTimes.value.min}:${sunSetTimes.value.sec} UTC`)).toString().split(" ")
-      sunSet.value = `${setTime[0]}, ${setTime[4]}`
-    })
+const runSunPos = async () => {
+  return new Promise(resolve => setTimeout(resolve, 500))
 }
+await runSunPos().then(() => {
+  interval.value = setInterval(() => {
+    updateSolPos()
+  }, 1000)
+})
+
+const getSunTimes = async () => {
+  const rise = await sol.value.getRiseUpperLimb(location.value)
+  const set = await sol.value.getSetUpperLimb(location.value)
+  await new Promise (resolve => {
+    setTimeout(resolve, 1500)
+  })
+  return {
+    rise,
+    set
+  }
+}
+await getSunTimes().then(r => {
+  const rise = r.rise
+  const set = r.set
+  sunRiseTimes.value.month = rise.time.month
+  sunRiseTimes.value.day = rise.time.day
+  sunRiseTimes.value.year = rise.time.year
+  sunRiseTimes.value.hour = rise.time.hour
+  sunRiseTimes.value.min = rise.time.min
+  sunRiseTimes.value.sec = rise.time.sec
+  const riseTime = (new Date(`${sunRiseTimes.value.month}/${sunRiseTimes.value.day}/${sunRiseTimes.value.year} ${sunRiseTimes.value.hour}:${sunRiseTimes.value.min}:${sunRiseTimes.value.sec} UTC`)).toString().split(" ")
+  sunRise.value = `${riseTime[0]}, ${riseTime[4]}`
+
+  sunSetTimes.value.month = set.time.month
+  sunSetTimes.value.day = set.time.day
+  sunSetTimes.value.year = set.time.year
+  sunSetTimes.value.hour = set.time.hour
+  sunSetTimes.value.min = set.time.min
+  sunSetTimes.value.sec = set.time.sec
+  const setTime = (new Date(`${sunSetTimes.value.month}/${sunSetTimes.value.day}/${sunSetTimes.value.year} ${sunSetTimes.value.hour}:${sunSetTimes.value.min}:${sunSetTimes.value.sec} UTC`)).toString().split(" ")
+  sunSet.value = `${setTime[0]}, ${setTime[4]}`
+})
 
 // Watcher functions
 watch(computed(() => store.userLat), () => {
@@ -128,18 +140,6 @@ watch(computed(() => store.userLat), () => {
 watch(computed(() => store.userLong), () => {
   location.value = createLocation(parseFloat(store.userLat), parseFloat(store.userLong))
   getSunTimes()
-})
-
-onMounted(() => {
-  sunTimeInterval.value = setInterval(() => {
-    getSunTimes()
-    if (sunRise.value != "" && sunSet.value != "") {
-      clearInterval(sunTimeInterval.value)
-    }
-  }, 500)
-  interval.value = setInterval(() => {
-    updateSolPos()
-  }, 1000)
 })
 
 onUnmounted(() => {
@@ -217,7 +217,7 @@ onUnmounted(() => {
                 <div>RA</div>
                 <div>:</div>
               </div>
-              <span style="width: 5px;"></span>
+              <span style="width: 4px;"></span>
               <div class="noAlign">{{ solRA.hour }}<sub>h</sub> {{ solRA.min }}<sub>m</sub> {{ solRA.sec }}<sub>s</sub></div>
             </div>
             <div style="display: flex; justify-content: flex-start; width: 135px;">
@@ -225,7 +225,7 @@ onUnmounted(() => {
                 <div>Dec</div>
                 <div>:</div>
               </div>
-              <span style="width: 5px;"></span>
+              <span style="width: 4px;"></span>
               <div class="noAlign">{{ solDec.degreeInt }}&deg; {{ solDec.arcMin }}' {{ solDec.arcSec }}"</div>
             </div>
           </div>
@@ -235,7 +235,7 @@ onUnmounted(() => {
                 <div>Alt</div>
                 <div>:</div>
               </div>
-              <span style="width: 5px;"></span>
+              <span style="width: 4px;"></span>
               <div class="noAlign">{{ solAlt.degreeInt }}&deg; {{ solAlt.arcMin }}' {{ solAlt.arcSec }}"</div>
             </div>
             <div style="display: flex; justify-content: flex-start; width: 135px;">
@@ -243,7 +243,7 @@ onUnmounted(() => {
                 <div>Az</div>
                 <div>:</div>
               </div>
-              <span style="width: 5px;"></span>
+              <span style="width: 4px;"></span>
               <div class="noAlign">{{ solAz.degreeInt }}&deg; {{ solAz.arcMin }}' {{ solAz.arcSec }}"</div>
             </div>
           </div>
