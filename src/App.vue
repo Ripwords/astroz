@@ -46,7 +46,9 @@ watch(computed(() => store.manual), () => {
 })
 
 onMounted(() => {
-  getLoc()
+  if (!store.manual) {
+    getLoc()
+  }
   if (!store.toast) {
     store.toast = !store.toast
     interval.value = setInterval(() => {
