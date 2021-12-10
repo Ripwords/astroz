@@ -2,7 +2,7 @@
 import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from "@ionic/vue";
 import { createSun } from "astronomy-bundle/sun";
 import { createLocation } from "astronomy-bundle/earth";
-import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { computed, onUnmounted, ref, watch } from "vue";
 import { useMainStore } from "../store/pinia";
 import { convertAlt2Arc, convertAz2Arc } from "../utilFunctions/convert";
 
@@ -35,7 +35,6 @@ const solAz = ref({
   arcSec: 0
 })
 const interval = ref()
-const sunTimeInterval = ref()
 const location = ref(createLocation(parseFloat(store.userLat), parseFloat(store.userLong)))
 const sunRise = ref("")
 const sunSet = ref("")
@@ -69,67 +68,55 @@ const convertDec2Arc = (Dec: {degree: number; degreeInt: number; arcMin: number;
   solDec.value.arcSec = Math.floor(((Dec.degree - solDec.value.degreeInt) * 60 - solDec.value.arcMin) * 60)
 }
 
-const updateSolPos = () => {
+const updateSolPos = async () => {
   sol.value = createSun()
-  sol.value.getTopocentricEquatorialSphericalCoordinates(location.value).then(result => {
-    solRA.value.degree = parseFloat(result.rightAscension.toFixed(decimal.value))
-    solDec.value.degree = parseFloat(result.declination.toFixed(decimal.value))
-    convertRA2Time(solRA.value)
-    convertDec2Arc(solDec.value)
-  }, () => {
-    console.log("Error getting location and/or time information")
-  })
-  sol.value.getApparentTopocentricHorizontalCoordinates(location.value).then(result => {
-    solAlt.value.degree = parseFloat(result.altitude.toFixed(decimal.value))
-    solAz.value.degree = parseFloat(result.azimuth.toFixed(decimal.value))
-    solAlt.value = convertAlt2Arc(solAlt.value.degree)
-    solAz.value = convertAz2Arc(solAz.value.degree)
-  }, () => {
-    console.log("Error getting location and/or time information")
-  })
-}
+  const resultRD = await sol.value.getTopocentricEquatorialSphericalCoordinates(location.value)
+  solRA.value.degree = parseFloat(resultRD.rightAscension.toFixed(decimal.value))
+  solDec.value.degree = parseFloat(resultRD.declination.toFixed(decimal.value))
+  convertRA2Time(solRA.value)
+  convertDec2Arc(solDec.value)
 
-const runSunPos = async () => {
-  return new Promise(resolve => setTimeout(resolve, 500))
+  const resultAltAz = await sol.value.getApparentTopocentricHorizontalCoordinates(location.value)
+  solAlt.value.degree = parseFloat(resultAltAz.altitude.toFixed(decimal.value))
+  solAz.value.degree = parseFloat(resultAltAz.azimuth.toFixed(decimal.value))
+  convertAlt2Arc(solAlt.value.degree)
+  convertAz2Arc(solAz.value.degree)
 }
-await runSunPos().then(() => {
-  interval.value = setInterval(() => {
-    updateSolPos()
-  }, 1000)
-})
 
 const getSunTimes = async () => {
   const rise = await sol.value.getRiseUpperLimb(location.value)
   const set = await sol.value.getSetUpperLimb(location.value)
-  await new Promise (resolve => {
-    setTimeout(resolve, 1500)
-  })
   return {
     rise,
     set
   }
 }
-await getSunTimes().then(r => {
-  const rise = r.rise
-  const set = r.set
-  sunRiseTimes.value.month = rise.time.month
-  sunRiseTimes.value.day = rise.time.day
-  sunRiseTimes.value.year = rise.time.year
-  sunRiseTimes.value.hour = rise.time.hour
-  sunRiseTimes.value.min = rise.time.min
-  sunRiseTimes.value.sec = rise.time.sec
-  const riseTime = (new Date(`${sunRiseTimes.value.month}/${sunRiseTimes.value.day}/${sunRiseTimes.value.year} ${sunRiseTimes.value.hour}:${sunRiseTimes.value.min}:${sunRiseTimes.value.sec} UTC`)).toString().split(" ")
-  sunRise.value = `${riseTime[0]}, ${riseTime[4]}`
 
-  sunSetTimes.value.month = set.time.month
-  sunSetTimes.value.day = set.time.day
-  sunSetTimes.value.year = set.time.year
-  sunSetTimes.value.hour = set.time.hour
-  sunSetTimes.value.min = set.time.min
-  sunSetTimes.value.sec = set.time.sec
-  const setTime = (new Date(`${sunSetTimes.value.month}/${sunSetTimes.value.day}/${sunSetTimes.value.year} ${sunSetTimes.value.hour}:${sunSetTimes.value.min}:${sunSetTimes.value.sec} UTC`)).toString().split(" ")
-  sunSet.value = `${setTime[0]}, ${setTime[4]}`
-})
+// component setup
+const r = await getSunTimes()
+await updateSolPos()
+interval.value = setInterval(async () => {
+  await updateSolPos()
+}, 1000)
+const rise = r.rise
+const set = r.set
+sunRiseTimes.value.month = rise.time.month
+sunRiseTimes.value.day = rise.time.day
+sunRiseTimes.value.year = rise.time.year
+sunRiseTimes.value.hour = rise.time.hour
+sunRiseTimes.value.min = rise.time.min
+sunRiseTimes.value.sec = rise.time.sec
+const riseTime = (new Date(`${sunRiseTimes.value.month}/${sunRiseTimes.value.day}/${sunRiseTimes.value.year} ${sunRiseTimes.value.hour}:${sunRiseTimes.value.min}:${sunRiseTimes.value.sec} UTC`)).toString().split(" ")
+sunRise.value = `${riseTime[0]}, ${riseTime[4]}`
+
+sunSetTimes.value.month = set.time.month
+sunSetTimes.value.day = set.time.day
+sunSetTimes.value.year = set.time.year
+sunSetTimes.value.hour = set.time.hour
+sunSetTimes.value.min = set.time.min
+sunSetTimes.value.sec = set.time.sec
+const setTime = (new Date(`${sunSetTimes.value.month}/${sunSetTimes.value.day}/${sunSetTimes.value.year} ${sunSetTimes.value.hour}:${sunSetTimes.value.min}:${sunSetTimes.value.sec} UTC`)).toString().split(" ")
+sunSet.value = `${setTime[0]}, ${setTime[4]}`
 
 // Watcher functions
 watch(computed(() => store.userLat), () => {

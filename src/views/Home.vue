@@ -14,16 +14,14 @@ const page = usePagesStore().pages[0]
   <ion-page>
     <ion-content>
       <Header :title="page.title" />
-      <keep-alive>
-        <Suspense>
-          <template #default>
-            <SunCard />
-          </template>
-          <template #fallback>
-            <SunCardLoading />
-          </template>
-        </Suspense>
-      </keep-alive>
+      <Suspense>
+        <template #default>
+          <SunCard />
+        </template>
+        <template #fallback>
+          <SunCardLoading />
+        </template>
+      </Suspense>
       <MoonCard />
       <CoordCard />
     </ion-content>
