@@ -34,14 +34,14 @@ const getMag = computed(() => {
 })
 
 const getTAperture = computed(() => {
-  if (aperture.value != "") {
+  if (maxMag.value != "") {
     return (parseFloat(maxMag.value) / 2.5).toFixed(store.decimal)
   }
   return ""
 })
 
 const getMaxMag = computed(() => {
-  if (maxMag.value != "") {
+  if (aperture.value != "") {
     return (parseFloat(aperture.value) * 2.5)
   }
   return ""
