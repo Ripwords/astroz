@@ -76,13 +76,6 @@ watch(computed(() => store.userLong), () => {
               <ion-radio slot="start" value="time" @click="decOrFull"></ion-radio>
             </ion-item>
           </ion-radio-group>
-          <!-- <ion-item>
-            <ion-label>Units : </ion-label>
-            <ion-select v-model="units" @ionChange="decOrFull" placeholder="Pick Unit to use">
-              <ion-select-option value='deg'>Deg &deg;</ion-select-option>
-              <ion-select-option value='time'>Time 🕑</ion-select-option>
-            </ion-select>
-          </ion-item> -->
           <ion-item>
             <ion-label>Manual Coords. : </ion-label>
             <ion-toggle :checked="store.manual" @ionChange="manualLoc"></ion-toggle>

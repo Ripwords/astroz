@@ -100,10 +100,11 @@ watch(computed(() => store.userLong), () => {
   location.value = createLocation(parseFloat(store.userLat), parseFloat(store.userLong))
 })
 
+await getMoonTimes(location.value)
+
 // Lifecycle hooks
 onMounted(async () => {
   updateMoonPos()
-  await getMoonTimes(location.value)
   getFullMoon()
   interval.value = setInterval(() => {
     updateMoonPos()

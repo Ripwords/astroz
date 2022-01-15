@@ -3,8 +3,8 @@
     <ion-card-header>
       <ion-card-header>
         <ion-card-title>Luna</ion-card-title>
-        <ion-card-subtitle>... ( ...% )</ion-card-subtitle>
-        <ion-card-subtitle>Next Full Moon : .../.../...</ion-card-subtitle>
+        <ion-card-subtitle>Moon phase is ...</ion-card-subtitle>
+        <ion-card-subtitle>Next Full Moon : ...</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <div style="display: flex; justify-content: space-between; max-width: 270px;">
@@ -14,7 +14,7 @@
               <div>:</div>
             </div>
             <span style="width: 10px;"></span>
-            <div class="noAlign">...&deg;</div>
+            <div class="noAlign">...</div>
           </div>
           <div style="display: flex; justify-content: flex-start; width: 135px;">
             <div style="display: flex; justify-content: space-between; width: 35px">
@@ -22,7 +22,7 @@
               <div>:</div>
             </div>
             <span style="width: 10px;"></span>
-            <div class="noAlign">...&deg;</div>
+            <div class="noAlign">...</div>
           </div>
         </div>
         <div style="display: flex; justify-content: space-between; max-width: 270px;">
@@ -32,7 +32,7 @@
               <div>:</div>
             </div>
             <span style="width: 10px;"></span>
-            <div class="noAlign">...&deg;</div>
+            <div class="noAlign">...</div>
           </div>
           <div style="display: flex; justify-content: flex-start; width: 135px;">
             <div style="display: flex; justify-content: space-between; width: 35px">
@@ -40,7 +40,7 @@
               <div>:</div>
             </div>
             <span style="width: 10px;"></span>
-            <div class="noAlign">...&deg;</div>
+            <div class="noAlign">...</div>
           </div>
         </div>
       </ion-card-content>
