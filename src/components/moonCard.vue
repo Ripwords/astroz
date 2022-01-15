@@ -38,6 +38,8 @@ const lunaAz = ref({
   arcSec: 0
 })
 const interval = ref()
+const lunaRise = ref()
+const lunaSet = ref()
 const location = ref(createLocation(parseFloat(store.userLat), parseFloat(store.userLong)))
 const hemi = store.hemisphere ? Hemisphere.SOUTHERN : Hemisphere.NORTHERN
 const phaseEmoji = Moon.lunarPhaseEmoji(new Date(), hemi)
@@ -80,6 +82,16 @@ const getFullMoon = () => {
   nextFullMoon.value.year = time.year
 }
 
+const getMoonTimes = async (location: any) => {
+  const rise = await luna.value.getRise(location)
+  const set = await luna.value.getSet(location)
+  const riseTimeFormatted = (new Date(`${rise.time.month}/${rise.time.day}/${rise.time.year} ${rise.time.hour}:${rise.time.min}:${rise.time.sec} UTC`)).toString().split(" ")
+  lunaRise.value = `${riseTimeFormatted[0]}, ${riseTimeFormatted[4]}`
+
+  const setTimeFormatted = (new Date(`${set.time.month}/${set.time.day}/${set.time.year} ${set.time.hour}:${set.time.min}:${set.time.sec} UTC`)).toString().split(" ")
+  lunaSet.value = `${setTimeFormatted[0]}, ${setTimeFormatted[4]}`
+}
+
 // Watcher functions
 watch(computed(() => store.userLat), () => {
   location.value = createLocation(parseFloat(store.userLat), parseFloat(store.userLong))
@@ -89,8 +101,9 @@ watch(computed(() => store.userLong), () => {
 })
 
 // Lifecycle hooks
-onMounted(() => {
+onMounted(async () => {
   updateMoonPos()
+  await getMoonTimes(location.value)
   getFullMoon()
   interval.value = setInterval(() => {
     updateMoonPos()
@@ -100,6 +113,7 @@ onMounted(() => {
 onUnmounted(() => {
   clearInterval(interval.value)
 })
+
 </script>
 
 <template>
@@ -111,6 +125,23 @@ onUnmounted(() => {
         <ion-card-subtitle>Next Full Moon : {{ nextFullMoon.day }}/{{ nextFullMoon.month }}/{{ nextFullMoon.year }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
+        <div style="display: flex; justify-content: flex-start; max-width: 175px;">
+          <div style="display: flex; justify-content: space-between; width: 40px">
+            <div>Rise</div>
+            <div>:</div>
+          </div>
+          <span style="width: 10px;"></span>
+          <div>&nbsp;{{ lunaRise }}</div>
+        </div>
+        <div style="display: flex; justify-content: flex-start; max-width: 175px;">
+          <div style="display: flex; justify-content: space-between; width: 40px">
+            <div>Set</div>
+            <div>:</div>
+          </div>
+          <span style="width: 10px;"></span>
+          <div>&nbsp;{{ lunaSet }}</div>
+        </div>
+        <br>
         <div v-if="!store.units">
           <div style="display: flex; justify-content: space-between; max-width: 270px;">
             <div style="display: flex; justify-content: flex-start; width: 135px; margin-bottom: 5%;">

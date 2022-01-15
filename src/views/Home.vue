@@ -2,6 +2,7 @@
 import { IonPage, IonContent } from "@ionic/vue";
 import Header from "../components/Header.vue";
 import MoonCard from "../components/moonCard.vue";
+import MoonCardLoading from "../components/moonCardLoading.vue";
 import CoordCard from "../components/coordCard.vue";
 import SunCard from "../components/sunCard.vue";
 import { usePagesStore } from "../store/pinia";
@@ -22,7 +23,14 @@ const page = usePagesStore().pages[0]
           <SunCardLoading />
         </template>
       </Suspense>
-      <MoonCard />
+      <Suspense>
+        <template #default>
+          <MoonCard />
+        </template>
+        <template #fallback>
+          <MoonCardLoading />
+        </template>
+      </Suspense>
       <CoordCard />
     </ion-content>
   </ion-page>
