@@ -28,6 +28,11 @@ export const usePagesStore = defineStore('pages', {
           sub: "Home Page"
         },
         {
+          title: "Weather",
+          path: "/menu/weather",
+          sub: "Weather"
+        },
+        {
           title: "Optics",
           path: "/menu/optics",
           sub: "Optical calculations"

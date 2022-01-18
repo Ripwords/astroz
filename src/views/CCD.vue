@@ -5,7 +5,7 @@ import Header from "../components/Header.vue";
 import { usePagesStore, useMainStore } from "../store/pinia";
 
 const store = useMainStore()
-const page = usePagesStore().pages[4]
+const page = usePagesStore().pages[5]
 const fLength = ref("")
 const barlowOrReducer = ref("")
 const pixelSize = ref("")

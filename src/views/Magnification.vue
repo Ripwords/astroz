@@ -5,7 +5,7 @@ import Header from "../components/Header.vue";
 import { usePagesStore, useMainStore } from "../store/pinia";
 
 const store = useMainStore()
-const page = usePagesStore().pages[2]
+const page = usePagesStore().pages[3]
 const aperture = ref("")
 const tFLength = ref("")
 const eyeFLength = ref("")
