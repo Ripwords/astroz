@@ -84,12 +84,17 @@ const getFullMoon = () => {
 
 const getMoonTimes = async (location: any) => {
   const rise = await luna.value.getRise(location)
-  const set = await luna.value.getSet(location)
   const riseTimeFormatted = (new Date(`${rise.time.month}/${rise.time.day}/${rise.time.year} ${rise.time.hour}:${rise.time.min}:${rise.time.sec} UTC`)).toString().split(" ")
   lunaRise.value = `${riseTimeFormatted[0]}, ${riseTimeFormatted[4]}`
 
-  const setTimeFormatted = (new Date(`${set.time.month}/${set.time.day}/${set.time.year} ${set.time.hour}:${set.time.min}:${set.time.sec} UTC`)).toString().split(" ")
-  lunaSet.value = `${setTimeFormatted[0]}, ${setTimeFormatted[4]}`
+  try {
+    const set = await luna.value.getSet(location)
+    const setTimeFormatted = (new Date(`${set.time.month}/${set.time.day}/${set.time.year} ${set.time.hour}:${set.time.min}:${set.time.sec} UTC`)).toString().split(" ")
+    lunaSet.value = `${setTimeFormatted[0]}, ${setTimeFormatted[4]}`
+  } catch (e) {
+    console.log(e)
+    lunaSet.value = "N/A"
+  }
 }
 
 // Watcher functions
@@ -100,7 +105,6 @@ watch(computed(() => store.userLong), () => {
   location.value = createLocation(parseFloat(store.userLat), parseFloat(store.userLong))
 })
 
-await getMoonTimes(location.value)
 
 // Lifecycle hooks
 onMounted(async () => {
@@ -109,6 +113,7 @@ onMounted(async () => {
   interval.value = setInterval(() => {
     updateMoonPos()
   }, 1000)
+  await getMoonTimes(location.value)
 })
 
 onUnmounted(() => {
