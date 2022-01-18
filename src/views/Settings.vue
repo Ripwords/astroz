@@ -63,38 +63,23 @@ watch(computed(() => store.userLong), () => {
     <ion-content>
       <Header :title="title" />
       <ion-list class="noselect">
-          <ion-radio-group v-model="units">
-            <ion-list-header>
-              <ion-label>Units : </ion-label>
-            </ion-list-header>
-            <ion-item>
-              <ion-label>Degree &deg;</ion-label>
-              <ion-radio slot="start" value="deg" @click="decOrFull"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>Time 🕐</ion-label>
-              <ion-radio slot="start" value="time" @click="decOrFull"></ion-radio>
-            </ion-item>
-          </ion-radio-group>
-          <ion-radio-group v-model="store.forecastSize">
-            <ion-list-header>
-              <ion-label>Forecast : </ion-label>
-            </ion-list-header>
-            <ion-item>
-              <ion-label>Small</ion-label>
-              <ion-radio slot="start" value="small"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>Medium</ion-label>
-              <ion-radio slot="start" value="medium"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>Large</ion-label>
-              <ion-radio slot="start" value="large"></ion-radio>
-            </ion-item>
-          </ion-radio-group>
           <ion-item>
-            <ion-label>Manual Coords. : </ion-label>
+            <ion-label>Units :</ion-label>
+            <ion-select v-model="units" interface="action-sheet" @ionChange="decOrFull">
+              <ion-select-option value="deg">Degree &deg;</ion-select-option>
+              <ion-select-option value="time">Time 🕔</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Forecast :</ion-label>
+            <ion-select v-model="store.forecastSize" interface="action-sheet">
+              <ion-select-option value="small">Small</ion-select-option>
+              <ion-select-option value="medium">Medium</ion-select-option>
+              <ion-select-option value="large">Large</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Manual Coordinates : </ion-label>
             <ion-toggle :checked="store.manual" @ionChange="manualLoc"></ion-toggle>
           </ion-item>
           <ion-item v-show="store.manual">

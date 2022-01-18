@@ -1,6 +1,6 @@
 {
   "name": "astroz",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "scripts": {
     "dev-h": "vite --host --https",
     "dev": "vite --host",
@@ -8,8 +8,8 @@
     "serve": "npm run build && serve dist"
   },
   "dependencies": {
-    "@ionic/vue": "^6.0.1",
-    "@ionic/vue-router": "^6.0.1",
+    "@ionic/vue": "^6.0.2",
+    "@ionic/vue-router": "^6.0.2",
     "@vueuse/core": "^6.5.3",
     "astronomy-bundle": "^6.7.1",
     "lunarphase-js": "^1.0.8",
