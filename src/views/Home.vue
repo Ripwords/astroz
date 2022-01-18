@@ -7,6 +7,7 @@ import CoordCard from "../components/coordCard.vue";
 import SunCard from "../components/sunCard.vue";
 import { usePagesStore } from "../store/pinia";
 import SunCardLoading from "../components/sunCardLoading.vue";
+import WeatherCard from "../components/WeatherCard.vue";
 
 const page = usePagesStore().pages[0]
 </script>
@@ -31,6 +32,7 @@ const page = usePagesStore().pages[0]
           <MoonCardLoading />
         </template>
       </Suspense>
+      <WeatherCard />
       <CoordCard />
     </ion-content>
   </ion-page>

@@ -12,7 +12,8 @@ export const useMainStore = defineStore('main', {
       hemisphere: useStorage('hemisphere', false),
       meridian: useStorage('meridian', false),
       toast: useStorage('toast', false),
-      manual: useStorage('manual', false)
+      manual: useStorage('manual', false),
+      forecastSize: useStorage('forecastSize', "small")
     }
   }
 })

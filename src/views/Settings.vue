@@ -76,6 +76,23 @@ watch(computed(() => store.userLong), () => {
               <ion-radio slot="start" value="time" @click="decOrFull"></ion-radio>
             </ion-item>
           </ion-radio-group>
+          <ion-radio-group v-model="store.forecastSize">
+            <ion-list-header>
+              <ion-label>Forecast : </ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-label>Small</ion-label>
+              <ion-radio slot="start" value="small"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Medium</ion-label>
+              <ion-radio slot="start" value="medium"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Large</ion-label>
+              <ion-radio slot="start" value="large"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
           <ion-item>
             <ion-label>Manual Coords. : </ion-label>
             <ion-toggle :checked="store.manual" @ionChange="manualLoc"></ion-toggle>
