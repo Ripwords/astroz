@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from "@ionic/vue";
+</script>
+
 <template>
   <ion-card>
     <ion-card-header>
