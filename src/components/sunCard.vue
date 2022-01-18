@@ -79,8 +79,8 @@ const updateSolPos = async () => {
   const resultAltAz = await sol.value.getApparentTopocentricHorizontalCoordinates(location.value)
   solAlt.value.degree = parseFloat(resultAltAz.altitude.toFixed(decimal.value))
   solAz.value.degree = parseFloat(resultAltAz.azimuth.toFixed(decimal.value))
-  convertAlt2Arc(solAlt.value.degree)
-  convertAz2Arc(solAz.value.degree)
+  solAlt.value = convertAlt2Arc(solAlt.value.degree)
+  solAz.value = convertAz2Arc(solAz.value.degree)
 }
 
 const getSunTimes = async () => {
