@@ -17,4 +17,4 @@
 
 <br />
 
-## Astroz 🌌 is installable via PWA on Desktop, iOS and Android!
+## Astroz 🌌 is installable as PWA on Desktop, iOS and Android!
