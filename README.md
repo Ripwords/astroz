@@ -1,11 +1,20 @@
-# Vue 3 + Typescript + Vite
+# Astroz 🌌
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## A general astrophotography focused application
 
-## Recommended IDE Setup
+![image](https://user-images.githubusercontent.com/58784686/150042694-6583ba55-fb3b-4045-a088-b1c43cb7911f.png)
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+<br />
 
-## Type Support For `.vue` Imports in TS
+## Contains useful calculators for astrophotography and general visual astronomy
+### Formulas provided by [Astronomy.tools](https://astronomy.tools/)
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+![image](https://user-images.githubusercontent.com/58784686/150042877-9193ccb5-c9ac-4b37-957e-2e2746f68800.png)
+
+## Weather Forecast
+### Provided by [ClearOutside](https://clearoutside.com)
+![image](https://user-images.githubusercontent.com/58784686/150043435-31e742eb-e2be-4758-9568-5c3043000e0e.png)
+
+<br />
+
+## Astroz 🌌 is installable via PWA on Desktop, iOS and Android!
