@@ -33,9 +33,15 @@ watch(computed(() => store.forecastSize), () => {
       </ion-card-header>
       <ion-card-content>
         <a target="_blank" :href="forecastLink">
-          <img :src="forecastImage" />
+          <img class="weather" :src="forecastImage" />
         </a>
       </ion-card-content>
     </ion-card-header>
   </ion-card>
 </template>
+
+<style scoped>
+.weather {
+  min-height: 6vh;
+}
+</style>
