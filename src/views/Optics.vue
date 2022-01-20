@@ -44,7 +44,7 @@ const getEyeFOV = computed(() => {
 
 const getEyeFLength = computed(() => {
   if (eyeFOV.value != "" && fLength_2.value != "" && actualFOV.value != "") {
-    return (parseFloat(actualFOV.value) * parseFloat(fLength_2.value) / parseFloat(eyeFLength.value)).toFixed(store.decimal)
+    return (parseFloat(actualFOV.value) * parseFloat(fLength_2.value) / parseFloat(eyeFOV.value)).toFixed(store.decimal)
   }
   return ""
 })
