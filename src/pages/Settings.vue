@@ -30,12 +30,16 @@ settingsPageInit()
             </ion-select>
           </ion-item>
           <ion-item>
-            <ion-label>Forecast :</ion-label>
+            <ion-label>Forecast Size :</ion-label>
             <ion-select v-model="store.forecastSize" interface="action-sheet">
               <ion-select-option value="small">Small</ion-select-option>
               <ion-select-option value="medium">Medium</ion-select-option>
               <ion-select-option value="large">Large</ion-select-option>
             </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Location Refresh Interval : </ion-label>
+            <ion-input class="ion-text-right" v-model="store.locationInterval" type="number" placeholder="seconds" min="1"></ion-input><span>second(s)</span>
           </ion-item>
           <ion-item>
             <ion-label>Manual Coordinates : </ion-label>

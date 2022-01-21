@@ -34,11 +34,11 @@ const getLocation = () => {
 const startLocInterval = () => {
   locationInterval.value = setInterval(() => {
     getLocation()
-  }, 5000)
+  }, (store.locationInterval * 1000))
 }
 
 // Watches the manual input of latitude and longitude, if so stop update location loop
-watch(() => store.manual, () => {
+watch([() => store.manual, () => store.locationInterval], () => {
   if (store.manual) {
     clearInterval(locationInterval.value)
   } else {

@@ -5,7 +5,7 @@ import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
 const pages = pagesStore().pages
-const ver = ref(__APP_VERSION__)
+const ver = __APP_VERSION__
 
 const isActive = (path: string) => path === route.fullPath
 const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
@@ -47,8 +47,10 @@ const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
       </ion-content>
       <ion-footer mode="md">
         <ion-toolbar>
-          <ion-item slot="start">
-            v{{ ver }}
+          <ion-item class="ml-1" slot="start">
+            <div class="text-dark-50">
+              v{{ ver }}
+            </div>
           </ion-item>
           <ion-item slot="end">
             <i-ion:logo-github @click="redirectToGithub()"></i-ion:logo-github>
