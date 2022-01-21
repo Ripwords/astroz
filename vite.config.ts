@@ -118,7 +118,7 @@ export default defineConfig({
           {
             "name": "Weather",
             "description": "Open the weather page",
-            "url": "/menu/weather",
+            "url": "/#/menu/weather",
             "icons": [
               // @ts-expect-error
               {
@@ -132,7 +132,7 @@ export default defineConfig({
           {
             "name": "Settings",
             "description": "Open the settings page",
-            "url": "/menu/settings",
+            "url": "/#/menu/settings",
             "icons": [
               // @ts-expect-error
               {
