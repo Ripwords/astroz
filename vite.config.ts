@@ -120,7 +120,13 @@ export default defineConfig({
             "description": "Open the weather page",
             "url": "/menu/weather",
             "icons": [
-              "./img/icons/android-chrome-192x192.png"
+              // @ts-expect-error
+              {
+                "src": "./img/icons/android-chrome-192x192.png",
+                "sizes": "192x192",
+                "type": "image/png",
+                "purpose": "any"
+              }
             ]
           },
           {
