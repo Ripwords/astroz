@@ -32,6 +32,19 @@ const E_W = () => {
 }
 
 const manualLocation = () => store.manual = changeBool(store.manual)
+
+// Fail safe to prevent cached location to override manual location
+const settingsPageInit = () =>{
+  if (hemisphere.value == "S" && Number(store.userLat) > 0) {
+    store.userLat = (Number(store.userLat) * -1).toFixed(dec)
+  }
+  
+  if (meridian.value == "W" && Number(store.userLong) > 0) {
+    store.userLong = (Number(store.userLong) * -1).toFixed(dec)
+  }
+}
+
+settingsPageInit()
 </script>
 
 <template>
