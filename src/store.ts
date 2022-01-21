@@ -4,7 +4,6 @@ import { useStorage } from '@vueuse/core'
 export const mainStore = defineStore('mainStore', {
   state: () => ({
     decimal: useStorage('decimal', 4),
-    appName: "AstroCalc",
     units: useStorage('units', false),
     userLat: useStorage('userLat', "0"),
     userLong: useStorage('userLong', "0"),
