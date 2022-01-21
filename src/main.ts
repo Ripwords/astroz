@@ -1,8 +1,10 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import { IonicVue } from '@ionic/vue'
 import App from './App.vue'
-import router from './router';
-import { createPinia } from "pinia";
-import { IonicVue } from '@ionic/vue';
+import router from './router'
+import 'virtual:windi.css'
+
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
 
@@ -19,15 +21,14 @@ import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 
-/* Theme variables */
-import './theme/variables.css';
+import './theme.css'
 
 const pinia = createPinia()
 const app = createApp(App)
   .use(IonicVue)
-  .use(router)
   .use(pinia)
+  .use(router)
 
 router.isReady().then(() => {
-  app.mount('#app');
-});
+  app.mount("#app")
+})

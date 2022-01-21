@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from "@ionic/vue";
-import { useMainStore } from "../store/pinia";
-import { ref, watch, computed, render,  } from "vue";
+import { mainStore } from '../store'
 
-const store = useMainStore()
+const store = mainStore()
 const lat = ref(Number(store.userLat).toFixed(2))
 const long = ref(Number(store.userLong).toFixed(2))
 const forecastSize = ref(store.forecastSize)
@@ -18,7 +16,7 @@ watch([computed(() => store.userLat), computed(() => store.userLong)], () => {
   forecastImage.value = `https://clearoutside.com/forecast_image_${forecastSize.value}/${lat.value}/${long.value}/forecast.png` 
 })
 
-watch(computed(() => store.forecastSize), () => {
+watch(() => store.forecastSize, () => {
   forecastLink.value = `https://clearoutside.com/forecast/${lat.value}/${long.value}`
   forecastImage.value = `https://clearoutside.com/forecast_image_${forecastSize.value}/${lat.value}/${long.value}/forecast.png` 
 })
@@ -33,15 +31,9 @@ watch(computed(() => store.forecastSize), () => {
       </ion-card-header>
       <ion-card-content>
         <a target="_blank" :href="forecastLink">
-          <img class="weather" :src="forecastImage" />
+          <img class="min-h-[5.5vh]" :src="forecastImage" />
         </a>
       </ion-card-content>
     </ion-card-header>
   </ion-card>
 </template>
-
-<style scoped>
-.weather {
-  min-height: 6vh;
-}
-</style>

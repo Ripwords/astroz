@@ -1,42 +1,18 @@
 <script lang="ts" setup>
-import { IonPage, IonContent, IonCard, IonCardHeader, IonCardTitle, IonInput, IonList, IonItem, IonLabel } from "@ionic/vue";
-import { computed, ref } from "vue";
-import Header from "../components/Header.vue";
-import { usePagesStore, useMainStore } from "../store/pinia";
+import {
+  varRefs,
+  dawesLimit,
+  lightGraspRatio,
+  magnitudeLimit,
+  rayleighLimit
+} from '../functions/telescope'
+import { pagesStore } from '../store'
 
-const store = useMainStore()
-const page = usePagesStore().pages[4]
-const aperture = ref("")
-const smallAperture = ref("")
-
-const dawesLimit = computed(() => {
-  if (aperture.value != "") {
-    return (116 / parseFloat(aperture.value)).toFixed(store.decimal)
-  }
-  return ""
-})
-
-const rayleighLimit = computed(() => {
-  if (aperture.value != "") {
-    return (138 / parseFloat(aperture.value)).toFixed(store.decimal)
-  }
-  return ""
-})
-
-const magnitudeLimit = computed(() => {
-  if (aperture.value != "") {
-    return (7.7 + ( 5 * Math.log10(parseFloat(aperture.value) / 10))).toFixed(store.decimal)
-  }
-  return ""
-})
-
-const lightGraspRatio = computed(() => {
-  if (aperture.value != "" && smallAperture.value != "") {
-    return (Math.pow(parseFloat(aperture.value), 2) / Math.pow(parseFloat(smallAperture.value), 2)).toFixed(store.decimal)
-  }
-  return ""
-})
-
+const page = pagesStore().pages.telescope
+const {
+  aperture,
+  smallAperture
+} = varRefs
 </script>
 
 <template>

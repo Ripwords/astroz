@@ -1,11 +1,5 @@
 <script lang="ts" setup>
-import { IonToolbar, IonHeader, IonTitle, IonMenuButton, IonButtons, IonIcon } from "@ionic/vue";
-import { menu } from "ionicons/icons";
-
-interface Props {
-  title: string
-}
-defineProps<Props>()
+defineProps<{ title: string }>()
 </script>
 
 <template>
@@ -13,10 +7,16 @@ defineProps<Props>()
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button>
-          <ion-icon :icon="menu" color="primary"></ion-icon>
+          <i-ion:menu class="menuIcon" />
         </ion-menu-button>
       </ion-buttons>
       <ion-title>{{ title }}</ion-title>
     </ion-toolbar>
   </ion-header>
 </template>
+
+<style scoped>
+.menuIcon {
+  color: var(--ion-color-primary);
+}
+</style>

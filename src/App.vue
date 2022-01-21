@@ -1,25 +1,12 @@
 <script lang="ts" setup>
-import { IonApp, IonRouterOutlet, toastController } from "@ionic/vue";
-import { ref, onMounted, watch, computed } from "vue";
-import ReloadPrompt from "./components/ReloadPrompt.vue";
-import { useMainStore } from "./store/pinia";
+import { mainStore } from './store'
+import { toastController } from '@ionic/vue'
 
-const store = useMainStore()
-const decimal = store.decimal
+const store = mainStore()
 const interval = ref()
-const locInterval = ref()
+const locationInterval = ref()
 
-const getLoc = () => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      store.userLat = pos.coords.latitude.toFixed(decimal)
-      store.userLong = pos.coords.longitude.toFixed(decimal)
-    })
-  } else {
-    console.log("Geolocation information is not available")
-  }
-}
-
+// Provide basic info to first time users
 const presentToast = async () => {
   const toast = await toastController
     .create({
@@ -30,24 +17,41 @@ const presentToast = async () => {
   await toast.present()
 }
 
+// Function to get user's current location
+const getLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const coordinates = position.coords
+      store.userLat = coordinates.latitude.toFixed(store.decimal)
+      store.userLong = coordinates.longitude.toFixed(store.decimal)
+    })
+  } else {
+    console.log('Geolocation is not supported by this browser.')
+  }
+}
+
+// Starts a 5 second loop to update user location
 const startLocInterval = () => {
-  locInterval.value = setInterval(() => {
-    getLoc()
+  locationInterval.value = setInterval(() => {
+    getLocation()
   }, 5000)
 }
 
-watch(computed(() => store.manual), () => {
+// Watches the manual input of latitude and longitude, if so stop update location loop
+watch(() => store.manual, () => {
   if (store.manual) {
-    clearInterval(locInterval.value)
+    clearInterval(locationInterval.value)
   } else {
-    clearInterval(locInterval.value)
+    clearInterval(locationInterval.value)
     startLocInterval()
   }
 })
 
+// initializes the app
 onMounted(() => {
   if (!store.manual) {
-    getLoc()
+    getLocation()
+    startLocInterval()
   }
   if (!store.toast) {
     store.toast = !store.toast
@@ -55,25 +59,29 @@ onMounted(() => {
       presentToast()
       clearInterval(interval.value)
     }, 2000)
-  }
 
-  startLocInterval()
+  }
 })
 </script>
 
 <template>
   <ion-app>
-    <reload-prompt />
+    <ReloadPrompt />
     <ion-router-outlet></ion-router-outlet>
   </ion-app>
 </template>
 
 <style>
-.noAlign {
-  float: right;
+.noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-._ {
-  border: 2px dashed red;
+.noSelect:hover {
+  color: var(--ion-color-primary);
 }
 </style>

@@ -1,13 +1,11 @@
 <script lang="ts" setup>
-import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from "@ionic/vue";
-import { useMainStore } from "../store/pinia";
-import { ref, watch, computed } from "vue";
+import { mainStore } from '../store'
 
-const store = useMainStore()
+const store = mainStore()
 const lat = ref(store.userLat)
 const long = ref(store.userLong)
 
-watch([computed(() => store.userLat), computed(() => store.userLong)], () => {
+watch([() => store.userLat, () => store.userLong], () => {
   lat.value = store.userLat
   long.value = store.userLong
 })
@@ -21,8 +19,8 @@ watch([computed(() => store.userLat), computed(() => store.userLong)], () => {
         <ion-card-subtitle>Your current location on Earth 🌍</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <div style="display: flex; justify-content: space-between; max-width: 165px;">
-          <div style="display: flex; justify-content: space-between; width: 75px;">
+        <div class="flex justify-between max-w-[165px]">
+          <div class="flex justify-between w-[75px]">
             <div>Latitude</div>
             <div>:</div>
           </div>
@@ -30,8 +28,8 @@ watch([computed(() => store.userLat), computed(() => store.userLong)], () => {
             {{ lat }}&deg;
           </div>
         </div>
-        <div style="display: flex; justify-content: space-between; max-width: 165px;">
-          <div style="display: flex; justify-content: space-between; width: 75px;">
+        <div class="flex justify-between max-w-[165px]">
+          <div class="flex justify-between w-[75px]">
             <div>Longitude</div>
             <div>:</div>
           </div>
