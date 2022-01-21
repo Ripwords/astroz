@@ -128,7 +128,12 @@ export default defineConfig({
             "description": "Open the settings page",
             "url": "/menu/settings",
             "icons": [
-              "./img/icons/android-chrome-192x192.png"
+              {
+                "src": "./img/icons/android-chrome-192x192.png",
+                "sizes": "192x192",
+                "type": "image/png"
+                "purpose": "any"
+              }
             ]
           }
         ]
