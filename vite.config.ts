@@ -113,6 +113,24 @@ export default defineConfig({
             "sizes": "150x150",
             "type": "image/png"
           }
+        ],
+        shortcuts: [
+          {
+            "name": "Weather",
+            "description": "Open the weather page",
+            "url": "/menu/weather",
+            "icons": [
+              "./img/icons/android-chrome-192x192.png"
+            ]
+          },
+          {
+            "name": "Settings",
+            "description": "Open the settings page",
+            "url": "/menu/settings",
+            "icons": [
+              "./img/icons/android-chrome-192x192.png"
+            ]
+          }
         ]
       }
     })
