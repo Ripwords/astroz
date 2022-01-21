@@ -9,7 +9,7 @@ const forecastSize = ref(store.forecastSize)
 const forecastLink = ref(`https://clearoutside.com/forecast/${lat.value}/${long.value}`)
 const forecastImage = ref(`https://clearoutside.com/forecast_image_${forecastSize.value}/${lat.value}/${long.value}/forecast.png`)
 
-watch([computed(() => store.userLat), computed(() => store.userLong)], () => {
+watch([() => store.userLat, () => store.userLong], () => {
   lat.value = Number(store.userLat).toFixed(2)
   long.value = Number(store.userLong).toFixed(2)
   forecastLink.value = `https://clearoutside.com/forecast/${lat.value}/${long.value}`

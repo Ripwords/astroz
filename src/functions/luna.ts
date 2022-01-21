@@ -102,7 +102,7 @@ const getMoonTimes = async () => {
 const moonDetails = async () => {
   const lunaIlluminatedFraction = await luna.value.getIlluminatedFraction()
   lunaPercent.value = Number(lunaIlluminatedFraction * 100).toFixed(2)
-
+  hemi.value = store.hemisphere ? Hemisphere.SOUTHERN : Hemisphere.NORTHERN
   phase.value = Moon.lunarPhase(new Date(), hemi)
   phaseEmoji.value = Moon.lunarPhaseEmoji(new Date(), hemi)
 }
