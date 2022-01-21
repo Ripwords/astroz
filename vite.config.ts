@@ -128,10 +128,11 @@ export default defineConfig({
             "description": "Open the settings page",
             "url": "/menu/settings",
             "icons": [
+              // @ts-expect-error
               {
                 "src": "./img/icons/android-chrome-192x192.png",
                 "sizes": "192x192",
-                "type": "image/png"
+                "type": "image/png",
                 "purpose": "any"
               }
             ]
