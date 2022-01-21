@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router'
-import Menu from '../views/Menu.vue'
+import Menu from './pages/Menu.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -13,38 +13,37 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'home',
-        component: () => import('../views/Home.vue'),
+        component: () => import('./pages/Home.vue'),
       },
       {
         path: 'weather',
-        component: () => import('../views/Weather.vue')
+        component: () => import('./pages/Weather.vue')
       },
       {
         path: 'optics',
-        component: () => import('../views/Optics.vue')
+        component: () => import('./pages/Optics.vue')
       },
       {
         path: 'magni',
-        component: () => import('../views/Magnification.vue')
+        component: () => import('./pages/Magnification.vue')
       },
       {
         path: 'telescope',
-        component: () => import('../views/Telescope.vue')
+        component: () => import('./pages/Telescope.vue')
       },
       {
         path: 'ccd',
-        component: () => import('../views/CCD.vue')
+        component: () => import('./pages/CCD.vue')
       },
       {
         path: 'settings',
-        component: () => import('../views/Settings.vue')
+        component: () => import('./pages/Settings.vue')
       }
     ]
   }
 ]
 
 const router = createRouter({
-  // @ts-ignore
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
 })
