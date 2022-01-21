@@ -68,8 +68,6 @@ const updateSolPosition = async () => {
   solHorCoordinates.value.Az.arc = AzConvertion.arc
   solHorCoordinates.value.Az.min = AzConvertion.min
   solHorCoordinates.value.Az.sec = AzConvertion.sec
-  console.log(solEqCoordinates.value)
-  console.log(solHorCoordinates.value)
 }
 
 const getSunTimes = async () => {

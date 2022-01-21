@@ -9,9 +9,9 @@ const dec = store.decimal
 const luna = ref(createMoon())
 const interval = ref()
 const location = ref(createLocation(Number(store.userLat), Number(store.userLong)))
-const hemi = ref(() => store.hemisphere ? Hemisphere.SOUTHERN : Hemisphere.NORTHERN)
-export const phase = ref(Moon.lunarPhase(new Date(), hemi))
-export const phaseEmoji = ref(Moon.lunarPhaseEmoji(new Date(), hemi))
+const hemi = ref(() => Number(store.userLat) > 0 ? Hemisphere.NORTHERN : Hemisphere.SOUTHERN)
+export const phase = ref(Moon.lunarPhase(new Date(), hemi.value))
+export const phaseEmoji = ref(Moon.lunarPhaseEmoji(new Date(), hemi.value))
 export const lunaPercent = ref()
 export const lunaRise = ref()
 export const lunaSet = ref()
@@ -102,9 +102,9 @@ const getMoonTimes = async () => {
 const moonDetails = async () => {
   const lunaIlluminatedFraction = await luna.value.getIlluminatedFraction()
   lunaPercent.value = Number(lunaIlluminatedFraction * 100).toFixed(2)
-  hemi.value = store.hemisphere ? Hemisphere.SOUTHERN : Hemisphere.NORTHERN
-  phase.value = Moon.lunarPhase(new Date(), hemi)
-  phaseEmoji.value = Moon.lunarPhaseEmoji(new Date(), hemi)
+  hemi.value = Number(store.userLat) > 0 ? Hemisphere.NORTHERN : Hemisphere.SOUTHERN
+  phase.value = Moon.lunarPhase(new Date(), hemi.value)
+  phaseEmoji.value = Moon.lunarPhaseEmoji(new Date(), hemi.value)
 }
 
 export const moonCardInit = async () => {

@@ -31,7 +31,7 @@ watch(() => store.forecastSize, () => {
       </ion-card-header>
       <ion-card-content>
         <a target="_blank" :href="forecastLink">
-          <img class="min-h-[5.5vh]" :src="forecastImage" />
+          <img class="min-h-[3.5vh]" :src="forecastImage" />
         </a>
       </ion-card-content>
     </ion-card-header>
