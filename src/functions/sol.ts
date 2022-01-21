@@ -1,7 +1,7 @@
 import { mainStore } from '../store'
 import { createSun } from 'astronomy-bundle/sun'
 import { createLocation } from 'astronomy-bundle/earth'
-import { convertAlt2Arc, convertAz2Arc, convertDec2Arc, convertRA2Time } from './utility'
+import { convertDeg2Time, convertDeg2Arc } from './utility'
 
 const store = mainStore()
 const dec = store.decimal
@@ -44,8 +44,8 @@ const updateSolPosition = async () => {
   const sunCoordinates = await sol.value.getTopocentricEquatorialSphericalCoordinates(location.value)
   solEqCoordinates.value.RA.degree = Number(sunCoordinates.rightAscension.toFixed(dec))
   solEqCoordinates.value.DEC.degree = Number(sunCoordinates.declination.toFixed(dec))
-  const RAConvertion = convertRA2Time(Number(solEqCoordinates.value.RA.degree))
-  const DECConvertion = convertDec2Arc(Number(solEqCoordinates.value.DEC.degree))
+  const RAConvertion = convertDeg2Time(Number(solEqCoordinates.value.RA.degree))
+  const DECConvertion = convertDeg2Arc(Number(solEqCoordinates.value.DEC.degree))
   
   solEqCoordinates.value.RA.hour = RAConvertion.hour
   solEqCoordinates.value.RA.min = RAConvertion.min
@@ -58,8 +58,8 @@ const updateSolPosition = async () => {
   const sunHorCoordinates = await sol.value.getTopocentricHorizontalCoordinates(location.value)
   solHorCoordinates.value.Alt.degree = Number(sunHorCoordinates.altitude.toFixed(dec))
   solHorCoordinates.value.Az.degree = Number(sunHorCoordinates.azimuth.toFixed(dec))
-  const AltConvertion = convertAlt2Arc(Number(solHorCoordinates.value.Alt.degree))
-  const AzConvertion = convertAz2Arc(Number(solHorCoordinates.value.Az.degree))
+  const AltConvertion = convertDeg2Arc(Number(solHorCoordinates.value.Alt.degree))
+  const AzConvertion = convertDeg2Arc(Number(solHorCoordinates.value.Az.degree))
 
   solHorCoordinates.value.Alt.arc = AltConvertion.arc
   solHorCoordinates.value.Alt.min = AltConvertion.min

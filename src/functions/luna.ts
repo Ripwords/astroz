@@ -2,7 +2,7 @@ import { mainStore } from '../store'
 import { createMoon } from 'astronomy-bundle/moon'
 import { createLocation } from 'astronomy-bundle/earth'
 import { Moon, Hemisphere } from 'lunarphase-js'
-import { convertAlt2Arc, convertAz2Arc, convertDec2Arc, convertRA2Time } from './utility'
+import { convertDeg2Arc, convertDeg2Time } from './utility'
 
 const store = mainStore()
 const dec = store.decimal
@@ -50,8 +50,8 @@ const updateMoonPosition = async () => {
   const moonCoordinates = await luna.value.getTopocentricEquatorialSphericalCoordinates(location.value)
   lunaEqCoordinates.value.RA.degree = Number(moonCoordinates.rightAscension.toFixed(dec))
   lunaEqCoordinates.value.DEC.degree = Number(moonCoordinates.declination.toFixed(dec))
-  const RAConvertion = convertRA2Time(Number(lunaEqCoordinates.value.RA.degree))
-  const DECConvertion = convertDec2Arc(Number(lunaEqCoordinates.value.DEC.degree))
+  const RAConvertion = convertDeg2Time(Number(lunaEqCoordinates.value.RA.degree))
+  const DECConvertion = convertDeg2Arc(Number(lunaEqCoordinates.value.DEC.degree))
 
   lunaEqCoordinates.value.RA.hour = RAConvertion.hour
   lunaEqCoordinates.value.RA.min = RAConvertion.min
@@ -64,8 +64,8 @@ const updateMoonPosition = async () => {
   const moonHorCoordinates = await luna.value.getTopocentricHorizontalCoordinates(location.value)
   lunaHorCoordinates.value.Alt.degree = Number(moonHorCoordinates.altitude.toFixed(dec))
   lunaHorCoordinates.value.Az.degree = Number(moonHorCoordinates.azimuth.toFixed(dec))
-  const AltConvertion = convertAlt2Arc(Number(lunaHorCoordinates.value.Alt.degree))
-  const AzConvertion = convertAz2Arc(Number(lunaHorCoordinates.value.Az.degree))
+  const AltConvertion = convertDeg2Arc(Number(lunaHorCoordinates.value.Alt.degree))
+  const AzConvertion = convertDeg2Arc(Number(lunaHorCoordinates.value.Az.degree))
 
   lunaHorCoordinates.value.Alt.arc = AltConvertion.arc
   lunaHorCoordinates.value.Alt.min = AltConvertion.min
