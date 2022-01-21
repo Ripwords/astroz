@@ -19,7 +19,7 @@ console.log('yo')
             <ion-card-subtitle>Your daily dose of weather information</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
-            <a target="_blank" :href="forecastLink">
+            <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
               <img :src="forecastImage" />
             </a>
             <br>
