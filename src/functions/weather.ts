@@ -6,9 +6,9 @@ const lat = ref(Number(store.userLat).toFixed(2))
 const long = ref(Number(store.userLong).toFixed(2))
 const interval = ref()
 
-const forecastLink = ref(`https://clearoutside.com/forecast/${lat.value}/${long.value}`)
-const forecastImage = ref(`https://clearoutside.com/forecast_image_large/${lat.value}/${long.value}/forecast.png`)
-const annualDarkness = ref(`https://clearoutside.com/annual_darkness_image/${lat.value}/${long.value}/annual_darkness.png`)
+const forecastLink = ref()
+const forecastImage = ref()
+const annualDarkness = ref()
 
 const updateForecast = () => {
   forecastLink.value = `https://clearoutside.com/forecast/${lat.value}/${long.value}`
