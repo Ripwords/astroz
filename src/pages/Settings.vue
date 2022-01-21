@@ -1,48 +1,18 @@
 <script lang="ts" setup>
 import { mainStore, pagesStore } from '../store'
-import { changeBool } from '../functions/utility'
+import {
+  units,
+  hemisphere,
+  meridian,
+  changeUnits,
+  N_S,
+  E_W,
+  manualLocation,
+  settingsPageInit
+} from '../functions/settings'
 
 const store = mainStore()
 const page = pagesStore().pages.settings
-const dec = store.decimal
-const hemisphere = ref(store.hemisphere ? 'S' : 'N')
-const meridian = ref(store.meridian ? 'W' : 'E')
-const units = ref(store.units ? 'time' : 'deg')
-
-const changeUnits = () => store.units = changeBool(store.units)
-
-const N_S = () => {
-  store.hemisphere = changeBool(store.hemisphere)
-  if (store.hemisphere) {
-    store.userLat = (Number(store.userLat) * -1).toFixed(dec)
-  } else {
-    store.userLat = (Math.abs(Number(store.userLat))).toFixed(dec)
-  }
-  hemisphere.value = store.hemisphere ? 'S' : 'N'
-}
-
-const E_W = () => {
-  store.meridian = changeBool(store.meridian)
-  if (store.meridian) {
-    store.userLong = (Number(store.userLong) * -1).toFixed(dec)
-  } else {
-    store.userLong = (Math.abs(Number(store.userLong))).toFixed(dec)
-  }
-  meridian.value = store.meridian ? 'W' : 'E'
-}
-
-const manualLocation = () => store.manual = changeBool(store.manual)
-
-// Fail safe to prevent cached location to override manual location
-const settingsPageInit = () =>{
-  if (hemisphere.value == "S" && Number(store.userLat) > 0) {
-    store.userLat = (Number(store.userLat) * -1).toFixed(dec)
-  }
-  
-  if (meridian.value == "W" && Number(store.userLong) > 0) {
-    store.userLong = (Number(store.userLong) * -1).toFixed(dec)
-  }
-}
 
 settingsPageInit()
 </script>
