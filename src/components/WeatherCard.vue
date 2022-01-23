@@ -46,7 +46,7 @@ onUnmounted(() => {
       </ion-card-header>
       <ion-card-content>
         <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
-          <img class="min-h-[3.5vh]" :src="forecastImage" />
+          <img alt="forecast image" class="min-h-[3.5vh]" :src="forecastImage" />
         </a>
       </ion-card-content>
     </ion-card-header>

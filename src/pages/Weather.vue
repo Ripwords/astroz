@@ -20,11 +20,11 @@ console.log('yo')
           </ion-card-header>
           <ion-card-content>
             <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
-              <img :src="forecastImage" />
+              <img alt="forecast image" :src="forecastImage" />
             </a>
             <br>
             <br>
-            <img :src="annualDarkness">
+            <img alt="annual darkness image" :src="annualDarkness">
           </ion-card-content>
         </ion-card-header>
       </ion-card>
