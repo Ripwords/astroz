@@ -12,6 +12,7 @@
     "@vueuse/core": "7.5.3",
     "astronomy-bundle": "^6.9.3",
     "chart.js": "^3.7.0",
+    "dayjs": "^1.10.7",
     "lunarphase-js": "^1.0.8",
     "pinia": "2.0.9",
     "vue": "3.2.27",
