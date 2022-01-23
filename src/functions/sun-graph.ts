@@ -53,37 +53,26 @@ const generateDataLabels = async () => {
   }
 }
 
-let labels: any, data: any
-generateDataLabels()
-  .then((result: any) => {
-    labels = result.labels
-    data = result.data
-  })
-
-export const sunGraph = {
-  type: 'bar',
-  data: {
-    labels: [...labels.map((label: { hour: string; min: string }) => `${label.hour}:${label.min}`)],
-    datasets: [{
-      label: 'Sun Altitude',
-      data: data,
-      backgroundColor: 'rgba(250, 222, 82, 0.5)'
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-        max: 90,
-        gridlines: {
-          displau: false
-        }
-      },
-      x: {
-        gridlines: {
-          display: false
+export const sunGraph = async (color: string) => {
+  const { labels, data } = await generateDataLabels()
+  const graphConfig = {
+    type: 'bar',
+    data: {
+      labels: [...labels.map((label: { hour: string; min: string }) => `${label.hour}:${label.min}`)],
+      datasets: [{
+        label: 'Sun Altitude',
+        data: data,
+        backgroundColor: color
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 90
         }
       }
     }
   }
+  return graphConfig
 }

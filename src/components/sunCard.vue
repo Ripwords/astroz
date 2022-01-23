@@ -6,6 +6,7 @@ import { sunGraph } from '../functions/sun-graph'
 const EQ = solEqCoordinates.value
 const HOR = solHorCoordinates.value
 const store = mainStore()
+const graphConfig = await sunGraph('rgba(250, 222, 82, 0.5)')
 await sunCardInit()
 </script>
 
@@ -113,5 +114,5 @@ await sunCardInit()
       </ion-card-content>
     </ion-card-header>
   </ion-card>
-  <Chart :config="sunGraph" />
+  <Chart :config="graphConfig" />
 </template>
