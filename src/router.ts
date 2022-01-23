@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/:pathMatch(.*)',
-    redirect: '/menu/home'
+    component: Menu
   },
   {
     path: '/menu/',
