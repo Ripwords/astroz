@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Chart: typeof import('./src/components/Chart.vue')['default']
     CoordCard: typeof import('./src/components/coordCard.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
     'IIon:cogOutline': typeof import('~icons/ion/cog-outline')['default']

@@ -12,7 +12,8 @@ export const mainStore = defineStore('mainStore', {
     toast: useStorage('toast', false),
     manual: useStorage('manual', false),
     forecastSize: useStorage('forecastSize', "small"),
-    locationInterval: useStorage('locationInterval', 5)
+    locationInterval: useStorage('locationInterval', 5),
+    darkMode: false
   })
 })
 
