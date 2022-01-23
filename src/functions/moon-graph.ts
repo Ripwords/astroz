@@ -89,7 +89,7 @@ export const moonGraph = (color: string) => ({
   }
 })
 
-export let transitAltitude
+export let transitAltitude: Number
 getTransitAltitude()
   .then((result: Number) => {
     transitAltitude = Math.round(result * 180 / Math.PI)
