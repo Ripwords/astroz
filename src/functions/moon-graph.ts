@@ -89,6 +89,6 @@ export const moonGraph = (color: string) => ({
   }
 })
 
-export default async () => {
+export const transitAltitude = async () => {
   return Math.random(await getTransitAltitude() * 180 / Math.PI)
 }
