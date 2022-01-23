@@ -27,9 +27,11 @@ export const generateDataLabels = async (generateData: Function) => {
   const data: any = []
 
   let time = dayjs()
+  let min
   for (let i = 0; i < 22; i++) {
-    time.minute() > 30 ? labels.push(`${time.hour()}:30`) : labels.push(`${time.hour()}:00`)
-    data.push(await generateData(time.toDate()))
+    time.minute() > 30 ? min = 30 : min = 0
+    labels.push(`${time.hour()}:${min}`)
+    data.push(await generateData(time.toDate().setMinutes(min)))
     time = time.add(dayjs.duration({ 'minutes': 30 }))
   } 
   return {
