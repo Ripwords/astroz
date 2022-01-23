@@ -5,7 +5,7 @@ import { mainStore } from '../store'
 
 const store = mainStore()
 
-const getTransitAltitude = async () => {
+export const getTransitAltitude = async () => {
   const location = createLocation(Number(store.userLat), Number(store.userLong))
   const moon = createMoon()
   const transit = createMoon(await moon.getTransit(location))
@@ -88,7 +88,3 @@ export const moonGraph = (color: string) => ({
     }
   }
 })
-
-export const transitAltitude = async () => {
-  return Math.random(await getTransitAltitude() * 180 / Math.PI)
-}

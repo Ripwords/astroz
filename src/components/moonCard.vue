@@ -10,13 +10,14 @@ import {
   lunaHorCoordinates,
   moonCardInit
 } from '../functions/luna'
-import { moonGraph, transitAltitude } from '../functions/moon-graph'
+import { moonGraph, getTransitAltitude } from '../functions/moon-graph'
 import { mainStore } from '../store'
 
 const EQ = lunaEqCoordinates.value
 const HOR = lunaHorCoordinates.value
 const store = mainStore()
 await moonCardInit()
+const transitAltitude = Math.round(await getTransitAltitude() * 180 / Math.PI)
 </script>
 
 <template>
