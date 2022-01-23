@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import Chart from "chart.js/auto";
-import { onMounted, ref } from "vue";
+import Chart from "chart.js/auto"
+import { mainStore } from '../store'
 
+const store = mainStore()
 const props = defineProps<{ config: any }>();
 const chart = ref<any>(null)
 
@@ -9,6 +10,8 @@ onMounted(() => {
   const ctx = chart.value.getContext('2d')
   new Chart(ctx, props.config)
 })
+
+
 </script>
 
 <template>

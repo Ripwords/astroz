@@ -13,12 +13,19 @@ import {
 import { moonGraph, getTransitAltitude } from '../functions/moon-graph'
 import { mainStore } from '../store'
 
+const store = mainStore()
+const graphConfig = ref()
 const EQ = lunaEqCoordinates.value
 const HOR = lunaHorCoordinates.value
-const store = mainStore()
-await moonCardInit()
-const graphConfig = await moonGraph('rgba(135, 135, 135, 1)')
+
+graphConfig.value = await moonGraph(
+  'Moon Altitude',
+  'rgba(90, 90, 90, 0.3)',
+  'rgba(135, 135, 135, 0.6)'
+)
 const transitAltitude = Math.round(await getTransitAltitude() * 180 / Math.PI)
+
+await moonCardInit()
 </script>
 
 <template>

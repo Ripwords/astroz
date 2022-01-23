@@ -62,10 +62,6 @@ onMounted(() => {
 
   }
 })
-
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',(e) => {
-  store.darkMode = e.matches
-})
 </script>
 
 <template>

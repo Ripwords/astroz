@@ -6,7 +6,13 @@ import { sunGraph } from '../functions/sun-graph'
 const EQ = solEqCoordinates.value
 const HOR = solHorCoordinates.value
 const store = mainStore()
-const graphConfig = await sunGraph('rgba(255, 200, 61, 0.5)')
+
+const graphConfig = await sunGraph(
+  'Sun Altitude',
+  'rgba(90, 90, 90, 0.3)',
+  'rgba(255, 200, 61, 0.6)'
+)
+
 await sunCardInit()
 </script>
 
