@@ -1,8 +1,8 @@
 import { mainStore } from '../store'
-import { sunGraph } from '../functions/sun-graph'
 import { createSun } from 'astronomy-bundle/sun'
 import { createLocation } from 'astronomy-bundle/earth'
 import { convertDeg2Time, convertDeg2Arc, changeBool } from './utility'
+import { sunGraph, getTransitAltitude } from '../functions/sun-graph'
 
 const store = mainStore()
 const dec = store.decimal
@@ -96,6 +96,7 @@ export const sunCardInit = async () => {
     const t = await getSunTimes()
     sunRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
     sunSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`
+    transitAltitude.value = Math.round(await getTransitAltitude() * 180 / Math.PI)
     graphConfig.value = await sunGraph(
       'Sun ☀',
       'rgba(90, 90, 90, 0.3)',
@@ -114,13 +115,14 @@ export const sunCardInit = async () => {
   interval.value = setInterval(async () => {
     await updateSolPosition()
   }, 1000)
-  
+  const transitAltitude = ref(Math.round(await getTransitAltitude() * 180 / Math.PI))
   const t = await getSunTimes()
   sunRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
   sunSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`
 
   return {
     graphConfig,
-    chartKey
+    chartKey,
+    transitAltitude
   }
 }

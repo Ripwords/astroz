@@ -1,12 +1,18 @@
 <script lang="ts" setup>
-import { solEqCoordinates, solHorCoordinates, sunCardInit, sunRise, sunSet } from '../functions/sol'
+import { 
+  solEqCoordinates, 
+  solHorCoordinates, 
+  sunCardInit, 
+  sunRise, 
+  sunSet 
+} from '../functions/sol'
 import { mainStore } from '../store'
 
+const store = mainStore()
 const EQ = solEqCoordinates.value
 const HOR = solHorCoordinates.value
-const store = mainStore()
 
-const { chartKey, graphConfig } = await sunCardInit()
+const { chartKey, transitAltitude, graphConfig } = await sunCardInit()
 </script>
 
 <template>
@@ -18,7 +24,7 @@ const { chartKey, graphConfig } = await sunCardInit()
       </ion-card-header>
       <ion-card-content>
         <div class="flex justify-start max-w-[175px]">
-          <div class="flex justify-between w-[40px]">
+          <div class="flex justify-between w-[50px]">
             <div>Rise</div>
             <div>:</div>
           </div>
@@ -26,12 +32,20 @@ const { chartKey, graphConfig } = await sunCardInit()
           <div>&nbsp;{{ sunRise }}</div>
         </div>
         <div class="flex justify-start max-w-[175px]">
-          <div class="flex justify-between w-[40px]">
+          <div class="flex justify-between w-[50px]">
             <div>Set</div>
             <div>:</div>
           </div>
           <span class="w-[10px]"></span>
           <div>&nbsp;{{ sunSet }}</div>
+        </div>
+        <div class="flex justify-start max-w-[175px]">
+          <div class="flex justify-between w-[50px]">
+            <div>Peaks</div>
+            <div>:</div>
+          </div>
+          <span class="w-[10px]"></span>
+          <div>&nbsp;{{ transitAltitude }}&deg;</div>
         </div>
         <br>
         <div v-if="!store.units">
