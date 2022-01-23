@@ -19,7 +19,7 @@ const EQ = lunaEqCoordinates.value
 const HOR = lunaHorCoordinates.value
 
 graphConfig.value = await moonGraph(
-  'Moon Altitude',
+  'Moon 🌙',
   'rgba(90, 90, 90, 0.3)',
   'rgba(135, 135, 135, 0.6)'
 )

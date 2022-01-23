@@ -8,7 +8,7 @@ const HOR = solHorCoordinates.value
 const store = mainStore()
 
 const graphConfig = await sunGraph(
-  'Sun Altitude',
+  'Sun ☀',
   'rgba(90, 90, 90, 0.3)',
   'rgba(255, 200, 61, 0.6)'
 )
