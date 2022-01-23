@@ -2,7 +2,9 @@
 
 ## A general astrophotography focused application
 
-![image](https://user-images.githubusercontent.com/58784686/150042694-6583ba55-fb3b-4045-a088-b1c43cb7911f.png)
+![image](https://user-images.githubusercontent.com/58784686/150679066-6a191b3d-26db-4ded-a42a-b80852099292.png)
+![image](https://user-images.githubusercontent.com/58784686/150679060-df5067d7-73af-4e29-bb8d-ec3eb3ff8030.png)
+
 
 <br />
 
