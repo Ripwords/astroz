@@ -18,9 +18,7 @@ const HOR = lunaHorCoordinates.value
 const store = mainStore()
 await moonCardInit()
 const graphConfig = await moonGraph('rgba(135, 135, 135, 1)')
-const transitAltitude = await getTransitAltitude()
-console.log(graphConfig, transitAltitude)
-const formatAltitude = Math.round(transitAltitude * 180 / Math.PI)
+const transitAltitude = Math.round(await getTransitAltitude() * 180 / Math.PI)
 </script>
 
 <template>
@@ -54,7 +52,7 @@ const formatAltitude = Math.round(transitAltitude * 180 / Math.PI)
             <div>:</div>
           </div>
           <span class="w-[10px]"></span>
-          <div>&nbsp;{{ formatAltitude }}&deg;</div>
+          <div>&nbsp;{{ transitAltitude }}&deg;</div>
         </div>
         <br>
         <div v-if="!store.units">
@@ -136,5 +134,5 @@ const formatAltitude = Math.round(transitAltitude * 180 / Math.PI)
       </ion-card-content>
     </ion-card-header>
   </ion-card>
-  <Chart class="" :config="graphConfig" />
+  <Chart :config="graphConfig" />
 </template>
