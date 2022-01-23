@@ -53,7 +53,9 @@ const generateDataLabels = async () => {
   }
 }
 
-const { labels, data } = await generateDataLabels()
+generateDataLabels().then((labels, data) => {
+  return labels, data
+})
 
 export const sunGraph = {
   type: 'bar',
