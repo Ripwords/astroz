@@ -1,7 +1,8 @@
 import { mainStore } from '../store'
+import { sunGraph } from '../functions/sun-graph'
 import { createSun } from 'astronomy-bundle/sun'
 import { createLocation } from 'astronomy-bundle/earth'
-import { convertDeg2Time, convertDeg2Arc } from './utility'
+import { convertDeg2Time, convertDeg2Arc, changeBool } from './utility'
 
 const store = mainStore()
 const dec = store.decimal
@@ -95,8 +96,20 @@ export const sunCardInit = async () => {
     const t = await getSunTimes()
     sunRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
     sunSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`
+    graphConfig.value = await sunGraph(
+      'Sun ☀',
+      'rgba(90, 90, 90, 0.3)',
+      'rgba(255, 200, 61, 0.6)'
+    )
+    chartKey.value = changeBool(chartKey.value)
   })
 
+  const chartKey = ref(true)
+  const graphConfig = ref(await sunGraph(
+    'Sun ☀',
+    'rgba(90, 90, 90, 0.3)',
+    'rgba(255, 200, 61, 0.6)'
+  ))
   await updateSolPosition()
   interval.value = setInterval(async () => {
     await updateSolPosition()
@@ -105,4 +118,9 @@ export const sunCardInit = async () => {
   const t = await getSunTimes()
   sunRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
   sunSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`
+
+  return {
+    graphConfig,
+    chartKey
+  }
 }

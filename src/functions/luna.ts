@@ -2,7 +2,8 @@ import { mainStore } from '../store'
 import { createMoon } from 'astronomy-bundle/moon'
 import { createLocation } from 'astronomy-bundle/earth'
 import { Moon, Hemisphere } from 'lunarphase-js'
-import { convertDeg2Arc, convertDeg2Time } from './utility'
+import { changeBool, convertDeg2Arc, convertDeg2Time } from './utility'
+import { moonGraph, getTransitAltitude } from '../functions/moon-graph'
 
 const store = mainStore()
 const dec = store.decimal
@@ -112,6 +113,7 @@ export const moonCardInit = async () => {
     clearInterval(interval.value)
   })
 
+
   watch([() => store.userLat, () => store.userLong], async () => {
     location.value = createLocation(Number(store.userLat), Number(store.userLong))
     await moonDetails()
@@ -119,15 +121,35 @@ export const moonCardInit = async () => {
     lunaRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
     lunaSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`
     fullMoon.value = luna.value.getUpcomingFullMoon().time
+    transitAltitude.value = Math.round(await getTransitAltitude() * 180 / Math.PI)
+    graphConfig.value = await moonGraph(
+      'Moon 🌙',
+      'rgba(90, 90, 90, 0.3)',
+      'rgba(135, 135, 135, 0.6)'
+    )
+    chartKey.value = changeBool(chartKey.value)
   })
 
+  const chartKey = ref(true)
+  const graphConfig = ref(await moonGraph(
+    'Moon 🌙',
+    'rgba(90, 90, 90, 0.3)',
+    'rgba(135, 135, 135, 0.6)'
+  ))
   
   await moonDetails()
   await updateMoonPosition()
+  const transitAltitude = ref(Math.round(await getTransitAltitude() * 180 / Math.PI))
   const t = await getMoonTimes()
   lunaRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
   lunaSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`
   interval.value = setInterval(async () => {
     await updateMoonPosition()
   }, 1000)
+
+  return {
+    graphConfig,
+    chartKey,
+    transitAltitude
+  }
 }
