@@ -32,6 +32,7 @@ const getLocation = () => {
 
 // Starts a 5 second loop to update user location
 const startLocInterval = () => {
+  getLocation()
   locationInterval.value = setInterval(() => {
     getLocation()
   }, (store.locationInterval * 1000))
@@ -50,7 +51,6 @@ watch([() => store.manual, () => store.locationInterval], () => {
 // initializes the app
 onMounted(() => {
   if (!store.manual) {
-    getLocation()
     startLocInterval()
   }
   if (!store.toast) {
@@ -61,6 +61,10 @@ onMounted(() => {
     }, 2000)
 
   }
+})
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',(e) => {
+  store.darkMode = e.matches
 })
 </script>
 

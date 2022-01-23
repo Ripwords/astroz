@@ -10,7 +10,8 @@ import {
   lunaHorCoordinates,
   moonCardInit
 } from '../functions/luna'
-import { mainStore } from '../store';
+import { moonGraph, transitAltitude } from '../functions/moon-graph'
+import { mainStore } from '../store'
 
 const EQ = lunaEqCoordinates.value
 const HOR = lunaHorCoordinates.value
@@ -28,7 +29,7 @@ await moonCardInit()
       </ion-card-header>
       <ion-card-content>
         <div class="flex justify-start max-w-[175px]">
-          <div class="flex justify-between w-[40px]">
+          <div class="flex justify-between w-[50px]">
             <div>Rise</div>
             <div>:</div>
           </div>
@@ -36,12 +37,20 @@ await moonCardInit()
           <div>&nbsp;{{ lunaRise }}</div>
         </div>
         <div class="flex justify-start max-w-[175px]">
-          <div class="flex justify-between w-[40px]">
+          <div class="flex justify-between w-[50px]">
             <div>Set</div>
             <div>:</div>
           </div>
           <span class="w-[10px]"></span>
           <div>&nbsp;{{ lunaSet }}</div>
+        </div>
+        <div class="flex justify-start max-w-[175px]">
+          <div class="flex justify-between w-[50px]">
+            <div>Peaks</div>
+            <div>:</div>
+          </div>
+          <span class="w-[10px]"></span>
+          <div>&nbsp;{{ transitAltitude }}&deg;</div>
         </div>
         <br>
         <div v-if="!store.units">
@@ -123,4 +132,5 @@ await moonCardInit()
       </ion-card-content>
     </ion-card-header>
   </ion-card>
+  <Chart class="" :config="moonGraph('rgba(135, 135, 135, 1)')"/>
 </template>

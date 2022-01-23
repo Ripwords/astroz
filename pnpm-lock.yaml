@@ -7,6 +7,7 @@ specifiers:
   '@vitejs/plugin-vue': 2.0.1
   '@vueuse/core': 7.5.3
   astronomy-bundle: ^6.9.3
+  chart.js: ^3.7.0
   lunarphase-js: ^1.0.8
   pinia: 2.0.9
   typescript: 4.5.5
@@ -26,6 +27,7 @@ dependencies:
   '@ionic/vue-router': 6.0.2
   '@vueuse/core': 7.5.3_vue@3.2.27
   astronomy-bundle: 6.9.3
+  chart.js: 3.7.0
   lunarphase-js: 1.0.8
   pinia: 2.0.9_typescript@4.5.5+vue@3.2.27
   vue: 3.2.27
@@ -1761,6 +1763,10 @@ packages:
     dependencies:
       is-regex: 1.1.4
     dev: true
+
+  /chart.js/3.7.0:
+    resolution: {integrity: sha512-31gVuqqKp3lDIFmzpKIrBeum4OpZsQjSIAqlOpgjosHDJZlULtvwLEZKtEhIAZc7JMPaHlYMys40Qy9Mf+1AAg==}
+    dev: false
 
   /chokidar/3.5.2:
     resolution: {integrity: sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==}

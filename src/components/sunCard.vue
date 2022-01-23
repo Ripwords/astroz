@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { solEqCoordinates, solHorCoordinates, sunCardInit, sunRise, sunSet } from '../functions/sol'
 import { mainStore } from '../store'
+import { sunGraph } from '../functions/sun-graph'
 
 const EQ = solEqCoordinates.value
 const HOR = solHorCoordinates.value
@@ -112,4 +113,5 @@ await sunCardInit()
       </ion-card-content>
     </ion-card-header>
   </ion-card>
+  <Chart :config="sunGraph" />
 </template>
