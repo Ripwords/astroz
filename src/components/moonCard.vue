@@ -19,6 +19,7 @@ const store = mainStore()
 await moonCardInit()
 const graphConfig = await moonGraph('rgba(135, 135, 135, 1)')
 const transitAltitude = await getTransitAltitude()
+console.log(graphConfig, transitAltitude)
 const formatAltitude = Math.round(transitAltitude * 180 / Math.PI)
 </script>
 
