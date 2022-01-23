@@ -45,7 +45,7 @@ onUnmounted(() => {
         <ion-card-subtitle>Weather Forecast</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <a target="_blank" :href="forecastLink">
+        <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
           <img class="min-h-[3.5vh]" :src="forecastImage" />
         </a>
       </ion-card-content>
