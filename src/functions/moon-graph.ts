@@ -62,9 +62,12 @@ const generateDataLabels = async () => {
   }
 }
 
-generateDataLabels().then((result) => {
-  return result.labels, result.data
-})
+let labels, data
+generateDataLabels()
+  .then((result) => {
+    labels = result.labels
+    data = result.data
+  })
 
 export const moonGraph = (color: string) => ({
   type: 'bar',
