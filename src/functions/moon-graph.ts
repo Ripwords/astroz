@@ -62,29 +62,26 @@ const generateDataLabels = async () => {
   }
 }
 
-let labels: any, data: any
-generateDataLabels()
-  .then((result: any) => {
-    labels = result.labels
-    data = result.data
-  })
-
-export const moonGraph = (color: string) => ({
-  type: 'bar',
-  data: {
-    labels: [...labels.map((label: { hour: string; min: string }) => `${label.hour}:${label.min}`)],
-    datasets: [{
-      label: 'Moon Altitude',
-      data: data,
-      backgroundColor: color
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-        max: 90
+export const moonGraph = async (color: string) => {
+  const { labels, data } = await generateDataLabels()
+  const graphConfig = {
+    type: 'bar',
+    data: {
+      labels: [...labels.map((label: { hour: string; min: string }) => `${label.hour}:${label.min}`)],
+      datasets: [{
+        label: 'Moon Altitude',
+        data: data,
+        backgroundColor: color
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 90
+        }
       }
     }
   }
-})
+  return graphConfig
+}

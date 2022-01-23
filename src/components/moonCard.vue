@@ -17,6 +17,7 @@ const EQ = lunaEqCoordinates.value
 const HOR = lunaHorCoordinates.value
 const store = mainStore()
 await moonCardInit()
+const graphConfig = await moonGraph('rgba(135, 135, 135, 1)')
 const transitAltitude = Math.round(await getTransitAltitude() * 180 / Math.PI)
 </script>
 
@@ -133,5 +134,5 @@ const transitAltitude = Math.round(await getTransitAltitude() * 180 / Math.PI)
       </ion-card-content>
     </ion-card-header>
   </ion-card>
-  <Chart class="" :config="moonGraph('rgba(135, 135, 135, 1)')"/>
+  <Chart class="" :config="graphConfig" />
 </template>
