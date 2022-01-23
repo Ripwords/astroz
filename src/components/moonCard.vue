@@ -18,7 +18,8 @@ const HOR = lunaHorCoordinates.value
 const store = mainStore()
 await moonCardInit()
 const graphConfig = await moonGraph('rgba(135, 135, 135, 1)')
-const transitAltitude = Math.round(await getTransitAltitude() * 180 / Math.PI)
+const transitAltitude = await getTransitAltitude()
+const formatAltitude = Math.round(transitAltitude * 180 / Math.PI)
 </script>
 
 <template>
@@ -52,7 +53,7 @@ const transitAltitude = Math.round(await getTransitAltitude() * 180 / Math.PI)
             <div>:</div>
           </div>
           <span class="w-[10px]"></span>
-          <div>&nbsp;{{ transitAltitude }}&deg;</div>
+          <div>&nbsp;{{ formatAltitude }}&deg;</div>
         </div>
         <br>
         <div v-if="!store.units">
