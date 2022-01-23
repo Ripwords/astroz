@@ -95,4 +95,4 @@ getTransitAltitude()
     transitAltitude = Math.round(result * 180 / Math.PI)
   })
 
-export default { transitAltitude }
+export default transitAltitude
