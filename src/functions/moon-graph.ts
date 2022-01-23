@@ -62,8 +62,8 @@ const generateDataLabels = async () => {
   }
 }
 
-generateDataLabels().then((labels, data) => {
-  return labels, data
+generateDataLabels().then((result) => {
+  return result.labels, result.data
 })
 
 export const moonGraph = (color: string) => ({
