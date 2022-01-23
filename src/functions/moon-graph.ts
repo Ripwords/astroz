@@ -62,9 +62,9 @@ const generateDataLabels = async () => {
   }
 }
 
-let labels: Array, data: Array
+let labels: Array<string>, data: Array<number>
 generateDataLabels()
-  .then((result: { labels: Array, data: Array }) => {
+  .then((result: { labels: Array<string>, data: Array<number> }) => {
     labels = result.labels
     data = result.data
   })
