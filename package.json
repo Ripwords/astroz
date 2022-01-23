@@ -1,6 +1,6 @@
 {
   "name": "astroz",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "scripts": {
     "dev": "vite --open",
     "build": "vue-tsc --noEmit && vite build",
