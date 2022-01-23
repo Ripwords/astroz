@@ -8,7 +8,7 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/menu/home'
   },
   {
-    path: '/:pathMathc(.*)*',
+    path: '/:pathMathc(.*)',
     redirect: '/menu/home'
   },
   {
