@@ -48,8 +48,10 @@ const generateDataLabels = async () => {
       }
       minutes = i % 2 === 0 ? '30' : '00'
     }
+    // Check if hours is larger than 24
+    hours = hours >= 24 ? hours - 24 : hours
     labels.push({
-      hour: hours >= 24 ? hours - 24 : hours,
+      hour: hours,
       min: minutes
     })
     data.push(await generateData(new Date(new Date().setHours(Number(hours), Number(minutes)))))
