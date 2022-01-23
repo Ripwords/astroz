@@ -79,7 +79,8 @@ export const generateGraph = async (title: string, gridColor: string, background
           backgroundColor: gridColor,
           borderColor: backgroundColor,
           borderWidth: 3,
-          tension: 0.45
+          tension: 0.45,
+          pointBorderWidth: 0.2
         }
       ]
     },
