@@ -10,7 +10,8 @@ import {
   lunaHorCoordinates,
   moonCardInit
 } from '../functions/luna'
-import { moonGraph }, transitAltitude from '../functions/moon-graph'
+import { moonGraph } from '../functions/moon-graph'
+import transitAltitude from '../functions/moon-graph'
 import { mainStore } from '../store'
 
 const EQ = lunaEqCoordinates.value
