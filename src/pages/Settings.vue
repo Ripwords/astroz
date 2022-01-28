@@ -38,10 +38,6 @@ settingsPageInit()
             </ion-select>
           </ion-item>
           <ion-item>
-            <ion-label>Location Refresh Interval : </ion-label>
-            <ion-input class="ion-text-right" v-model="store.locationInterval" type="number" placeholder="seconds" min="1"></ion-input><span>second(s)</span>
-          </ion-item>
-          <ion-item>
             <ion-label>Manual Coordinates : </ion-label>
             <ion-toggle :checked="store.manual" @ionChange="manualLocation"></ion-toggle>
           </ion-item>
@@ -61,6 +57,10 @@ settingsPageInit()
             <ion-label>Coordinates : </ion-label>
             <ion-input class="ion-text-right" v-model="store.userLat" type="number" placeholder="lat" min="0" max="90"></ion-input><span>{{ hemisphere }}</span>
             <ion-input class="ion-text-right" v-model="store.userLong" type="number" placeholder="long" min="0" max="180"></ion-input><span>{{ meridian }}</span>
+          </ion-item>
+          <ion-item v-show="!store.manual">
+            <ion-label>Location Refresh Interval : </ion-label>
+            <ion-input class="ion-text-right" v-model="store.locationInterval" type="number" placeholder="seconds" min="1"></ion-input><span>second(s)</span>
           </ion-item>
         </ion-list>
     </ion-content>
