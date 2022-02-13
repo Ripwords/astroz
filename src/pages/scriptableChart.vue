@@ -1,28 +1,22 @@
-<script lang="ts" setup>
-import { 
-  phase,
-  phaseEmoji,
-  lunaPercent,
-  lunaRise,
-  lunaSet,
-  fullMoon,
-  lunaEqCoordinates,
-  lunaHorCoordinates,
-  moonCardInit
-} from '../functions/luna'
-import { mainStore } from '../store'
-
-const store = mainStore()
-const EQ = lunaEqCoordinates.value
-const HOR = lunaHorCoordinates.value
-
-const { chartKey, transitAltitude, graphConfig } = await moonCardInit()
-</script>
-
 <template>
-<ion-page>
-  <ion-content>
-    <Chart :key="chartKey" :config="graphConfig" />
-  </ion-content>
-</ion-page>  
+  <ion-page>
+    <ion-content>
+      <Suspense>
+        <template #default>
+          <scriptableSun />
+        </template>
+        <template #fallback>
+          <scriptableSkeleton />
+        </template>
+      </Suspense>
+      <Suspense>
+        <template #default>
+          <scriptableMoon />
+        </template>
+        <template #fallback>
+          <scriptableSkeleton />
+        </template>
+      </Suspense>
+    </ion-content>
+  </ion-page>
 </template>
