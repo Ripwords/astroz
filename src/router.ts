@@ -12,6 +12,10 @@ const routes: Array<RouteRecordRaw> = [
     component: Menu
   },
   {
+    path: '/scriptable/moon',
+    component: () => import('./pages/scriptableChart.vue')
+  },
+  {
     path: '/menu/',
     component: Menu,
     children: [
