@@ -20,5 +20,9 @@ const { chartKey, transitAltitude, graphConfig } = await moonCardInit()
 </script>
 
 <template>
-<Chart :key="chartKey" :config="graphConfig" />
+<ion-page>
+  <ion-content>
+    <Chart :key="chartKey" :config="graphConfig" />
+  </ion-content>
+</ion-page>  
 </template>
