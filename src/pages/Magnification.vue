@@ -9,7 +9,7 @@ import {
 } from '../functions/magni'
 import { pagesStore } from '../store'
 
-const page = pagesStore().pages.magni
+const page = pagesStore().magni
 const {
   aperture,
   eyepieceFocalLength,

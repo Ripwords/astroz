@@ -11,7 +11,7 @@ import {
 } from '../functions/optics'
 import { pagesStore } from '../store'
 
-const page = pagesStore().pages.optics
+const page = pagesStore().optics
 const {
   actualFOV,
   aperture,

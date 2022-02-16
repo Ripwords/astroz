@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { pagesStore } from '../store'
 
-const page = pagesStore().pages.home
+const page = pagesStore().home
 </script>
 
 <template>

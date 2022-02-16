@@ -4,7 +4,14 @@ import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()
-const pages = pagesStore().pages
+const pages: any = []
+Object.entries(pagesStore()).map(page => {
+  if (!page[0].startsWith('$') && !page[0].startsWith('_')) {
+    pages.push(page[1])
+  }
+})
+
+console.log(pages)
 const ver = __APP_VERSION__
 
 const isActive = (path: string) => path === route.fullPath
@@ -23,7 +30,7 @@ const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-menu-toggle auto-hide="false" v-for="page in pages" :key="page.title">
+          <ion-menu-toggle auto-hide="false" v-for="page in pages" :key="page">
             <ion-item
               v-if="page.title == 'Settings'"
               class="noSelect"

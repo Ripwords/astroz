@@ -2,10 +2,9 @@
 import { forecast, forecastInit } from '../functions/weather'
 import { pagesStore } from '../store'
 
-const page = pagesStore().pages.weather
+const page = pagesStore().weather
 const { forecastLink, forecastImage, annualDarkness } = forecast
 forecastInit()
-console.log('yo')
 </script>
 
 <template>

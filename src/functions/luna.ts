@@ -91,7 +91,6 @@ const getMoonTimes = async () => {
       setDatetime
     }
   } catch (e) {
-    console.log(e)
     const setDatetime = 'N/A'
     return {
       riseDatetime,

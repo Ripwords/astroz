@@ -12,7 +12,7 @@ import {
 } from '../functions/settings'
 
 const store = mainStore()
-const page = pagesStore().pages.settings
+const page = pagesStore().settings
 
 settingsPageInit()
 </script>

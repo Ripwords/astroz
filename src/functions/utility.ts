@@ -53,6 +53,7 @@ export const generateGraph = async (title: string, gridColor: string, background
           backgroundColor: backgroundColor,
           borderColor: gridColor,
           borderWidth: 1,
+          borderRadius: 8
         },
         {
           type: 'line',

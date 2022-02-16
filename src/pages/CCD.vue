@@ -2,7 +2,7 @@
 import { pagesStore } from '../store'
 import { varRefs, getResolution } from '../functions/CCD'
 
-const page = pagesStore().pages.ccd
+const page = pagesStore().ccd
 const { focalLength, barlowReducer, pixelSize } = varRefs
 </script>
 

@@ -25,8 +25,6 @@ const getLocation = () => {
       store.userLat = coordinates.latitude.toFixed(store.decimal)
       store.userLong = coordinates.longitude.toFixed(store.decimal)
     })
-  } else {
-    console.log('Geolocation is not supported by this browser.')
   }
 }
 

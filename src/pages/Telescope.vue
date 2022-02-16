@@ -8,7 +8,7 @@ import {
 } from '../functions/telescope'
 import { pagesStore } from '../store'
 
-const page = pagesStore().pages.telescope
+const page = pagesStore().telescope
 const {
   aperture,
   smallAperture
