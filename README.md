@@ -1,5 +1,7 @@
 # Astroz 🌌
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/435d3bdc-d6e9-41c9-a502-64375992e6d5/deploy-status)](https://app.netlify.com/sites/astroz/deploys)
+
 ## A general astrophotography focused application
 
 ![image](https://user-images.githubusercontent.com/58784686/150679066-6a191b3d-26db-4ded-a42a-b80852099292.png)
