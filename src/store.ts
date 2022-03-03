@@ -23,6 +23,11 @@ export const pagesStore = defineStore('pages', {
       path: "/menu/home",
       sub: "Home Page"
     },
+    solarSystem: {
+      title: "Solar System",
+      path: "/menu/solarSystem",
+      sub: "Solar System"
+    },
     weather: {
       title: "Weather",
       path: "/menu/weather",

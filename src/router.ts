@@ -20,6 +20,10 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('./pages/Home.vue'),
       },
       {
+        path: 'solarSystem',
+        component: () => import('./pages/SolarSystem.vue'),
+      },
+      {
         path: 'weather',
         component: () => import('./pages/Weather.vue')
       },

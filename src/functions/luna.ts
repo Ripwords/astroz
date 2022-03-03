@@ -123,7 +123,6 @@ export const moonCardInit = async () => {
     clearInterval(interval.value)
   })
 
-
   watch([() => store.userLat, () => store.userLong], async () => {
     location.value = createLocation(Number(store.userLat), Number(store.userLong))
     await moonDetails()

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { pagesStore } from '../store'
+import MoonCardSkeleton from '../components/MoonCardSkeleton.vue';
 
 const page = pagesStore().home
 </script>
@@ -26,6 +27,14 @@ const page = pagesStore().home
       </Suspense>
       <WeatherCard />
       <CoordCard />
+      <Suspense>
+        <template #default>
+          <PlanetsCard />
+        </template>
+        <template #fallback>
+          <div>...</div>
+        </template>
+      </Suspense>
     </ion-content>
   </ion-page>
 </template>

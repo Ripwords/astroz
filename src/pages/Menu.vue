@@ -11,7 +11,6 @@ Object.entries(pagesStore()).map(page => {
   }
 })
 
-console.log(pages)
 const ver = __APP_VERSION__
 
 const isActive = (path: string) => path === route.fullPath
