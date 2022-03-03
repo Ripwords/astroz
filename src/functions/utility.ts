@@ -1,7 +1,10 @@
 import { createJupiter, createMars, createMercury, createNeptune, createSaturn, createUranus, createVenus } from 'astronomy-bundle/planets'
+import { getPlatforms } from '@ionic/vue'
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
 dayjs.extend(duration)
+
+const isDesktop = getPlatforms().includes('desktop')
 
 export const planetFunctions = [
   createMercury,
@@ -117,7 +120,7 @@ export const generateGraph = async (title: string, gridColor: string, background
     options: {
       plugins: {
         legend: {
-          display: false
+          display: isDesktop
         },
         title: {
           display: true,
@@ -168,7 +171,7 @@ export const generatePlanetsGraph = async (title: string[], gridColor: string, l
       stacked: false,
       plugins: {
         legend: {
-          display: true
+          display: isDesktop
         },
         title: {
           display: true,
