@@ -4,7 +4,17 @@ import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
 dayjs.extend(duration)
 
-const isDesktop = getPlatforms().includes('desktop')
+export const isDesktop = getPlatforms().includes('desktop')
+
+export const planetNames = [
+  'Mercury',
+  'Venus',
+  'Mars',
+  'Jupiter',
+  'Saturn',
+  'Uranus',
+  'Neptune'
+]
 
 export const planetFunctions = [
   createMercury,

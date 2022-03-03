@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { pagesStore } from '../store'
-import MoonCardSkeleton from '../components/MoonCardSkeleton.vue';
+import MoonCardSkeleton from '../components/MoonCardSkeleton.vue'
 
 const page = pagesStore().home
 </script>

@@ -1,18 +1,9 @@
 import { createLocation } from "astronomy-bundle/earth"
 import { createTimeOfInterest } from "astronomy-bundle/time"
 import { mainStore } from "../store"
-import { generateDataLabels, generatePlanetsGraph, planetFunctions } from './utility'
+import { generateDataLabels, generatePlanetsGraph, planetFunctions, planetNames } from './utility'
 
 const store = mainStore()
-const planetNames = [
-  "Mercury",
-  "Venus",
-  "Mars",
-  "Jupiter",
-  "Saturn",
-  "Uranus",
-  "Neptune"
-]
 
 const generateData = async (date: Date, planet: Function) => {
   const TOI = createTimeOfInterest.fromDate(date)

@@ -142,15 +142,7 @@ export const planetsCardsInit = async () => {
     location.value = createLocation(Number(store.userLat), Number(store.userLong))
     graphConfig.value = await planetsGraph(
       'rgba(90, 90, 90, 0.3)',
-      [
-        'rgba(150, 150, 150, 0.6)',
-        'rgba(233, 99, 58, 0.6)',
-        'rgba(231, 65, 45, 0.6)',
-        'rgba(186, 112, 85, 0.6)',
-        'rgba(245, 204, 50, 0.6)',
-        'rgba(50, 207, 191, 0.6)',
-        'rgba(38, 55, 189, 0.6)'
-      ]
+      store.planetColors
     )
     chartKey.value = changeBool(chartKey.value)
   })
@@ -158,15 +150,7 @@ export const planetsCardsInit = async () => {
   const chartKey = ref(true)
   const graphConfig = ref(await planetsGraph(
     'rgba(90, 90, 90, 0.3)',
-    [
-      'rgba(150, 150, 150, 0.6)',
-      'rgba(233, 99, 58, 0.6)',
-      'rgba(231, 65, 45, 0.6)',
-      'rgba(186, 112, 85, 0.6)',
-      'rgba(245, 204, 50, 0.6)',
-      'rgba(50, 207, 191, 0.6)',
-      'rgba(38, 55, 189, 0.6)'
-    ]
+    store.planetColors
   ))
 
   await updatePlanetsPosition()
