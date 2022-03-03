@@ -1,7 +1,8 @@
 import { mainStore } from '../store'
 import { createSun } from 'astronomy-bundle/sun'
+import { createTimeOfInterest } from 'astronomy-bundle/time'
 import { createLocation } from 'astronomy-bundle/earth'
-import { convertDeg2Time, convertDeg2Arc, changeBool } from './utility'
+import { convertDeg2Time, convertDeg2Arc, changeBool, returnDate } from './utility'
 import { sunGraph, getTransitAltitude } from '../functions/sun-graph'
 
 const store = mainStore()
@@ -72,12 +73,29 @@ const updateSolPosition = async () => {
 }
 
 const getSunTimes = async () => {
-  const times = {
-    rise: await sol.value.getRiseUpperLimb(location.value),
-    set: await sol.value.getSetUpperLimb(location.value)
+  let sunRiseTime, sunSetTime, toi, sunTimes
+  const date = returnDate()
+  try {
+    toi = createTimeOfInterest.fromTime(date.year, date.month, date.day, 0, 0, 0)
+    sunTimes = createSun(toi)
+    sunRiseTime = await sunTimes.getRise(location.value)
+  } catch (e: any) {
+    toi = createTimeOfInterest.fromTime(date.year, date.month, date.day + 1, 0, 0, 0)
+    sunTimes = createSun(toi)
+    sunRiseTime = await sunTimes.getRise(location.value)
   }
-  const rise = times.rise.time
-  const set = times.set.time
+
+  try {
+    toi = createTimeOfInterest.fromTime(date.year, date.month, date.day, 0, 0, 0)
+    sunTimes = createSun(toi)
+    sunSetTime = await sunTimes.getSet(location.value)
+  } catch (e: any) {
+    toi = createTimeOfInterest.fromTime(date.year, date.month, date.day + 1, 0, 0, 0)
+    sunTimes = createSun(toi)
+    sunSetTime = await sunTimes.getSet(location.value)
+  }
+  const rise = sunRiseTime.time
+  const set = sunSetTime.time
   const riseDatetime = (new Date(`${rise.month}/${rise.day}/${rise.year} ${rise.hour}:${rise.min}:${rise.sec} UTC`)).toString().split(" ")
   const setDatetime = (new Date(`${set.month}/${set.day}/${set.year} ${set.hour}:${set.min}:${set.sec} UTC`)).toString().split(" ")
   return {

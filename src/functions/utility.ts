@@ -2,6 +2,18 @@ import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
 dayjs.extend(duration)
 
+export const returnDate = () => {
+  const date = new Date()
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return {
+    year,
+    month,
+    day
+  }
+}
+
 export const changeBool = (x: boolean) => {
   return x ? false : true
 }

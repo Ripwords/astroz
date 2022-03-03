@@ -2,8 +2,9 @@ import { mainStore } from '../store'
 import { createMoon } from 'astronomy-bundle/moon'
 import { createLocation } from 'astronomy-bundle/earth'
 import { Moon, Hemisphere } from 'lunarphase-js'
-import { changeBool, convertDeg2Arc, convertDeg2Time } from './utility'
+import { changeBool, convertDeg2Arc, convertDeg2Time, returnDate } from './utility'
 import { moonGraph, getTransitAltitude } from '../functions/moon-graph'
+import { createTimeOfInterest } from 'astronomy-bundle/time'
 
 const store = mainStore()
 const dec = store.decimal
@@ -78,24 +79,34 @@ const updateMoonPosition = async () => {
 }
 
 const getMoonTimes = async () => {
-  const rise = await luna.value.getRise(location.value)
-  const moonRise = rise.time
-  const riseDatetime = (new Date(`${moonRise.month}/${moonRise.day}/${moonRise.year} ${moonRise.hour}:${moonRise.min}:${moonRise.sec} UTC`)).toString().split(" ")
-  
+  let moonRiseTime, moonSetTime, toi, moonTimes
+  const date = returnDate()
   try {
-    const set = await luna.value.getSet(location.value)
-    const moonSet = set.time
-    const setDatetime = (new Date(`${moonSet.month}/${moonSet.day}/${moonSet.year} ${moonSet.hour}:${moonSet.min}:${moonSet.sec} UTC`)).toString().split(" ")
-    return {
-      riseDatetime,
-      setDatetime
-    }
-  } catch (e) {
-    const setDatetime = 'N/A'
-    return {
-      riseDatetime,
-      setDatetime
-    }
+    toi = createTimeOfInterest.fromTime(date.year, date.month, date.day, 0, 0, 0)
+    moonTimes = createMoon(toi)
+    moonRiseTime = await moonTimes.getRise(location.value)
+  } catch (e: any) {
+    toi = createTimeOfInterest.fromTime(date.year, date.month, date.day + 1, 0, 0, 0)
+    moonTimes = createMoon(toi)
+    moonRiseTime = await moonTimes.getRise(location.value)
+  }
+
+  try {
+    toi = createTimeOfInterest.fromTime(date.year, date.month, date.day, 0, 0, 0)
+    moonTimes = createMoon(toi)
+    moonSetTime = await moonTimes.getSet(location.value)
+  } catch (e: any) {
+    toi = createTimeOfInterest.fromTime(date.year, date.month, date.day + 1, 0, 0, 0)
+    moonTimes = createMoon(toi)
+    moonSetTime = await moonTimes.getSet(location.value)
+  }
+  const rise = moonRiseTime.time
+  const set = moonSetTime.time
+  const riseDatetime = (new Date(`${rise.month}/${rise.day}/${rise.year} ${rise.hour}:${rise.min}:${rise.sec} UTC`)).toString().split(" ")
+  const setDatetime = (new Date(`${set.month}/${set.day}/${set.year} ${set.hour}:${set.min}:${set.sec} UTC`)).toString().split(" ")
+  return {
+    riseDatetime,
+    setDatetime
   }
 }
 
