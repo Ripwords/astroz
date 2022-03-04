@@ -14,7 +14,7 @@ const { chartKey, graphConfig } = await planetsCardsInit()
 </script>
 
 <template>
-  <ion-card v-if="!isDesktop && props.showCard">
+  <ion-card v-if="!isDesktop || props.showCard">
     <ion-card-header>
       <ion-card-header>
         <ion-card-title>Planets</ion-card-title>
