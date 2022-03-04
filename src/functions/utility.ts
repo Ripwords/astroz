@@ -123,7 +123,7 @@ export const generateGraph = async (title: string, gridColor: string, background
           borderColor: backgroundColor,
           borderWidth: 2.5,
           tension: 0.45,
-          pointBorderWidth: 0.05
+          pointRadius: 0
         }
       ]
     },
@@ -169,7 +169,7 @@ export const generatePlanetsGraph = async (title: string[], gridColor: string, l
       borderColor: lineColor[i],
       borderWidth: 2.5,
       tension: 0.45,
-      pointBorderWidth: 0.05
+      pointRadius: 0
     })
   }
   const graphConfig = {
