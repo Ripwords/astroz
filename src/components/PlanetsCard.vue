@@ -3,12 +3,18 @@ import { planetsCardsInit } from '../functions/planets'
 import { planetNames, isDesktop } from '../functions/graphUtils'
 import { mainStore } from '../store'
 
+const props = withDefaults(defineProps<{
+  showCard?: boolean
+}>(), {
+  showCard: false
+})
+
 const store = mainStore()
 const { chartKey, graphConfig } = await planetsCardsInit()
 </script>
 
 <template>
-  <ion-card v-if="!isDesktop">
+  <ion-card v-if="!isDesktop && props.showCard">
     <ion-card-header>
       <ion-card-header>
         <ion-card-title>Planets</ion-card-title>
