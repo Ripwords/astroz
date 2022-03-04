@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { planetsCardsInit } from '../functions/planets'
-import { planetNames, isDesktop } from '../functions/utility'
+import { planetNames, isDesktop } from '../functions/graphUtils'
 import { mainStore } from '../store'
 
 const store = mainStore()

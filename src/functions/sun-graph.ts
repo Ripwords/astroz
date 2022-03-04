@@ -2,7 +2,7 @@ import { createSun } from 'astronomy-bundle/sun'
 import { createLocation } from 'astronomy-bundle/earth'
 import { createTimeOfInterest } from 'astronomy-bundle/time'
 import { mainStore } from '../store'
-import { generateDataLabels, generateGraph } from './utility'
+import { generateDataLabels, generateGraph } from './graphUtils'
 
 const store = mainStore()
 

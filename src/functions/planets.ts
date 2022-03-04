@@ -9,7 +9,8 @@ import {
 } from "astronomy-bundle/planets"
 import { mainStore } from "../store"
 import { createLocation } from "astronomy-bundle/earth"
-import { changeBool, convertDeg2Arc, convertDeg2Time, planetFunctions } from "./utility"
+import { changeBool, convertDeg2Arc, convertDeg2Time } from "./utility"
+import { planetFunctions } from './graphUtils'
 import { planetsGraph } from "./planets-graph"
 
 interface planetCoords {

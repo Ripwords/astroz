@@ -1,7 +1,7 @@
 import { createLocation } from "astronomy-bundle/earth"
 import { createTimeOfInterest } from "astronomy-bundle/time"
 import { mainStore } from "../store"
-import { generateDataLabels, generatePlanetsGraph, planetFunctions, planetNames } from './utility'
+import { generateDataLabels, generatePlanetsGraph, planetFunctions, planetNames } from './graphUtils'
 
 const store = mainStore()
 
