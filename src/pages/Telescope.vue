@@ -19,75 +19,95 @@ const {
   <ion-page>
     <ion-content>
       <Header :title="page.title" />
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Dawes' Limit</ion-card-title>
-        </ion-card-header>
-      </ion-card>
-      <ion-list>
-        <ion-item>
-          <ion-label>Aperture : </ion-label>
-          <ion-input v-model="aperture" type="number" placeholder="mm"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Max. Resolution : </ion-label>
-          <ion-input :value="dawesLimit" readonly placeholder="arc seconds"></ion-input>
-        </ion-item>
-      </ion-list>
-      <br>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Rayleigh Limit</ion-card-title>
-        </ion-card-header>
-      </ion-card>
-      <ion-list>
-        <ion-item>
-          <ion-label>Aperture : </ion-label>
-          <ion-input v-model="aperture" type="number" placeholder="mm"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Max. Resolution : </ion-label>
-          <ion-input :value="rayleighLimit" readonly placeholder="arc seconds"></ion-input>
-        </ion-item>
-      </ion-list>
-      <br>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Limiting Magnitude</ion-card-title>
-        </ion-card-header>
-      </ion-card>
-      <ion-list>
-        <ion-item>
-          <ion-label>Aperture : </ion-label>
-          <ion-input v-model="aperture" type="number" placeholder="mm"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Limiting Mag. : </ion-label>
-          <ion-input :value="magnitudeLimit" readonly placeholder="Magnitude"></ion-input>
-        </ion-item>
-      </ion-list>
-      <br>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Light Grasp Ratio</ion-card-title>
-        </ion-card-header>
-      </ion-card>
-      <ion-list>
-        <ion-item>
-          <ion-label>Larger aperture : </ion-label>
-          <ion-input v-model="aperture" type="number" placeholder="mm"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Sller aperture : </ion-label>
-          <ion-input v-model="smallAperture" type="number" placeholder="mm"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Ratio : </ion-label>
-          <ion-input :value="lightGraspRatio" readonly placeholder="X"></ion-input>
-        </ion-item>
-      </ion-list>
-      <br>
-      <br>
+      <div class="flex justify-center">
+        <div class="max-w-[750px] w-full">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Dawes' Limit</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+          <div class="flex justify-center">
+            <div class="w-[95%]">
+              <ion-list>
+                <ion-item>
+                  <ion-label>Aperture : </ion-label>
+                  <ion-input v-model="aperture" type="number" placeholder="mm"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Max. Resolution : </ion-label>
+                  <ion-input :value="dawesLimit" readonly placeholder="arc seconds"></ion-input>
+                </ion-item>
+              </ion-list>
+            </div>
+          </div>
+          <br>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Rayleigh Limit</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+          <div class="flex justify-center">
+            <div class="w-[95%]">
+              <ion-list>
+                <ion-item>
+                  <ion-label>Aperture : </ion-label>
+                  <ion-input v-model="aperture" type="number" placeholder="mm"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Max. Resolution : </ion-label>
+                  <ion-input :value="rayleighLimit" readonly placeholder="arc seconds"></ion-input>
+                </ion-item>
+              </ion-list>
+            </div>
+          </div>
+          <br>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Limiting Magnitude</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+          <div class="flex justify-center">
+            <div class="w-[95%]">
+              <ion-list>
+                <ion-item>
+                  <ion-label>Aperture : </ion-label>
+                  <ion-input v-model="aperture" type="number" placeholder="mm"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Limiting Mag. : </ion-label>
+                  <ion-input :value="magnitudeLimit" readonly placeholder="Magnitude"></ion-input>
+                </ion-item>
+              </ion-list>
+            </div>
+          </div>
+          <br>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Light Grasp Ratio</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+          <div class="flex justify-center">
+            <div class="w-[95%]">
+              <ion-list>
+                <ion-item>
+                  <ion-label>Larger aperture : </ion-label>
+                  <ion-input v-model="aperture" type="number" placeholder="mm"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Sller aperture : </ion-label>
+                  <ion-input v-model="smallAperture" type="number" placeholder="mm"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Ratio : </ion-label>
+                  <ion-input :value="lightGraspRatio" readonly placeholder="X"></ion-input>
+                </ion-item>
+              </ion-list>
+            </div>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
     </ion-content>
   </ion-page>
 </template>

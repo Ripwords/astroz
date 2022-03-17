@@ -1,6 +1,6 @@
 {
   "name": "astroz",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "scripts": {
     "dev": "vite --open",
     "build": "vue-tsc --noEmit && vite build",
@@ -9,11 +9,11 @@
   "dependencies": {
     "@ionic/vue": "6.0.2",
     "@ionic/vue-router": "6.0.2",
-    "@vueuse/core": "7.5.3",
+    "@vueuse/core": "8.1.1",
     "astronomy-bundle": "7.5.3",
     "chart.js": "3.7.1",
     "dayjs": "1.10.8",
-    "lunarphase-js": "^1.0.8",
+    "lunarphase-js": "1.0.10",
     "pinia": "2.0.9",
     "vue": "3.2.27",
     "vue-router": "4.0.13"

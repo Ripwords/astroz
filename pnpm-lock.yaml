@@ -5,11 +5,11 @@ specifiers:
   '@ionic/vue': 6.0.2
   '@ionic/vue-router': 6.0.2
   '@vitejs/plugin-vue': 2.0.1
-  '@vueuse/core': 7.5.3
+  '@vueuse/core': 8.1.1
   astronomy-bundle: 7.5.3
   chart.js: 3.7.1
   dayjs: 1.10.8
-  lunarphase-js: ^1.0.8
+  lunarphase-js: 1.0.10
   pinia: 2.0.9
   typescript: 4.5.5
   unplugin-auto-import: 0.5.11
@@ -27,11 +27,11 @@ specifiers:
 dependencies:
   '@ionic/vue': 6.0.2
   '@ionic/vue-router': 6.0.2
-  '@vueuse/core': 7.5.3_vue@3.2.27
+  '@vueuse/core': 8.1.1_vue@3.2.27
   astronomy-bundle: 7.5.3
   chart.js: 3.7.1
   dayjs: 1.10.8
-  lunarphase-js: 1.0.8
+  lunarphase-js: 1.0.10
   pinia: 2.0.9_typescript@4.5.5+vue@3.2.27
   vue: 3.2.27
   vue-router: 4.0.13_vue@3.2.27
@@ -40,7 +40,7 @@ devDependencies:
   '@iconify/json': 2.0.26
   '@vitejs/plugin-vue': 2.0.1_vite@2.7.13+vue@3.2.27
   typescript: 4.5.5
-  unplugin-auto-import: 0.5.11_@vueuse+core@7.5.3+vite@2.7.13
+  unplugin-auto-import: 0.5.11_@vueuse+core@8.1.1+vite@2.7.13
   unplugin-icons: 0.13.0_vite@2.7.13
   unplugin-vue-components: 0.17.14_vite@2.7.13+vue@3.2.27
   vite: 2.7.13
@@ -1543,8 +1543,8 @@ packages:
   /@vue/shared/3.2.27:
     resolution: {integrity: sha512-rpAn9k6O08Lvo7ekBIAnkOukX/4EsEQLPrRJBKhIEasMsOI5eX0f6mq1sDUSY7cgAqWw2d7QtP74CWxdXoyKxA==}
 
-  /@vueuse/core/7.5.3_vue@3.2.27:
-    resolution: {integrity: sha512-D9j5ymHFMFRXQqCp0yZJkf/bvBGiz0MrKUa364p+L8dMyd5zyq2K1JmHyvoBd4xbTFRfmQ1h878u6YE5LCkDVQ==}
+  /@vueuse/core/8.1.1_vue@3.2.27:
+    resolution: {integrity: sha512-NmpizOcQXW0OHV0qa6YwFtw5hQBe0RxMuxQoIIbCa6jRT16MTweFPecIM6VgA1e5vZJtAO7p//TgLSpzi3joZQ==}
     peerDependencies:
       '@vue/composition-api': ^1.1.0
       vue: ^2.6.0 || ^3.2.0
@@ -1554,13 +1554,18 @@ packages:
       vue:
         optional: true
     dependencies:
-      '@vueuse/shared': 7.5.3_vue@3.2.27
+      '@vueuse/metadata': 8.1.1
+      '@vueuse/shared': 8.1.1_vue@3.2.27
       vue: 3.2.27
       vue-demi: 0.12.1_vue@3.2.27
     dev: false
 
-  /@vueuse/shared/7.5.3_vue@3.2.27:
-    resolution: {integrity: sha512-BJ71cxHN5VByW1S58Gl85NFJaQu93F7Vs7K/MuAKsIIuHm9PBbkR5Vxkg9ko9cBdiKVt+FNoo13BhdbA+Vwycg==}
+  /@vueuse/metadata/8.1.1:
+    resolution: {integrity: sha512-TSmA3UaSmBcV8pJ7fnHAL7NjSE1RQZlpJklg6YysFxwxDb0MZlo+Q8j9U1hLBZT1fnAjwZMaoxilanHN8ZwugQ==}
+    dev: false
+
+  /@vueuse/shared/8.1.1_vue@3.2.27:
+    resolution: {integrity: sha512-lWRcK8W9+q1t1XMxW9JIljXFQLIViInTOEF7wUHcISQNAYwHtHgr0z+U5SRM8tA4eJd/dVs/2BV1/z2DG7aKEg==}
     peerDependencies:
       '@vue/composition-api': ^1.1.0
       vue: ^2.6.0 || ^3.2.0
@@ -2629,8 +2634,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /lunarphase-js/1.0.8:
-    resolution: {integrity: sha512-O0QoUEktHdTPODps3ycTOTqQB3iWmhxVD7U2lBhLTRqWPS9d1k2c1sSgNcVk3iyIDBrqr4CpERpGusF71pDSjQ==}
+  /lunarphase-js/1.0.10:
+    resolution: {integrity: sha512-+A+G3WzB2y+xcCfhVRLxbdOnTe/Ujmbx/ptS0cjUnb9zRAEfRpu6U3D1o+IaStpRu91++kFoVqOYKhyT1m3ywg==}
     dev: false
 
   /magic-string/0.25.7:
@@ -3310,7 +3315,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: true
 
-  /unplugin-auto-import/0.5.11_@vueuse+core@7.5.3+vite@2.7.13:
+  /unplugin-auto-import/0.5.11_@vueuse+core@8.1.1+vite@2.7.13:
     resolution: {integrity: sha512-MJ3POLe/IysRHF4yd32FkKDoxqSRoiuIHm89ys67B8FLuz2Pvh9poeqTVe6IhJsNxwv0+GSdFfj5Dpq24lhm4g==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -3321,7 +3326,7 @@ packages:
     dependencies:
       '@antfu/utils': 0.4.0
       '@rollup/pluginutils': 4.1.2
-      '@vueuse/core': 7.5.3_vue@3.2.27
+      '@vueuse/core': 8.1.1_vue@3.2.27
       local-pkg: 0.4.1
       magic-string: 0.25.7
       resolve: 1.21.0

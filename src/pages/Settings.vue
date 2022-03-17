@@ -60,7 +60,7 @@ settingsPageInit()
           </ion-item>
           <ion-item v-show="!store.manual">
             <ion-label>Location Refresh Interval : </ion-label>
-            <ion-input class="ion-text-right" v-model="store.locationInterval" type="number" placeholder="seconds" min="1"></ion-input><span>second(s)</span>
+            <ion-input class="ion-text-right" v-model="store.locationInterval" type="number" placeholder="minute(s)" min="1"></ion-input><span>minute(s)</span>
           </ion-item>
         </ion-list>
     </ion-content>
