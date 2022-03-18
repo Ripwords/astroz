@@ -1,5 +1,11 @@
+<script lang="ts" setup>
+import { isDesktop } from '../functions/utility'
+const table_width = isDesktop ? "400px" : "330px"  
+const table_color = "#1e1e1e"
+</script>
+
 <template>
-  <div class="flex justify-center mx-5">
+  <div class="flex justify-center">
     <table class="styled-table">
       <thead>
         <tr>
@@ -44,12 +50,12 @@
     border-collapse: collapse;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 400px;
+    min-width: v-bind(table_width);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .styled-table thead tr {
-    background-color: #285eb5;
+    background-color: v-bind(table_color);
     color: #ffffff;
     text-align: left;
 }
@@ -65,6 +71,6 @@
 
 
 .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #285eb5;
+    border-bottom: 2px solid v-bind(table_color);
 }
 </style>
