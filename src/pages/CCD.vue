@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { pagesStore } from '../store'
 import { useSessionStorage } from '@vueuse/core'
-import { isDesktop } from '../functions/utility'
 import { varRefs, getResolution, getSampling } from '../functions/CCD'
 
 const page = pagesStore().ccd
@@ -55,10 +54,9 @@ watchEffect(() => {
               <i-mdi:stairs-up v-else-if="sampling == 'Over-sampled'"/>
             </ion-item>
           </ion-list>
-          <SeeingTable v-if="isDesktop" />
         </Calc>
-        <SeeingTable v-if="!isDesktop" />
       </CalcContainer>
+      <SeeingTable />
     </ion-content>
   </ion-page>
 </template>

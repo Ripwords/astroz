@@ -43,6 +43,7 @@ const {
             </ion-item>
           </ion-list>
         </Calc>
+        <br>
         <Calc title="Max Telescope Mag.">
           <ion-list>
             <ion-item>
