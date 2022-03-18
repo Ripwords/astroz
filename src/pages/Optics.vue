@@ -47,7 +47,6 @@ const {
             </ion-item>
           </ion-list>
         </Calc>
-        <br>
         <Calc title="True Field of View">
           <ion-list>
             <ion-item>

@@ -32,7 +32,6 @@ const {
             </ion-item>
           </ion-list>
         </Calc>
-        <br>
         <Calc title="Rayleigh Limit">
           <ion-list>
             <ion-item>
@@ -45,7 +44,6 @@ const {
             </ion-item>
           </ion-list>
         </Calc>
-        <br>
         <Calc title="Limiting Magnitude">
           <ion-list>
             <ion-item>
@@ -58,7 +56,6 @@ const {
             </ion-item>
           </ion-list>
         </Calc>
-        <br>
         <Calc title="Light Grasp Ratio">
           <ion-list>
             <ion-item>
