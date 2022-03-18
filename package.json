@@ -9,11 +9,6 @@
   "dependencies": {
     "@ionic/vue": "6.0.2",
     "@ionic/vue-router": "6.0.2",
-    "@vueuse/core": "8.1.1",
-    "astronomy-bundle": "7.5.3",
-    "chart.js": "3.7.1",
-    "dayjs": "1.10.8",
-    "lunarphase-js": "1.0.10",
     "pinia": "2.0.9",
     "vue": "3.2.27",
     "vue-router": "4.0.13"
@@ -21,6 +16,11 @@
   "devDependencies": {
     "@iconify/json": "2.0.26",
     "@vitejs/plugin-vue": "2.0.1",
+    "@vueuse/core": "8.1.1",
+    "astronomy-bundle": "7.5.3",
+    "chart.js": "3.7.1",
+    "dayjs": "1.10.8",
+    "lunarphase-js": "1.0.10",
     "typescript": "4.5.5",
     "unplugin-auto-import": "0.5.11",
     "unplugin-icons": "0.13.0",
