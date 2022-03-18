@@ -1,3 +1,5 @@
+import { getPlatforms } from '@ionic/vue'
+
 export const returnDate = () => {
   const date = new Date()
   const year = date.getFullYear()
@@ -30,5 +32,6 @@ export const convertDeg2Arc = (deg: number) => {
   }
 }
 
+export const isDesktop = getPlatforms().includes('desktop')
 
 

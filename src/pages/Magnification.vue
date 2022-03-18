@@ -23,58 +23,42 @@ const {
   <ion-page>
     <ion-content>
       <Header :title="page.title" />
-      <div class="flex justify-center">
-        <div class="max-w-[750px] w-full">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-title>Magnification</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-          <div class="flex justify-center">
-            <div class="w-[95%]">
-              <ion-list>
-                <ion-item>
-                  <ion-label>🔭 Focal Length : </ion-label>
-                  <ion-input v-if="!getTelescopeFocalLength" v-model="telescopeFocalLength" type="number" placeholder="mm"></ion-input>
-                  <ion-input v-else :value="getTelescopeFocalLength" readonly></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label>👁 Focal Length : </ion-label>
-                  <ion-input v-if="!getEyepieceFocalLength" v-model="eyepieceFocalLength" type="number" placeholder="mm"></ion-input>
-                  <ion-input v-else :value="getEyepieceFocalLength" readonly></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label>🔍 Magnification : </ion-label>
-                  <ion-input v-if="!getMagnification" v-model="magnification" type="number"></ion-input> 
-                  <ion-input v-else :value="getMagnification" readonly></ion-input>
-                </ion-item>
-              </ion-list>
-            </div>
-          </div>
-          <br>
-          <ion-card>
-            <ion-card-header>
-              <ion-card-title>Max Telescope Mag.</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-          <div class="flex justify-center">
-            <div class="w-[95%]">
-              <ion-list>
-                <ion-item>
-                  <ion-label>Aperture : </ion-label>
-                  <ion-input v-if="!getTelescopeAperture" v-model="aperture" type="number" placeholder="mm"></ion-input>
-                  <ion-input v-else :value="getTelescopeAperture" readonly></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label>🔎 Max mag. : </ion-label>
-                  <ion-input v-if="!getMaxMagnification" v-model="maxMagnification" type="number"></ion-input>
-                  <ion-input v-else :value="getMaxMagnification" readonly></ion-input>
-                </ion-item>
-              </ion-list>
-            </div>
-          </div>  
-        </div>
-      </div>
+      <CalcContainer>
+        <Calc title="Magnification">
+          <ion-list>
+            <ion-item>
+              <ion-label>🔭 Focal Length : </ion-label>
+              <ion-input v-if="!getTelescopeFocalLength" v-model="telescopeFocalLength" type="number" placeholder="mm"></ion-input>
+              <ion-input v-else :value="getTelescopeFocalLength" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>👁 Focal Length : </ion-label>
+              <ion-input v-if="!getEyepieceFocalLength" v-model="eyepieceFocalLength" type="number" placeholder="mm"></ion-input>
+              <ion-input v-else :value="getEyepieceFocalLength" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>🔍 Magnification : </ion-label>
+              <ion-input v-if="!getMagnification" v-model="magnification" type="number"></ion-input> 
+              <ion-input v-else :value="getMagnification" readonly></ion-input>
+            </ion-item>
+          </ion-list>
+        </Calc>
+        <br>
+        <Calc title="Max Telescope Mag.">
+          <ion-list>
+            <ion-item>
+              <ion-label>Aperture : </ion-label>
+              <ion-input v-if="!getTelescopeAperture" v-model="aperture" type="number" placeholder="mm"></ion-input>
+              <ion-input v-else :value="getTelescopeAperture" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>🔎 Max mag. : </ion-label>
+              <ion-input v-if="!getMaxMagnification" v-model="maxMagnification" type="number"></ion-input>
+              <ion-input v-else :value="getMaxMagnification" readonly></ion-input>
+            </ion-item>
+          </ion-list>
+        </Calc>
+      </CalcContainer>
     </ion-content>
   </ion-page>
 </template>

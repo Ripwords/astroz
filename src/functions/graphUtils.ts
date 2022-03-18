@@ -1,10 +1,8 @@
-import { getPlatforms } from '@ionic/vue'
 import { createJupiter, createMars, createMercury, createNeptune, createSaturn, createUranus, createVenus } from 'astronomy-bundle/planets'
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
+import { isDesktop } from './utility'
 dayjs.extend(duration)
-
-export const isDesktop = getPlatforms().includes('desktop')
 
 export const planetNames = [
   'Mercury',

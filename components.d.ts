@@ -4,6 +4,8 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Calc: typeof import('./src/components/Calc.vue')['default']
+    CalcContainer: typeof import('./src/components/CalcContainer.vue')['default']
     Chart: typeof import('./src/components/Chart.vue')['default']
     CoordCard: typeof import('./src/components/coordCard.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']

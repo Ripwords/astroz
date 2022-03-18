@@ -18,12 +18,16 @@ forecastInit()
             <ion-card-subtitle>Your daily dose of weather information</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
-            <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
-              <img alt="forecast image" :src="forecastImage" />
-            </a>
+            <div class="flex justify-center">
+              <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
+                <img alt="forecast image" :src="forecastImage" />
+              </a>
+            </div>
             <br>
             <br>
-            <img alt="annual darkness image" :src="annualDarkness">
+            <div class="flex justify-center">
+              <img alt="annual darkness image" :src="annualDarkness">
+            </div>
           </ion-card-content>
         </ion-card-header>
       </ion-card>

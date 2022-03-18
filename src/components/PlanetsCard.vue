@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import { isDesktop } from '../functions/utility'
 import { planetsCardsInit } from '../functions/planets'
-import { planetNames, isDesktop } from '../functions/graphUtils'
+import { planetNames } from '../functions/graphUtils'
 import { mainStore } from '../store'
 
 const props = withDefaults(defineProps<{
