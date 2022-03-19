@@ -11,7 +11,8 @@ import { pagesStore } from '../store'
 const page = pagesStore().telescope
 const {
   aperture,
-  smallAperture
+  ratio_larger_aperture,
+  ratio_smaller_aperture,
 } = varRefs
 </script>
 
@@ -21,59 +22,64 @@ const {
       <Header :title="page.title" />
       <CalcContainer>
         <Calc title="Dawes' Limit">
-          <ion-list>
-            <ion-item>
-              <ion-label>Aperture : </ion-label>
-              <ion-input v-model="aperture" type="number" placeholder="mm"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Max. Resolution : </ion-label>
-              <ion-input :value="dawesLimit" readonly placeholder="arc seconds"></ion-input>
-            </ion-item>
-          </ion-list>
+          <CalcInput
+            v-model:val="aperture"
+            label="Aperture"
+            suffix="mm"
+          />
+          <CalcInput
+            v-model:val="dawesLimit"
+            label="Max resolution"
+            suffix='"'
+            readonly
+          />
         </Calc>
         <br>
         <Calc title="Rayleigh Limit">
-          <ion-list>
-            <ion-item>
-              <ion-label>Aperture : </ion-label>
-              <ion-input v-model="aperture" type="number" placeholder="mm"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Max. Resolution : </ion-label>
-              <ion-input :value="rayleighLimit" readonly placeholder="arc seconds"></ion-input>
-            </ion-item>
-          </ion-list>
+          <CalcInput
+            v-model:val="aperture"
+            label="Aperture"
+            suffix="mm"
+          />
+          <CalcInput
+            v-model:val="rayleighLimit"
+            label="Max resolution"
+            suffix='"'
+            readonly
+          />
         </Calc>
         <br>
         <Calc title="Limiting Magnitude">
-          <ion-list>
-            <ion-item>
-              <ion-label>Aperture : </ion-label>
-              <ion-input v-model="aperture" type="number" placeholder="mm"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Limiting Mag. : </ion-label>
-              <ion-input :value="magnitudeLimit" readonly placeholder="Magnitude"></ion-input>
-            </ion-item>
-          </ion-list>
+          <CalcInput
+            v-model:val="aperture"
+            label="Aperture"
+            suffix="mm"
+          />
+          <CalcInput
+            v-model:val="magnitudeLimit"
+            label="Max magnitude"
+            suffix='"'
+            readonly
+          />
         </Calc>
         <br>
         <Calc title="Light Grasp Ratio">
-          <ion-list>
-            <ion-item>
-              <ion-label>Larger aperture : </ion-label>
-              <ion-input v-model="aperture" type="number" placeholder="mm"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Sller aperture : </ion-label>
-              <ion-input v-model="smallAperture" type="number" placeholder="mm"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Ratio : </ion-label>
-              <ion-input :value="lightGraspRatio" readonly placeholder="X"></ion-input>
-            </ion-item>
-          </ion-list>
+          <CalcInput
+            v-model:val="ratio_larger_aperture"
+            label="Larger aperture"
+            suffix="mm"
+          />
+          <CalcInput
+            v-model:val="ratio_smaller_aperture"
+            label="Smaller aperture"
+            suffix="mm"
+          />
+          <CalcInput
+            v-model:val="lightGraspRatio"
+            label="Light grasp ratio"
+            suffix=""
+            readonly
+          />
         </Calc>
       </CalcContainer>
     </ion-content>

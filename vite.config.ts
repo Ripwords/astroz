@@ -4,6 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import WindiCSS from 'vite-plugin-windicss'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 
@@ -25,7 +26,8 @@ export default defineConfig({
         IconsResolver({
           prefix: 'i'
         }),
-        IonicResolver
+        IonicResolver,
+        NaiveUiResolver()
       ]
     }),
     AutoImport({

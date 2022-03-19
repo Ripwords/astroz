@@ -40,8 +40,16 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('./pages/Telescope.vue')
       },
       {
+        path: 'filter',
+        component: () => import('./pages/Filter.vue')
+      },
+      {
         path: 'ccd',
         component: () => import('./pages/CCD.vue')
+      },
+      {
+        path: 'guiding',
+        component: () => import('./pages/Guiding.vue')
       },
       {
         path: 'settings',

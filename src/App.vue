@@ -5,6 +5,7 @@ import { toastController } from '@ionic/vue'
 const store = mainStore()
 const interval = ref()
 const locationInterval = ref()
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) { console.log('changed!!');})
 
 // Provide basic info to first time users
 const presentToast = async () => {
@@ -31,7 +32,6 @@ const getLocation = () => {
 // Starts a 5 second loop to update user location
 const startLocInterval = () => {
   getLocation()
-  console.log('Starting location interval')
   locationInterval.value = setInterval(() => {
     getLocation()
   }, (store.locationInterval * 1000 * 60))
@@ -66,7 +66,7 @@ onMounted(() => {
 <template>
   <ion-app>
     <ReloadPrompt />
-    <ion-router-outlet></ion-router-outlet>
+    <ion-router-outlet />
   </ion-app>
 </template>
 

@@ -4,7 +4,9 @@ const store = mainStore()
 const dec = store.decimal
 
 const aperture = ref('')
-const smallAperture = ref('')
+
+const ratio_larger_aperture = ref('')
+const ratio_smaller_aperture = ref('')
 
 export const dawesLimit = computed(() => {
   if (aperture.value != '') {
@@ -28,13 +30,14 @@ export const magnitudeLimit = computed(() => {
 })
 
 export const lightGraspRatio = computed(() => {
-  if (aperture.value != '' && smallAperture.value != '') {
-    return (Math.pow(Number(aperture.value), 2) / Math.pow(Number(smallAperture.value), 2)).toFixed(dec)
+  if (ratio_smaller_aperture.value != '' && ratio_larger_aperture.value != '') {
+    return (Math.pow(Number(ratio_larger_aperture.value), 2) / Math.pow(Number(ratio_smaller_aperture.value), 2)).toFixed(dec)
   }
   return ''
 })
 
 export const varRefs = {
   aperture,
-  smallAperture
+  ratio_larger_aperture,
+  ratio_smaller_aperture
 }

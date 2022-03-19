@@ -57,10 +57,20 @@ export const pagesStore = defineStore('pages', {
       path: "/menu/telescope",
       sub: "Telescope Capabilities Calculations"
     },
+    filter: {
+      title: "Filter",
+      path: "/menu/filter",
+      sub: "Filter Calculations"
+    },
     ccd: {
       title: "CCD Calculations",
       path: "/menu/ccd",
       sub: "CCD Suitability"
+    },
+    guiding: {
+      title: "Guiding Calculations",
+      path: "/menu/guiding",
+      sub: "Guiding Calculations"
     },
     settings: {
       title: "Settings",

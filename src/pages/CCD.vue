@@ -7,6 +7,7 @@ const page = pagesStore().ccd
 const { focalLength, pixelSize } = varRefs
 const seeing = useSessionStorage("seeingSetting", "OK")
 const sampling = ref("")
+const colWidth = 5.5
 watchEffect(() => {
   if (getResolution.value != "" && Number(getResolution.value) != 0) {
     sampling.value = getSampling(seeing.value, Number(getResolution.value))
@@ -23,9 +24,16 @@ watchEffect(() => {
       <Header :title="page.title"></Header>
       <CalcContainer>
         <Calc title="CCD Resolution">
-          <ion-list>
-            <ion-item>
-              <ion-label>Seeing</ion-label>
+          <ion-row>
+            <ion-col :size="colWidth">
+              <ion-item>
+                <ion-input disabled>
+                  Seeing
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
                 <ion-select v-model="seeing" interface="popover">
                   <ion-select-option value="VG">Very Good</ion-select-option>
                   <ion-select-option value="GS">Good</ion-select-option>
@@ -33,27 +41,44 @@ watchEffect(() => {
                   <ion-select-option value="PS">Poor</ion-select-option>
                   <ion-select-option value="VP">Very Poor</ion-select-option>
                 </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Focal Length : </ion-label>
-              <ion-input v-model="focalLength" type="number" placeholder="mm"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Pixel Size : </ion-label>
-              <ion-input v-model="pixelSize" type="number" placeholder="&mu;m"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Resolution : </ion-label>
-              <ion-input :value="getResolution" placeholder='"/pixel' readonly></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Sampling : </ion-label>
-              <ion-input :value="sampling" readonly></ion-input>
-              <i-flat-color-icons:checkmark v-if="sampling == 'Ideal sampling'"/>
-              <i-mdi:stairs-down v-else-if="sampling == 'Under-sampled'"/>
-              <i-mdi:stairs-up v-else-if="sampling == 'Over-sampled'"/>
-            </ion-item>
-          </ion-list>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <CalcInput
+            v-model:val="focalLength"
+            label="Focal Length"
+            suffix="mm"
+            :size="colWidth"
+          />
+          <CalcInput
+            v-model:val="pixelSize"
+            label="Pixel Size"
+            suffix="&mu;m"
+            :size="colWidth"
+          />
+          <CalcInput
+            :val="getResolution"
+            label="Resolution"
+            suffix='"/px'
+            :readonly="true"
+            :size="colWidth"
+          />
+          <ion-row>
+            <ion-col :size="colWidth">
+              <ion-item>
+                <ion-input disabled>Sampling : </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-input :value="sampling" readonly>
+                  <i-flat-color-icons:checkmark v-if="sampling == 'Ideal sampling'"/>
+                  <i-mdi:stairs-down v-else-if="sampling == 'Under-sampled'"/>
+                  <i-mdi:stairs-up v-else-if="sampling == 'Over-sampled'"/>
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
         </Calc>
       </CalcContainer>
       <SeeingTable />

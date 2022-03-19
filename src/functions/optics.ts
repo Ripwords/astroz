@@ -27,7 +27,7 @@ export const getFRatio = computed(() => {
 
 export const getFocalLength_1 = computed(() => {
   if (aperture.value != '' && fRatio.value != '') {
-    return (Number(aperture.value) / Number(fRatio.value)).toFixed(dec)
+    return (Number(aperture.value) * Number(fRatio.value)).toFixed(dec)
   }
   return ''
 })
@@ -54,7 +54,7 @@ export const getFocalLength_2 = computed(() => {
 
 export const getActualFOV = computed(() => {
   if (eyeFOV.value != '' && eyepieceFocalLength.value != '' && focalLength_2.value != '') {
-    return (Number(eyeFOV.value) / Number(focalLength_2.value) / Number(eyepieceFocalLength.value)).toFixed(dec)
+    return (Number(eyeFOV.value) / (Number(focalLength_2.value) / Number(eyepieceFocalLength.value))).toFixed(dec)
   }
   return ''
 })
