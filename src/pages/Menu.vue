@@ -40,6 +40,24 @@ const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
               &nbsp;&nbsp;{{ page.title }}
             </ion-item>
             <ion-item
+              v-else-if="page.title == 'Solar System'"
+              class="noSelect"
+              @click="router.replace(page.path)"
+              :class="{ active: isActive(page.path) }"
+            >
+              <i-ion:planet-outline></i-ion:planet-outline>
+              &nbsp;&nbsp;{{ page.title }}
+            </ion-item>
+            <ion-item
+              v-else-if="page.title == 'Weather'"
+              class="noSelect"
+              @click="router.replace(page.path)"
+              :class="{ active: isActive(page.path) }"
+            >
+              <i-ion:cloud-outline></i-ion:cloud-outline>
+              &nbsp;&nbsp;{{ page.title }}
+            </ion-item>
+            <ion-item
               v-else
               class="noSelect"
               @click="router.replace(page.path)"
