@@ -51,8 +51,6 @@ declare module 'vue' {
     IonToolbar: typeof import('@ionic/vue')['IonToolbar']
     MoonCard: typeof import('./src/components/moonCard.vue')['default']
     MoonCardSkeleton: typeof import('./src/components/MoonCardSkeleton.vue')['default']
-    NConfigProvider: typeof import('naive-ui')['NConfigProvider']
-    NInput: typeof import('naive-ui')['NInput']
     PlanetsCard: typeof import('./src/components/PlanetsCard.vue')['default']
     ReloadPrompt: typeof import('./src/components/ReloadPrompt.vue')['default']
     SeeingTable: typeof import('./src/components/SeeingTable.vue')['default']
