@@ -9,7 +9,7 @@ const page = pagesStore().home
   <ion-page>
     <ion-content>
       <Header :title="page.title" />
-      <!-- <Suspense>
+      <Suspense>
         <template #default>
           <SunCard />
         </template>
@@ -24,7 +24,7 @@ const page = pagesStore().home
         <template #fallback>
           <MoonCardSkeleton />
         </template>
-      </Suspense> -->
+      </Suspense>
       <WeatherCard />
       <CoordCard />
       <Suspense>
