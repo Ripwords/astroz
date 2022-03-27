@@ -28,14 +28,14 @@ const { chartKey: sunChartKey, graphConfig: sunGraphConfig } = await sunCardInit
     <ion-card-header>
       <ion-card-header>
         <ion-card-title>Luna {{ phaseEmoji }}</ion-card-title>
-        <div class="flex justify-center my-[10px]"
-          :class="{
-            'mx-[20px]': isDesktop
-          }"
-        >
-          <Chart :key="moonChartKey" :config="moonChartConfig" />
-        </div>
       </ion-card-header>
+      <div class="flex justify-center my-[10px]"
+        :class="{
+          'mx-[20px]': isDesktop
+        }"
+      >
+        <Chart :key="moonChartKey" :config="moonChartConfig" />
+      </div>
     </ion-card-header>
   </ion-card>
   <PlanetsCard :showCard="true" />
