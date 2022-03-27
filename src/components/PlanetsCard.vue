@@ -15,12 +15,12 @@ const { chartKey, graphConfig } = await planetsCardsInit()
 </script>
 
 <template>
-  <ion-card v-if="!isDesktop || props.showCard">
+  <ion-card>
     <ion-card-header>
       <ion-card-header>
-        <ion-card-title>Planets</ion-card-title>
+        <ion-card-title>Planets 🪐</ion-card-title>
       </ion-card-header>
-      <ion-card-content>
+      <ion-card-content v-if="!isDesktop || props.showCard">
         <div class="flex">
           <div>
             <div class="flex justify-start max-w-[175px]" v-for="(planet, index) in planetNames.slice(0, 4)" :key="planet">
@@ -50,7 +50,13 @@ const { chartKey, graphConfig } = await planetsCardsInit()
           <span class="w-[20px]"></span>
         </div>
       </ion-card-content>
+      <div class="flex justify-center mb-[10px]"
+        :class="{
+          'mx-[20px]': isDesktop
+        }"
+      >
+        <Chart :key="chartKey" :config="graphConfig" />
+      </div>
     </ion-card-header>
   </ion-card>
-  <Chart :key="chartKey" :config="graphConfig" />
 </template>

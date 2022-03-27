@@ -42,10 +42,12 @@ declare module 'vue' {
     IonMenuToggle: typeof import('@ionic/vue')['IonMenuToggle']
     IonNote: typeof import('@ionic/vue')['IonNote']
     IonPage: typeof import('@ionic/vue')['IonPage']
+    IonReorderGroup: typeof import('@ionic/vue')['IonReorderGroup']
     IonRouterOutlet: typeof import('@ionic/vue')['IonRouterOutlet']
     IonRow: typeof import('@ionic/vue')['IonRow']
     IonSelect: typeof import('@ionic/vue')['IonSelect']
     IonSelectOption: typeof import('@ionic/vue')['IonSelectOption']
+    IonSpinner: typeof import('@ionic/vue')['IonSpinner']
     IonSplitPane: typeof import('@ionic/vue')['IonSplitPane']
     IonText: typeof import('@ionic/vue')['IonText']
     IonTitle: typeof import('@ionic/vue')['IonTitle']
@@ -60,6 +62,7 @@ declare module 'vue' {
     SunCard: typeof import('./src/components/sunCard.vue')['default']
     SunCardSkeleton: typeof import('./src/components/SunCardSkeleton.vue')['default']
     WeatherCard: typeof import('./src/components/WeatherCard.vue')['default']
+    WeatherCardSkeleton: typeof import('./src/components/WeatherCardSkeleton.vue')['default']
   }
 }
 

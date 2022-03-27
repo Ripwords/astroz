@@ -18,5 +18,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas class="m-[50px]" ref="canvas"></canvas>
+  <canvas ref="canvas"></canvas>
 </template>

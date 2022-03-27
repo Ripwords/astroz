@@ -8,7 +8,7 @@ const forecastSize = ref(store.forecastSize)
 const forecastLink = ref()
 const forecastImage = ref()
 const interval = ref()
-
+const isLoaded = ref(false)
 
 const forecast = () => {
   forecastLink.value = `https://clearoutside.com/forecast/${lat.value}/${long.value}`
@@ -38,17 +38,40 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <ion-card>
+  <ion-card class="min-h-[150px]">
     <ion-card-header>
       <ion-card-header>
         <ion-card-title>Weather ☁</ion-card-title>
         <ion-card-subtitle>Weather Forecast</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
-          <img alt="forecast image" class="min-h-[3.5vh]" :src="forecastImage" />
-        </a>
+        <Transition appear>
+          <div class="absolute left-[50%]">
+            <div class="relative left-[-50%]" v-show="!isLoaded">
+              <ion-spinner name="crescent" />
+            </div>
+          </div>
+        </Transition>
+        <Transition>
+          <div class="" v-show="isLoaded">
+            <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
+              <img alt="forecast image" :src="forecastImage" @load="isLoaded = true" />
+            </a>
+          </div>
+        </Transition>
       </ion-card-content>
     </ion-card-header>
   </ion-card>
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

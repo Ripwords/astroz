@@ -7,6 +7,7 @@ import {
   sunSet 
 } from '../functions/sol'
 import { mainStore } from '../store'
+import { isDesktop } from '../functions/utility'
 
 const store = mainStore()
 const EQ = solEqCoordinates.value
@@ -125,7 +126,13 @@ const { chartKey, transitAltitude, graphConfig } = await sunCardInit()
           </div>
         </div>
       </ion-card-content>
+      <div class="flex justify-center my-[10px]"
+        :class="{
+          'mx-[20px]': isDesktop
+        }"
+      >
+        <Chart :key="chartKey" :config="graphConfig" />
+      </div>
     </ion-card-header>
   </ion-card>
-  <Chart :key="chartKey" :config="graphConfig" />
 </template>

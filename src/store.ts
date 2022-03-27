@@ -30,52 +30,42 @@ export const pagesStore = defineStore('pages', {
     home: {
       title: "Home",
       path: "/menu/home",
-      sub: "Home Page"
     },
     solarSystem: {
       title: "Solar System",
       path: "/menu/solarSystem",
-      sub: "Solar System"
     },
     weather: {
       title: "Weather",
       path: "/menu/weather",
-      sub: "Weather"
     },
     optics: {
       title: "Optics",
       path: "/menu/optics",
-      sub: "Optics Calculations"
     },
     magni: {
       title: "Magnification",
       path: "/menu/magni",
-      sub: "Magnification Calculations"
     },
     telescope: {
       title: "Telescope",
       path: "/menu/telescope",
-      sub: "Telescope Capabilities Calculations"
     },
     filter: {
       title: "Filter",
       path: "/menu/filter",
-      sub: "Filter Calculations"
     },
     ccd: {
       title: "CCD Calculations",
       path: "/menu/ccd",
-      sub: "CCD Suitability"
     },
     guiding: {
       title: "Guiding Calculations",
       path: "/menu/guiding",
-      sub: "Guiding Calculations"
     },
     settings: {
       title: "Settings",
       path: "/menu/settings",
-      sub: "Settings"
     }
   })
 })
