@@ -23,29 +23,29 @@ forecastInit()
             <ion-card-title>Weather ☁</ion-card-title>
             <ion-card-subtitle>Your daily dose of weather information</ion-card-subtitle>
           </ion-card-header>
-          <ion-card-content>
-            <Transition appear>
-              <div class="absolute left-[50%]">
-                <div class="relative left-[-50%]" v-show="!isLoaded">
-                  <ion-spinner name="crescent" />
-                </div>
+          <Transition appear>
+            <div class="absolute left-[50%]">
+              <div class="relative left-[-50%]" v-show="!isLoaded">
+                <ion-spinner name="crescent" />
               </div>
-            </Transition>
-            <Transition>
-              <div v-show="isLoaded">
-                <div class="flex justify-center">
-                  <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
-                    <img alt="forecast image" :src="forecastImage" @load="isLoaded_1 = true" />
-                  </a>
-                </div>
-                <br>
-                <div class="flex justify-center">
-                  <img alt="annual darkness image" :src="annualDarkness" @load="isLoaded_2 = true">
-                </div>
-              </div>
-            </Transition>
-          </ion-card-content>
+            </div>
+          </Transition>
         </ion-card-header>
+        <ion-card-content>
+          <Transition>
+            <div v-show="isLoaded">
+              <div class="flex justify-center mt-[-15px]">
+                <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
+                  <img alt="forecast image" :src="forecastImage" @load="isLoaded_1 = true" />
+                </a>
+              </div>
+              <br>
+              <div class="flex justify-center">
+                <img alt="annual darkness image" :src="annualDarkness" @load="isLoaded_2 = true">
+              </div>
+            </div>
+          </Transition>
+        </ion-card-content>
       </ion-card>
     </ion-content>
   </ion-page>

@@ -40,27 +40,25 @@ onUnmounted(() => {
 <template>
   <ion-card class="min-h-[150px]">
     <ion-card-header>
-      <ion-card-header>
-        <ion-card-title>Weather ☁</ion-card-title>
-        <ion-card-subtitle>Weather Forecast</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <Transition appear>
-          <div class="absolute left-[50%]">
-            <div class="relative left-[-50%]" v-show="!isLoaded">
-              <ion-spinner name="crescent" />
-            </div>
-          </div>
-        </Transition>
-        <Transition>
-          <div class="" v-show="isLoaded">
-            <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
-              <img alt="forecast image" :src="forecastImage" @load="isLoaded = true" />
-            </a>
-          </div>
-        </Transition>
-      </ion-card-content>
+      <ion-card-title>Weather ☁</ion-card-title>
+      <ion-card-subtitle>Weather Forecast</ion-card-subtitle>
     </ion-card-header>
+    <Transition appear>
+      <div class="absolute left-[50%]">
+        <div class="relative left-[-50%]" v-show="!isLoaded">
+          <ion-spinner name="crescent" />
+        </div>
+      </div>
+    </Transition>
+    <ion-card-content>
+      <Transition>
+        <div class="mt-[-15px] mx-2" v-show="isLoaded">
+          <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
+            <img alt="forecast image" :src="forecastImage" @load="isLoaded = true" />
+          </a>
+        </div>
+      </Transition>
+    </ion-card-content>
   </ion-card>
 </template>
 
