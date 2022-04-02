@@ -2,7 +2,7 @@
   "name": "astroz",
   "version": "1.7.0",
   "scripts": {
-    "dev": "vite --open --host",
+    "dev": "vite --open --host --https",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "test": "cypress open"
