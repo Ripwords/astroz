@@ -13,7 +13,7 @@ import leaflet from "leaflet"
 const store = mainStore()
 const dec = store.decimal
 const page = pagesStore().settings
-const interval = ref()
+const mapRef = ref<any>()
 let map: any
 
 onMounted(() => {
@@ -28,8 +28,16 @@ onMounted(() => {
     minZoom: 2
   }).addTo(map)
   const initMarker = leaflet.marker([Number(store.userLat), Number(store.userLong)]).addTo(map);
+
+  mapRef.value.style.width = '0'
+  mapRef.value.style.height = '0'
   map.invalidateSize()
   window.dispatchEvent(new Event('resize'))
+  mapRef.value.style.width = '100%'
+  mapRef.value.style.height = '50vh'
+  map.invalidateSize()
+  window.dispatchEvent(new Event('resize'))
+
   map.on("click", (e: any) => {
     if (Number(e.latlng.lat) >= 89.99) {
       store.userLat = Number(89.99).toFixed(dec)
@@ -52,14 +60,6 @@ onMounted(() => {
       map.panTo([Number(store.userLat), Number(store.userLong)])
     }
   })
-  interval.value = setInterval(() => {
-    map.invalidateSize()
-    window.dispatchEvent(new Event('resize'))
-  }, 1000)
-})
-
-onUnmounted(() => {
-  clearInterval(interval.value)
 })
 </script>
 
@@ -93,7 +93,7 @@ onUnmounted(() => {
             <ion-input class="ion-text-right" v-model="store.userLong" type="number" placeholder="long" min="0" max="180" @ionChange="updateLabels"></ion-input><span>{{ meridian }}</span>
           </ion-item>
           <ion-item v-show="store.manual">
-            <div id="map"></div>
+            <div id="map" ref="mapRef"></div>
           </ion-item>
           <ion-item v-show="!store.manual">
             <ion-label>Location Refresh Interval : </ion-label>
