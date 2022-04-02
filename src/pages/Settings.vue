@@ -18,13 +18,9 @@ let map: any
 
 onMounted(() => {
   map = leaflet.map('map').setView([Number(store.userLat), Number(store.userLong)], 13)
-  const southWest = leaflet.latLng(89, 179)
-  const northEast = leaflet.latLng(-89, -179)
-  const bounds = leaflet.latLngBounds(southWest, northEast);
   leaflet.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     noWrap: true,
-    bounds: bounds,
     minZoom: 2
   }).addTo(map)
   const initMarker = leaflet.marker([Number(store.userLat), Number(store.userLong)]).addTo(map);
