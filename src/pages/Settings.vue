@@ -13,11 +13,11 @@ import leaflet from "leaflet"
 const store = mainStore()
 const dec = store.decimal
 const page = pagesStore().settings
+const interval = ref()
 let map: any
 
 onMounted(() => {
   map = leaflet.map('map').setView([Number(store.userLat), Number(store.userLong)], 13)
-
   const southWest = leaflet.latLng(89, 179)
   const northEast = leaflet.latLng(-89, -179)
   const bounds = leaflet.latLngBounds(southWest, northEast);
@@ -52,6 +52,14 @@ onMounted(() => {
       map.panTo([Number(store.userLat), Number(store.userLong)])
     }
   })
+  interval.value = setInterval(() => {
+    map.invalidateSize()
+    window.dispatchEvent(new Event('resize'))
+  }, 1000)
+})
+
+onUnmounted(() => {
+  clearInterval(interval.value)
 })
 </script>
 
