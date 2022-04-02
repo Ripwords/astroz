@@ -11,7 +11,7 @@ specifiers:
   chart.js: ^3.7.1
   cypress: ^9.5.3
   dayjs: ^1.11.0
-  leaflet: ^1.7.1
+  leaflet: 1.8.0-beta.1
   lunarphase-js: ^1.0.10
   pinia: ^2.0.12
   typescript: ^4.6.2
@@ -30,7 +30,7 @@ specifiers:
 dependencies:
   '@ionic/vue': 6.0.12
   '@ionic/vue-router': 6.0.12
-  leaflet: 1.7.1
+  leaflet: 1.8.0-beta.1
   pinia: 2.0.12_typescript@4.6.2+vue@3.2.31
   vue: 3.2.31
   vue-router: 4.0.14_vue@3.2.31
@@ -3115,8 +3115,8 @@ packages:
     engines: {node: '> 0.8'}
     dev: true
 
-  /leaflet/1.7.1:
-    resolution: {integrity: sha512-/xwPEBidtg69Q3HlqPdU3DnrXQOvQU/CCHA1tcDQVzOwm91YMYaILjNp7L4Eaw5Z4sOYdbBz6koWyibppd8Zqw==}
+  /leaflet/1.8.0-beta.1:
+    resolution: {integrity: sha512-ghNFb2YcqRZQZkhrMgwUT6YJ+PJJ5qWE7mnUrmAlZAyclG6HBRdW5F8mim2xF27i790xewmGva/hn+jjKCt/aw==}
     dev: false
 
   /leven/3.1.0:
