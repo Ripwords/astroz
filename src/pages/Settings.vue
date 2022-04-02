@@ -100,5 +100,6 @@ onMounted(() => {
 #map { 
   height: 50vh; 
   width: 100%;
+  background-color: rgba(255, 0, 0, 0.0);
 }
 </style>
