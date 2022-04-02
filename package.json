@@ -1,6 +1,6 @@
 {
   "name": "astroz",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "scripts": {
     "dev": "vite --open --host",
     "build": "vue-tsc --noEmit && vite build",
@@ -10,12 +10,14 @@
   "dependencies": {
     "@ionic/vue": "^6.0.12",
     "@ionic/vue-router": "^6.0.12",
+    "leaflet": "^1.7.1",
     "pinia": "^2.0.12",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
     "@iconify/json": "^2.1.16",
+    "@types/leaflet": "^1.7.9",
     "@vitejs/plugin-vue": "^2.2.4",
     "@vueuse/core": "^8.1.1",
     "astronomy-bundle": "^7.5.3",

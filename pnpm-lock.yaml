@@ -4,12 +4,14 @@ specifiers:
   '@iconify/json': ^2.1.16
   '@ionic/vue': ^6.0.12
   '@ionic/vue-router': ^6.0.12
+  '@types/leaflet': ^1.7.9
   '@vitejs/plugin-vue': ^2.2.4
   '@vueuse/core': ^8.1.1
   astronomy-bundle: ^7.5.3
   chart.js: ^3.7.1
   cypress: ^9.5.3
   dayjs: ^1.11.0
+  leaflet: ^1.7.1
   lunarphase-js: ^1.0.10
   pinia: ^2.0.12
   typescript: ^4.6.2
@@ -28,12 +30,14 @@ specifiers:
 dependencies:
   '@ionic/vue': 6.0.12
   '@ionic/vue-router': 6.0.12
+  leaflet: 1.7.1
   pinia: 2.0.12_typescript@4.6.2+vue@3.2.31
   vue: 3.2.31
   vue-router: 4.0.14_vue@3.2.31
 
 devDependencies:
   '@iconify/json': 2.1.16
+  '@types/leaflet': 1.7.9
   '@vitejs/plugin-vue': 2.2.4_vite@2.8.6+vue@3.2.31
   '@vueuse/core': 8.1.1_vue@3.2.31
   astronomy-bundle: 7.5.3
@@ -1381,6 +1385,16 @@ packages:
 
   /@types/estree/0.0.39:
     resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
+    dev: true
+
+  /@types/geojson/7946.0.8:
+    resolution: {integrity: sha512-1rkryxURpr6aWP7R786/UQOkJ3PcpQiWkAXBmdWc7ryFWqN6a4xfK7BtjXvFBKO9LjQ+MWQSWxYeZX1OApnArA==}
+    dev: true
+
+  /@types/leaflet/1.7.9:
+    resolution: {integrity: sha512-H8vPgD49HKzqM41ArHGZM70g/tfhp8W+JcPxfnF+5H/Xvp+xiP+KQOUNWU8U89fqS1Jj3cpRY/+nbnaHFzwnFA==}
+    dependencies:
+      '@types/geojson': 7946.0.8
     dev: true
 
   /@types/node/14.18.12:
@@ -3100,6 +3114,10 @@ packages:
     resolution: {integrity: sha1-eZllXoZGwX8In90YfRUNMyTVRRM=}
     engines: {node: '> 0.8'}
     dev: true
+
+  /leaflet/1.7.1:
+    resolution: {integrity: sha512-/xwPEBidtg69Q3HlqPdU3DnrXQOvQU/CCHA1tcDQVzOwm91YMYaILjNp7L4Eaw5Z4sOYdbBz6koWyibppd8Zqw==}
+    dev: false
 
   /leven/3.1.0:
     resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==}

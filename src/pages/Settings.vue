@@ -5,16 +5,48 @@ import {
   hemisphere,
   meridian,
   changeUnits,
-  N_S,
-  E_W,
-  manualLocation,
-  settingsPageInit
+  updateLabels,
+  manualLocation
 } from '../functions/settings'
+import leaflet from "leaflet"
 
 const store = mainStore()
+const dec = store.decimal
 const page = pagesStore().settings
+let map: any
 
-settingsPageInit()
+onMounted(() => {
+  map = leaflet.map('map').setView([Number(store.userLat), Number(store.userLong)], 13)
+  leaflet.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    noWrap: true
+  }).addTo(map)
+  const initMarker = leaflet.marker([Number(store.userLat), Number(store.userLong)]).addTo(map);
+  map.invalidateSize()
+  window.dispatchEvent(new Event('resize'))
+  map.on("click", (e: any) => {
+    if (Number(e.latlng.lat) >= 89.99) {
+      store.userLat = Number(89.99).toFixed(dec)
+    } else if (Number(e.latlng.lat) <= -89.99) {
+      store.userLat = Number(-89.99).toFixed(dec)
+    } else {
+      store.userLat = Number(e.latlng.lat).toFixed(dec)
+    }
+    if (Number(e.latlng.lng) >= 179.99) {
+      store.userLong = Number(179.99).toFixed(dec)
+    } else if (Number(e.latlng.lng) <= -179.99) {
+      store.userLong = Number(-179.99).toFixed(dec)
+    } else {
+      store.userLong = Number(e.latlng.lng).toFixed(dec)
+    }
+  })
+  watchEffect(() => {
+    if (store.userLat && store.userLong) {
+      initMarker.setLatLng([Number(store.userLat), Number(store.userLong)])
+      map.panTo([Number(store.userLat), Number(store.userLong)])
+    }
+  })
+})
 </script>
 
 <template>
@@ -42,21 +74,12 @@ settingsPageInit()
             <ion-toggle :checked="store.manual" @ionChange="manualLocation"></ion-toggle>
           </ion-item>
           <ion-item v-show="store.manual">
-            <ion-label>Hemisphere :</ion-label>
-            N &deg;
-            <ion-toggle :checked="store.hemisphere" @ionChange="N_S"></ion-toggle>
-            S &deg;
-          </ion-item>
-          <ion-item v-show="store.manual">
-            <ion-label>Meridian :</ion-label>
-            E &deg;
-            <ion-toggle :checked="store.meridian" @ionChange="E_W"></ion-toggle>
-            W &deg;
-          </ion-item>
-          <ion-item v-show="store.manual">
             <ion-label>Coordinates : </ion-label>
-            <ion-input class="ion-text-right" v-model="store.userLat" type="number" placeholder="lat" min="0" max="90"></ion-input><span>{{ hemisphere }}</span>
-            <ion-input class="ion-text-right" v-model="store.userLong" type="number" placeholder="long" min="0" max="180"></ion-input><span>{{ meridian }}</span>
+            <ion-input class="ion-text-right" v-model="store.userLat" type="number" placeholder="lat" min="0" max="90" @ionChange="updateLabels"></ion-input><span>{{ hemisphere }}</span>
+            <ion-input class="ion-text-right" v-model="store.userLong" type="number" placeholder="long" min="0" max="180" @ionChange="updateLabels"></ion-input><span>{{ meridian }}</span>
+          </ion-item>
+          <ion-item v-show="store.manual">
+            <div id="map"></div>
           </ion-item>
           <ion-item v-show="!store.manual">
             <ion-label>Location Refresh Interval : </ion-label>
@@ -66,3 +89,10 @@ settingsPageInit()
     </ion-content>
   </ion-page>
 </template>
+
+<style scoped>
+#map { 
+  height: 50vh; 
+  width: 100%;
+}
+</style>
