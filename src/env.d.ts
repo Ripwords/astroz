@@ -8,5 +8,6 @@ declare module '*.vue' {
 }
 
 declare module 'lunarphase-js'
+declare module 'vue-weather-widget
 
 declare const __APP_VERSION__: string

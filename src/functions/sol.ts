@@ -109,28 +109,20 @@ export const sunCardInit = async () => {
     clearInterval(interval.value)
   })
 
-  watch([() => store.userLat, () => store.userLong], async () => {
-    location.value = createLocation(Number(store.userLat), Number(store.userLong))
-    const t = await getSunTimes()
-    sunRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
-    sunSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`
-    transitAltitude.value = Math.round(await getTransitAltitude() * 180 / Math.PI)
-    graphConfig.value = await sunGraph(
-      'Sun ☀',
-      'rgba(90, 90, 90, 0.3)',
-      'rgba(255, 200, 61, 0.6)'
-    )
-    chartKey.value = changeBool(chartKey.value)
-  })
-
+  await updateSolPosition()
   const chartKey = ref(true)
   const graphConfig = ref(await sunGraph(
     'Sun ☀',
     'rgba(90, 90, 90, 0.3)',
     'rgba(255, 200, 61, 0.6)'
   ))
-  await updateSolPosition()
   interval.value = setInterval(async () => {
+    if (location.value != createLocation(Number(store.userLat), Number(store.userLong))) {
+      location.value = createLocation(Number(store.userLat), Number(store.userLong))
+      const t = await getSunTimes()
+      sunRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
+      sunSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`
+    }
     await updateSolPosition()
   }, 1000)
   const transitAltitude = ref(Math.round(await getTransitAltitude() * 180 / Math.PI))
