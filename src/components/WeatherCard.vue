@@ -1,40 +1,14 @@
 <script lang="ts" setup>
+import { VueOpenWeather } from 'vue-openweather'
+import "vue-openweather/dist/style.css"
 import { mainStore } from '../store'
 
 const store = mainStore()
-const lat = ref(Number(store.userLat).toFixed(2))
-const long = ref(Number(store.userLong).toFixed(2))
-const forecastSize = ref(store.forecastSize)
-const forecastLink = ref()
-const forecastImage = ref()
-const interval = ref()
-const isLoaded = ref(false)
-
-const forecast = () => {
-  forecastLink.value = `https://clearoutside.com/forecast/${lat.value}/${long.value}`
-  forecastImage.value = `https://clearoutside.com/forecast_image_${forecastSize.value}/${lat.value}/${long.value}/forecast.png` 
-}
-
-watch([() => store.userLat, () => store.userLong], () => {
-  lat.value = Number(store.userLat).toFixed(2)
-  long.value = Number(store.userLong).toFixed(2)
-  forecast()
-})
-
-watch(() => store.forecastSize, () => {
-  forecast()
-})
-
-onMounted(() => {
-  forecast()
-  interval.value = setInterval(() => {
-    forecast()
-  }, 1800000)
-})
-
-onUnmounted(() => {
-  clearInterval(interval.value)
-})
+const ready = ref(false)
+new Promise(resolve => setTimeout(() => {
+  ready.value = true
+  resolve
+}, 1500))
 </script>
 
 <template>
@@ -43,19 +17,23 @@ onUnmounted(() => {
       <ion-card-title>Weather ☁</ion-card-title>
       <ion-card-subtitle>Weather Forecast</ion-card-subtitle>
     </ion-card-header>
-    <Transition appear>
-      <div class="absolute left-[50%]">
-        <div class="relative left-[-50%]" v-show="!isLoaded">
-          <ion-spinner name="crescent" />
-        </div>
-      </div>
-    </Transition>
     <ion-card-content>
-      <Transition>
-        <div class="mt-[-15px] mx-2" v-show="isLoaded">
-          <a target="_blank" :href="forecastLink" rel="noopener noreferrer">
-            <img alt="forecast image" :src="forecastImage" @load="isLoaded = true" />
-          </a>
+      <Transition appear>
+        <div class="absolute left-[50%]">
+          <div class="relative left-[-50%]" v-show="!ready">
+            <ion-spinner name="crescent" />
+          </div>
+        </div>
+      </Transition>
+      <Transition appear>
+        <div v-if="ready">
+          <VueOpenWeather
+            apiKey="fcd7c46a039d1f8d59ef5c1ed18f9c6d"
+            :lat="store.userLat"
+            :long="store.userLong"
+            units="metric"
+            hourly
+          />
         </div>
       </Transition>
     </ion-card-content>
@@ -65,7 +43,7 @@ onUnmounted(() => {
 <style scoped>
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease;
 }
 
 .v-enter-from,
