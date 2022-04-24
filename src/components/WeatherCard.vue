@@ -8,7 +8,7 @@ const ready = ref(false)
 new Promise(resolve => setTimeout(() => {
   ready.value = true
   resolve
-}, 1500))
+}, 1000))
 </script>
 
 <template>

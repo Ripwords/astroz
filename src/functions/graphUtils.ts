@@ -24,6 +24,7 @@ export const planetFunctions = [
   createNeptune
 ]
 
+// TODO combine with the vue-openweather functions to account for time changes when coordinates change
 export const generateDataLabels = async (generateData: Function, planet?: any) => {
   const labels: any = []
   const data: any = []
@@ -34,6 +35,9 @@ export const generateDataLabels = async (generateData: Function, planet?: any) =
     time.minute() > 30 ? min = '30' : min = '00'
     labels.push(`${time.hour()}:${min}`)
     const date = new Date(new Date(time.toDate()).setMinutes(Number(min), 0, 0))
+    // TODO Convert the date variable above to seconds
+    // TODO Get timezone_offset information from the @weatherData event from VueOpenWeather
+    // TODO Use convertTimeZone functino to get the timezone adjusted time to generate the data labels
     if (planet != undefined) {
       data.push(await generateData(date, planet))
     } else {
