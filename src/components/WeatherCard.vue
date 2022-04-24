@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { VueOpenWeather } from 'vue-openweather'
-import "vue-openweather/dist/style.css"
+import "vue-openweather/style.css"
 import { mainStore } from '../store'
 
 const store = mainStore()
