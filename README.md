@@ -21,4 +21,8 @@
 
 <br />
 
+## Manual Location with maps
+
+![](image/README/1651414785918.png)
+
 ## Astroz 🌌 is installable as PWA on Desktop, iOS and Android!

@@ -2,7 +2,12 @@ import { createJupiter, createMars, createMercury, createNeptune, createSaturn, 
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
 import { isDesktop } from './utility'
+import { getWeather, convertTimeZone } from 'vue-openweather'
+import { mainStore } from '../store'
 dayjs.extend(duration)
+
+const store = mainStore()
+const weatherData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
 
 export const planetNames = [
   'Mercury',
@@ -24,20 +29,17 @@ export const planetFunctions = [
   createNeptune
 ]
 
-// TODO combine with the vue-openweather functions to account for time changes when coordinates change
 export const generateDataLabels = async (generateData: Function, planet?: any) => {
   const labels: any = []
   const data: any = []
 
-  let time = dayjs()
+  const convertedTimeZone = convertTimeZone(weatherData.dt, weatherData.timezone)
+  let time = dayjs(convertedTimeZone)
   let min
   for (let i = 0; i < 22; i++) {
     time.minute() > 30 ? min = '30' : min = '00'
     labels.push(`${time.hour()}:${min}`)
     const date = new Date(new Date(time.toDate()).setMinutes(Number(min), 0, 0))
-    // TODO Convert the date variable above to seconds
-    // TODO Get timezone_offset information from the @weatherData event from VueOpenWeather
-    // TODO Use convertTimeZone functino to get the timezone adjusted time to generate the data labels
     if (planet != undefined) {
       data.push(await generateData(date, planet))
     } else {
@@ -55,7 +57,8 @@ export const generatePlanetsDataLabels = async (generateData: Function, planet: 
   const labels: any = []
   const data: any = []
 
-  let time = dayjs()
+  const convertedTimeZone = convertTimeZone(weatherData.dt, weatherData.timezone)
+  let time = dayjs(convertedTimeZone)
   let min
 
   for (let i = 0; i < 22; i++) {
