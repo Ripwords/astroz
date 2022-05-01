@@ -7,7 +7,6 @@ import { mainStore } from '../store'
 dayjs.extend(duration)
 
 const store = mainStore()
-const weatherData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
 
 export const planetNames = [
   'Mercury',
@@ -32,7 +31,7 @@ export const planetFunctions = [
 export const generateDataLabels = async (generateData: Function, planet?: any) => {
   const labels: any = []
   const data: any = []
-
+  const weatherData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
   const convertedTimeZone = convertTimeZone(weatherData.dt, weatherData.timezone)
   let time = dayjs(convertedTimeZone)
   let min
@@ -56,7 +55,7 @@ export const generateDataLabels = async (generateData: Function, planet?: any) =
 export const generatePlanetsDataLabels = async (generateData: Function, planet: Function) => {
   const labels: any = []
   const data: any = []
-
+  const weatherData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
   const convertedTimeZone = convertTimeZone(weatherData.dt, weatherData.timezone)
   let time = dayjs(convertedTimeZone)
   let min
