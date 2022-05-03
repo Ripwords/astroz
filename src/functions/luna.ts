@@ -81,14 +81,30 @@ const updateMoonPosition = async () => {
 const getMoonTimes = async () => {
   let moonRiseTime, moonSetTime, toi, moonTimes
   const date = returnDate()
+  const errorObj = {
+    time: {
+      month: "",
+      day: "",
+      year: "",
+      hour: "",
+      min: "",
+      sec: ""
+    }
+  }
+
   try {
     toi = createTimeOfInterest.fromTime(date.year, date.month, date.day, 0, 0, 0)
     moonTimes = createMoon(toi)
     moonRiseTime = await moonTimes.getRise(location.value)
   } catch (e: any) {
-    toi = createTimeOfInterest.fromTime(date.year, date.month, date.day + 1, 0, 0, 0)
-    moonTimes = createMoon(toi)
-    moonRiseTime = await moonTimes.getRise(location.value)
+    try {
+      toi = createTimeOfInterest.fromTime(date.year, date.month, date.day + 1, 0, 0, 0)
+      moonTimes = createMoon(toi)
+      moonRiseTime = await moonTimes.getRise(location.value)
+    } catch (e: any) {
+      console.log("Moon Rise/Set Error")
+      moonRiseTime = errorObj
+    }
   }
 
   try {
@@ -96,9 +112,14 @@ const getMoonTimes = async () => {
     moonTimes = createMoon(toi)
     moonSetTime = await moonTimes.getSet(location.value)
   } catch (e: any) {
-    toi = createTimeOfInterest.fromTime(date.year, date.month, date.day + 1, 0, 0, 0)
-    moonTimes = createMoon(toi)
-    moonSetTime = await moonTimes.getSet(location.value)
+    try {
+      toi = createTimeOfInterest.fromTime(date.year, date.month, date.day + 1, 0, 0, 0)
+      moonTimes = createMoon(toi)
+      moonSetTime = await moonTimes.getSet(location.value)
+    } catch (e: any) {
+      console.log("Moon Rise/Set Error")
+      moonSetTime = errorObj
+    }
   }
   const rise = moonRiseTime.time
   const set = moonSetTime.time
@@ -131,13 +152,10 @@ export const moonCardInit = async () => {
     'rgba(90, 90, 90, 0.3)',
     'rgba(135, 135, 135, 0.6)'
   ))
+  if (location.value != createLocation(Number(store.userLat), Number(store.userLong))) {
+    location.value = createLocation(Number(store.userLat), Number(store.userLong))
+  }
   interval.value = setInterval(async () => {
-    if (location.value != createLocation(Number(store.userLat), Number(store.userLong))) {
-      location.value = createLocation(Number(store.userLat), Number(store.userLong))
-      const t = await getMoonTimes()
-      lunaRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
-      lunaSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`
-    }
     await updateMoonPosition()
   }, 1000)
   await moonDetails()
@@ -145,6 +163,13 @@ export const moonCardInit = async () => {
   const t = await getMoonTimes()
   lunaRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
   lunaSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`
+
+  if (lunaRise.value == "Invalid, undefined") {
+    lunaRise.value = "N/A"
+  }
+  if (lunaSet.value == "Invalid, undefined") {
+    lunaSet.value = "N/A"
+  } 
 
   return {
     graphConfig,

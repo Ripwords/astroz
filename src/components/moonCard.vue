@@ -17,6 +17,13 @@ const EQ = lunaEqCoordinates.value
 const HOR = lunaHorCoordinates.value
 
 const { chartKey, transitAltitude, graphConfig } = await moonCardInit()
+
+if (lunaRise.value == "Invalid, undefined") {
+  lunaRise.value = "N/A"
+}
+if (lunaSet.value == "Invalid, undefined") {
+  lunaSet.value = "N/A"
+} 
 </script>
 
 <template>

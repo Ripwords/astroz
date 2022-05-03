@@ -75,14 +75,30 @@ const updateSolPosition = async () => {
 const getSunTimes = async () => {
   let sunRiseTime, sunSetTime, toi, sunTimes
   const date = returnDate()
+  const errorObj = {
+    time: {
+      month: "",
+      day: "",
+      year: "",
+      hour: "",
+      min: "",
+      sec: ""
+    }
+  }
+
   try {
     toi = createTimeOfInterest.fromTime(date.year, date.month, date.day, 0, 0, 0)
     sunTimes = createSun(toi)
     sunRiseTime = await sunTimes.getRise(location.value)
   } catch (e: any) {
-    toi = createTimeOfInterest.fromTime(date.year, date.month, date.day + 1, 0, 0, 0)
-    sunTimes = createSun(toi)
-    sunRiseTime = await sunTimes.getRise(location.value)
+    try {
+      toi = createTimeOfInterest.fromTime(date.year, date.month, date.day + 1, 0, 0, 0)
+      sunTimes = createSun(toi)
+      sunRiseTime = await sunTimes.getRise(location.value)
+    } catch (e: any) {
+      console.log("Sun Rise/Set Error")
+      sunRiseTime = errorObj
+    }
   }
 
   try {
@@ -90,9 +106,14 @@ const getSunTimes = async () => {
     sunTimes = createSun(toi)
     sunSetTime = await sunTimes.getSet(location.value)
   } catch (e: any) {
-    toi = createTimeOfInterest.fromTime(date.year, date.month, date.day + 1, 0, 0, 0)
-    sunTimes = createSun(toi)
-    sunSetTime = await sunTimes.getSet(location.value)
+    try {
+      toi = createTimeOfInterest.fromTime(date.year, date.month, date.day + 1, 0, 0, 0)
+      sunTimes = createSun(toi)
+      sunSetTime = await sunTimes.getSet(location.value)
+    } catch (e: any) {
+      console.log("Sun Rise/Set Error")
+      sunSetTime = errorObj
+    }
   }
   const rise = sunRiseTime.time
   const set = sunSetTime.time
@@ -116,19 +137,23 @@ export const sunCardInit = async () => {
     'rgba(90, 90, 90, 0.3)',
     'rgba(255, 200, 61, 0.6)'
   ))
+  if (location.value != createLocation(Number(store.userLat), Number(store.userLong))) {
+    location.value = createLocation(Number(store.userLat), Number(store.userLong))
+  }
   interval.value = setInterval(async () => {
-    if (location.value != createLocation(Number(store.userLat), Number(store.userLong))) {
-      location.value = createLocation(Number(store.userLat), Number(store.userLong))
-      const t = await getSunTimes()
-      sunRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
-      sunSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`
-    }
     await updateSolPosition()
   }, 1000)
   const transitAltitude = ref(Math.round(await getTransitAltitude() * 180 / Math.PI))
   const t = await getSunTimes()
   sunRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
   sunSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`
+
+  if (sunRise.value == "Invalid, undefined") {
+    sunRise.value = "N/A"
+  }
+  if (sunSet.value == "Invalid, undefined") {
+    sunSet.value = "N/A"
+  } 
 
   return {
     graphConfig,
