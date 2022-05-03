@@ -34,17 +34,19 @@ export const generateDataLabels = async (generateData: Function, planet?: any) =
   const weatherData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
   const convertedTimeZone = convertTimeZone(weatherData.dt, weatherData.timezone)
   let time = dayjs(convertedTimeZone)
+  let graphTime = dayjs()
   let min
   for (let i = 0; i < 22; i++) {
     time.minute() > 30 ? min = '30' : min = '00'
     labels.push(`${time.hour()}:${min}`)
-    const date = new Date(new Date(time.toDate()).setMinutes(Number(min), 0, 0))
+    const date = new Date(new Date(graphTime.toDate()).setMinutes(Number(min), 0, 0))
     if (planet != undefined) {
       data.push(await generateData(date, planet))
     } else {
       data.push(await generateData(date))
     }
     time = time.add(dayjs.duration({ 'minutes': 30 }))
+    graphTime = graphTime.add(dayjs.duration({ 'minutes': 30 }))
   }
   return {
     labels,

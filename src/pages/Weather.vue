@@ -19,10 +19,8 @@ forecastInit()
       <Header :title="page.title" />
       <ion-card class="min-h-[150px]">
         <ion-card-header>
-          <ion-card-header>
-            <ion-card-title>Weather ☁</ion-card-title>
-            <ion-card-subtitle>Your daily dose of weather information</ion-card-subtitle>
-          </ion-card-header>
+          <ion-card-title>Weather ☁</ion-card-title>
+          <ion-card-subtitle>Your daily dose of weather information</ion-card-subtitle>
           <Transition appear>
             <div class="absolute left-[50%]">
               <div class="relative left-[-50%]" v-show="!isLoaded">
@@ -39,7 +37,24 @@ forecastInit()
                   <img alt="forecast image" :src="forecastImage" @load="isLoaded_1 = true" />
                 </a>
               </div>
-              <br>
+            </div>
+          </Transition>
+        </ion-card-content>
+      </ion-card>
+      <ion-card class="min-h-[150px]">
+        <ion-card-header>
+          <ion-card-title>Annual Darkness🔆</ion-card-title>
+          <Transition appear>
+            <div class="absolute left-[50%]">
+              <div class="relative left-[-50%]" v-show="!isLoaded">
+                <ion-spinner name="crescent" />
+              </div>
+            </div>
+          </Transition>
+        </ion-card-header>
+        <ion-card-content>
+          <Transition>
+            <div v-show="isLoaded">
               <div class="flex justify-center">
                 <img alt="annual darkness image" :src="annualDarkness" @load="isLoaded_2 = true">
               </div>

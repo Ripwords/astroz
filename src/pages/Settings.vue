@@ -72,14 +72,6 @@ onMounted(() => {
             </ion-select>
           </ion-item>
           <ion-item>
-            <ion-label>Forecast Size :</ion-label>
-            <ion-select v-model="store.forecastSize" interface="action-sheet">
-              <ion-select-option value="small">Small</ion-select-option>
-              <ion-select-option value="medium">Medium</ion-select-option>
-              <ion-select-option value="large">Large</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
             <ion-label>Manual Coordinates : </ion-label>
             <ion-toggle :checked="store.manual" @ionChange="manualLocation"></ion-toggle>
           </ion-item>
