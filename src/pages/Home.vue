@@ -31,7 +31,7 @@ const page = pagesStore().home
           <PlanetsCard />
         </template>
         <template #fallback>
-          <div>...</div>
+          <PlanetsCardSkeleton />
         </template>
       </Suspense>
     </ion-content>

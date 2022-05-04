@@ -13,7 +13,7 @@ const page = pagesStore().solarSystem
           <SolarSystemCharts />
         </template>
         <template #fallback>
-          <div>Loading...</div>
+          <SolarSystemChartsSkeleton />
         </template>
       </Suspense>
     </ion-content>

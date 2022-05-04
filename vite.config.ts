@@ -7,13 +7,6 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 
-const IonicResolver = (ionic: string) => {
-  if (ionic.startsWith("Ion")) {
-    return { importName: "Ion" + ionic.slice(3), path: "@ionic/vue" }
-  }
-}
-
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
@@ -25,7 +18,10 @@ export default defineConfig({
         IconsResolver({
           prefix: 'i'
         }),
-        IonicResolver
+        (ionic) => {
+          if (ionic.startsWith('Ion'))
+            return { name: "Ion" + ionic.slice(3), from: '@ionic/vue' }
+        }
       ]
     }),
     AutoImport({
@@ -36,13 +32,10 @@ export default defineConfig({
       base: '/',
       srcDir: 'src',
       registerType: 'autoUpdate',
-      workbox: {
-        cleanupOutdatedCaches: false
-      },
       includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
-        name: "astroz",
-        short_name: "astroz",
+        name: "Astroz 🌌",
+        short_name: "Astroz 🌌",
         theme_color: "#285eb5",
         start_url: "/",
         icons: [

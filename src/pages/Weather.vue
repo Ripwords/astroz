@@ -47,7 +47,7 @@ forecastInit()
           <Transition appear>
             <div class="absolute left-[50%]">
               <div class="relative left-[-50%]" v-show="!isLoaded">
-                <ion-spinner name="crescent" />
+                <ion-spinner class="mt-8" name="crescent" />
               </div>
             </div>
           </Transition>
