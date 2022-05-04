@@ -31,6 +31,7 @@ declare module '@vue/runtime-core' {
     IonCol: typeof import('@ionic/vue')['IonCol']
     IonContent: typeof import('@ionic/vue')['IonContent']
     IonFooter: typeof import('@ionic/vue')['IonFooter']
+    IonGrid: typeof import('@ionic/vue')['IonGrid']
     IonHeader: typeof import('@ionic/vue')['IonHeader']
     IonInput: typeof import('@ionic/vue')['IonInput']
     IonItem: typeof import('@ionic/vue')['IonItem']

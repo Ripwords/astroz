@@ -11,7 +11,7 @@ specifiers:
   chart.js: ^3.7.1
   cypress: 9.6.0
   dayjs: ^1.11.0
-  leaflet: 1.8.0-beta.1
+  leaflet: 1.8.0-beta.3
   lunarphase-js: ^1.0.10
   pinia: 2.0.13
   typescript: 4.6.4
@@ -31,10 +31,8 @@ specifiers:
 dependencies:
   '@ionic/vue': 6.1.3
   '@ionic/vue-router': 6.1.3
-  leaflet: 1.8.0-beta.1
   pinia: 2.0.13_typescript@4.6.4+vue@3.2.33
   vue: 3.2.33
-  vue-openweather: 0.2.12
   vue-router: 4.0.14_vue@3.2.33
 
 devDependencies:
@@ -46,6 +44,7 @@ devDependencies:
   chart.js: 3.7.1
   cypress: 9.6.0
   dayjs: 1.11.0
+  leaflet: 1.8.0-beta.3
   lunarphase-js: 1.0.10
   typescript: 4.6.4
   unplugin-auto-import: 0.7.1_@vueuse+core@8.3.1+vite@2.9.6
@@ -54,6 +53,7 @@ devDependencies:
   vite: 2.9.6
   vite-plugin-pwa: 0.11.13_vite@2.9.6
   vite-plugin-windicss: 1.8.4_vite@2.9.6
+  vue-openweather: 0.2.12
   vue-tsc: 0.34.11_typescript@4.6.4
   windicss: 3.5.1
   workbox-window: 6.5.3
@@ -1543,7 +1543,6 @@ packages:
     dependencies:
       '@vue/reactivity': 3.2.33
       '@vue/shared': 3.2.33
-    dev: false
 
   /@vue/runtime-dom/3.2.33:
     resolution: {integrity: sha512-LSrJ6W7CZTSUygX5s8aFkraDWlO6K4geOwA3quFF2O+hC3QuAMZt/0Xb7JKE3C4JD4pFwCSO7oCrZmZ0BIJUnw==}
@@ -1551,7 +1550,6 @@ packages:
       '@vue/runtime-core': 3.2.33
       '@vue/shared': 3.2.33
       csstype: 2.6.18
-    dev: false
 
   /@vue/server-renderer/3.2.33_vue@3.2.33:
     resolution: {integrity: sha512-4jpJHRD4ORv8PlbYi+/MfP8ec1okz6rybe36MdpkDrGIdEItHEUyaHSKvz+ptNEyQpALmmVfRteHkU9F8vxOew==}
@@ -1561,7 +1559,6 @@ packages:
       '@vue/compiler-ssr': 3.2.33
       '@vue/shared': 3.2.33
       vue: 3.2.33
-    dev: false
 
   /@vue/shared/3.2.33:
     resolution: {integrity: sha512-UBc1Pg1T3yZ97vsA2ueER0F6GbJebLHYlEi4ou1H5YL4KWvMOOWwpYo9/QpWq93wxKG6Wo13IY74Hcn/f7c7Bg==}
@@ -2036,7 +2033,6 @@ packages:
 
   /csstype/2.6.18:
     resolution: {integrity: sha512-RSU6Hyeg14am3Ah4VZEmeX8H7kLwEEirXe6aU2IPfKNvhXwTflK5HQRDNI0ypQXoqmm+QPyG2IaPuQE5zMwSIQ==}
-    dev: false
 
   /cypress/9.6.0:
     resolution: {integrity: sha512-nNwt9eBQmSENamwa8LxvggXksfyzpyYaQ7lNBLgks3XZ6dPE/6BCQFBzeAyAPt/bNXfH3tKPkAyhiAZPYkWoEg==}
@@ -3070,9 +3066,9 @@ packages:
     engines: {node: '> 0.8'}
     dev: true
 
-  /leaflet/1.8.0-beta.1:
-    resolution: {integrity: sha512-ghNFb2YcqRZQZkhrMgwUT6YJ+PJJ5qWE7mnUrmAlZAyclG6HBRdW5F8mim2xF27i790xewmGva/hn+jjKCt/aw==}
-    dev: false
+  /leaflet/1.8.0-beta.3:
+    resolution: {integrity: sha512-5rp3xGRS1yxwxV2wnezsNr8pKHYjuki8fa9j2u3vJn0uzd1OaCKz5IwoFRFC6DODQ/iDtao54Bn76cRLH78XjA==}
+    dev: true
 
   /leven/3.1.0:
     resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==}
@@ -4163,7 +4159,7 @@ packages:
     resolution: {integrity: sha512-vFbNWXJWSim+Ilf6jAu0F+sS3IvbAmOKVJK1ycciYPfM1kEGq1ZPu6LuhOuOBi+nxyLuYHDMYAAHPARKLbDyrA==}
     dependencies:
       vue: 3.2.33
-    dev: false
+    dev: true
 
   /vue-router/4.0.14_vue@3.2.33:
     resolution: {integrity: sha512-wAO6zF9zxA3u+7AkMPqw9LjoUCjSxfFvINQj3E/DceTt6uEz1XZLraDhdg2EYmvVwTBSGlLYsUw8bDmx0754Mw==}
@@ -4192,7 +4188,6 @@ packages:
       '@vue/runtime-dom': 3.2.33
       '@vue/server-renderer': 3.2.33_vue@3.2.33
       '@vue/shared': 3.2.33
-    dev: false
 
   /webidl-conversions/4.0.2:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==}
