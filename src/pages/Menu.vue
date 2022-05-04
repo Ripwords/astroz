@@ -40,6 +40,15 @@ const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
               &nbsp;&nbsp;{{ page.title }}
             </ion-item>
             <ion-item
+              v-else-if="page.title == 'Home'"
+              class="noSelect"
+              @click="router.replace(page.path)"
+              :class="{ active: isActive(page.path) }"
+            >
+              <i-ion:home-outline></i-ion:home-outline>
+              &nbsp;&nbsp;{{ page.title }}
+            </ion-item>
+            <ion-item
               v-else-if="page.title == 'Solar System'"
               class="noSelect"
               @click="router.replace(page.path)"
@@ -55,6 +64,42 @@ const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
               :class="{ active: isActive(page.path) }"
             >
               <i-ion:cloud-outline></i-ion:cloud-outline>
+              &nbsp;&nbsp;{{ page.title }}
+            </ion-item>
+            <ion-item
+              v-else-if="page.title == 'CCD Calculations'"
+              class="noSelect"
+              @click="router.replace(page.path)"
+              :class="{ active: isActive(page.path) }"
+            >
+            <i-ion:ios-camera-outline></i-ion:ios-camera-outline>
+              &nbsp;&nbsp;{{ page.title }}
+            </ion-item>
+            <ion-item
+              v-else-if="page.title == 'Optics'"
+              class="noSelect"
+              @click="router.replace(page.path)"
+              :class="{ active: isActive(page.path) }"
+            >
+              <i-ion:aperture-outline></i-ion:aperture-outline>
+              &nbsp;&nbsp;{{ page.title }}
+            </ion-item>
+            <ion-item
+              v-else-if="page.title == 'Filter'"
+              class="noSelect"
+              @click="router.replace(page.path)"
+              :class="{ active: isActive(page.path) }"
+            >
+              <i-ion:color-filter-outline></i-ion:color-filter-outline>
+              &nbsp;&nbsp;{{ page.title }}
+            </ion-item>
+            <ion-item
+              v-else-if="page.title == 'Magnification'"
+              class="noSelect"
+              @click="router.replace(page.path)"
+              :class="{ active: isActive(page.path) }"
+            >
+              <i-ion:search-outline></i-ion:search-outline>
               &nbsp;&nbsp;{{ page.title }}
             </ion-item>
             <ion-item
