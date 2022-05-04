@@ -72,7 +72,7 @@ const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
               @click="router.replace(page.path)"
               :class="{ active: isActive(page.path) }"
             >
-            <i-ion:ios-camera-outline></i-ion:ios-camera-outline>
+            <i-ion:camera-outline></i-ion:camera-outline>
               &nbsp;&nbsp;{{ page.title }}
             </ion-item>
             <ion-item
