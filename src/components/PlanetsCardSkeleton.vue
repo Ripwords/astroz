@@ -47,5 +47,8 @@ const store = mainStore()
         <span class="w-[20px]"></span>
       </div>
     </ion-card-content>
+    <div class="flex justify-center my-[10px] mx-[20px]">
+      <ion-spinner class="mb-3" name="crescent" />
+    </div>
   </ion-card>
 </template>

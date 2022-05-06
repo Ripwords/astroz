@@ -1,14 +1,10 @@
-<script lang="ts" setup>
-const loading = ref('...')
-</script>
-
 <template>
   <ion-card>
     <ion-card-header>
       <ion-card-header>
         <ion-card-title>Luna</ion-card-title>
-        <ion-card-subtitle>Moon phase is ...</ion-card-subtitle>
-        <ion-card-subtitle>Next Full Moon : ...</ion-card-subtitle>
+        <ion-card-subtitle class="flex">Moon phase is <ion-skeleton-text animated class="ml-2 w-[35px]" /></ion-card-subtitle>
+        <ion-card-subtitle class="flex">Next Full Moon : <ion-skeleton-text animated class="ml-2 w-[35px]" /></ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <div class="flex justify-start max-w-[175px]">
@@ -17,7 +13,7 @@ const loading = ref('...')
             <div>:</div>
           </div>
           <span class="w-[10px]"></span>
-          <div>&nbsp;{{ loading }}</div>
+          <ion-skeleton-text animated class="w-[70%]" />
         </div>
         <div class="flex justify-start max-w-[175px]">
           <div class="flex justify-between w-[40px]">
@@ -25,17 +21,17 @@ const loading = ref('...')
             <div>:</div>
           </div>
           <span class="w-[10px]"></span>
-          <div>&nbsp;{{ loading }}</div>
+          <ion-skeleton-text animated class="w-[70%]" />
         </div>
         <br>
-        <div class="flex justify-between max-w-[270px]">
+        <div class="flex justify-between max-w-[275px]">
           <div class="flex justify-start w-[135px] mb-[5%]">
             <div class="flex justify-between w-[30px]">
               <div>RA</div>
               <div>:</div>
             </div>
             <span class="w-[10px]"></span>
-            <div class="float-right">{{ loading }}</div>
+            <ion-skeleton-text animated class="w-[70%] mr-2" />
           </div>
           <div class="flex justify-start w-[135px]">
             <div class="flex justify-between w-[35px]">
@@ -43,17 +39,17 @@ const loading = ref('...')
               <div>:</div>
             </div>
             <span class="w-[10px]"></span>
-            <div class="float-right">{{ loading }}</div>
+            <ion-skeleton-text animated class="w-[70%]" />
           </div>
         </div>
-        <div class="flex justify-between max-w-[270px]">
+        <div class="flex justify-between max-w-[275px]">
           <div class="flex justify-start w-[135px]">
             <div class="flex justify-between w-[30px]">
               <div>Alt</div>
               <div>:</div>
             </div>
             <span class="w-[10px]"></span>
-            <div class="float-right">{{ loading }}</div>
+            <ion-skeleton-text animated class="w-[70%] mr-2" />
           </div>
           <div class="flex justify-start w-[135px]">
             <div class="flex justify-between w-[35px]">
@@ -61,10 +57,13 @@ const loading = ref('...')
               <div>:</div>
             </div>
             <span class="w-[10px]"></span>
-            <div class="float-right">{{ loading }}</div>
+            <ion-skeleton-text animated class="w-[70%]" />
           </div>
         </div>
       </ion-card-content>
+      <div class="flex justify-center my-[10px] mx-[20px]">
+        <ion-spinner class="mt-3" name="crescent" />
+      </div>
     </ion-card-header>
   </ion-card>
 </template>
