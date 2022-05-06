@@ -32,7 +32,7 @@
     "vite": "2.9.6",
     "vite-plugin-pwa": "^0.11.13",
     "vite-plugin-windicss": "1.8.4",
-    "vue-openweather": "^0.2.14",
+    "vue-openweather": "0.2.14",
     "vue-tsc": "0.34.11",
     "windicss": "^3.5.1",
     "workbox-window": "6.5.3"
