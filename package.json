@@ -1,6 +1,7 @@
 {
   "name": "astroz",
-  "version": "1.7.10",
+  "version": "1.7.11",
+  "homepage": "https://astroz.netlify.app",
   "scripts": {
     "dev": "vite --open --host --https",
     "build": "vue-tsc --noEmit && vite build",
