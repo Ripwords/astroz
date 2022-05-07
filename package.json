@@ -1,6 +1,6 @@
 {
   "name": "astroz",
-  "version": "1.7.16",
+  "version": "1.7.17",
   "homepage": "https://astroz.netlify.app",
   "scripts": {
     "dev": "vite --open --host --https",

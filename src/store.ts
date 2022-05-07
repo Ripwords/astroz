@@ -22,7 +22,7 @@ export const mainStore = defineStore('mainStore', {
       'rgba(50, 207, 191, 0.6)',
       'rgba(38, 55, 189, 0.6)'
     ],
-    weatherData: useSessionStorage('weatherData', {
+    weatherData: useStorage('weatherData', {
       timestamp: null as any,
       data: {} as any
     }),
