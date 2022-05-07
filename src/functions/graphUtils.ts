@@ -46,9 +46,12 @@ export const generateDataLabels = async (generateData: Function, planet?: any) =
     }
   } else {
     console.log('yo use old data')
-    convertedTimeZone = convertTimeZone(store.weatherData.data.dt, store.weatherData.data.timezone)
+    if (!store.weatherData.data) {
+      convertedTimeZone = convertTimeZone(store.weatherData.data.dt, store.weatherData.data.timezone)
+    }
   }
   time = convertedTimeZone ? dayjs(convertedTimeZone) : dayjs()
+  console.log(time)
   let graphTime = dayjs()
   let min
   for (let i = 0; i < 22; i++) {
