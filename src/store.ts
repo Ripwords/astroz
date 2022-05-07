@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { useStorage } from '@vueuse/core'
+import { useSessionStorage, useStorage } from '@vueuse/core'
 
 export const mainStore = defineStore('mainStore', {
   state: () => ({
@@ -20,7 +20,11 @@ export const mainStore = defineStore('mainStore', {
       'rgba(245, 204, 50, 0.6)',
       'rgba(50, 207, 191, 0.6)',
       'rgba(38, 55, 189, 0.6)'
-    ]
+    ],
+    weatherData: useSessionStorage('weatherData', {
+      timestamp: null as any,
+      data: {} as any
+    })
   })
 })
 

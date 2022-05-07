@@ -31,9 +31,24 @@ export const planetFunctions = [
 export const generateDataLabels = async (generateData: Function, planet?: any) => {
   const labels: any = []
   const data: any = []
-  const weatherData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
-  const convertedTimeZone = convertTimeZone(weatherData.dt, weatherData.timezone)
-  let time = dayjs(convertedTimeZone)
+  let time: any
+  let convertedTimeZone: Date | null = null
+
+  const compareTimestamp = ((new Date().getTime() - store.weatherData.timestamp) > 1800000)
+  if (!store.weatherData.data || compareTimestamp) {
+    store.weatherData.timestamp = compareTimestamp ? new Date().getTime() : store.weatherData.timestamp
+    try {
+      console.log('yo get new data')
+      store.weatherData.data = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
+      convertedTimeZone = convertTimeZone(store.weatherData.data.dt, store.weatherData.data.timezone)
+    } catch (e) {
+      store.weatherData.data = null
+    }
+  } else {
+    console.log('yo use old data')
+    convertedTimeZone = convertTimeZone(store.weatherData.data.dt, store.weatherData.data.timezone)
+  }
+  time = convertedTimeZone ? dayjs(convertedTimeZone) : dayjs()
   let graphTime = dayjs()
   let min
   for (let i = 0; i < 22; i++) {
@@ -47,27 +62,6 @@ export const generateDataLabels = async (generateData: Function, planet?: any) =
     }
     time = time.add(dayjs.duration({ 'minutes': 30 }))
     graphTime = graphTime.add(dayjs.duration({ 'minutes': 30 }))
-  }
-  return {
-    labels,
-    data
-  }
-}
-
-export const generatePlanetsDataLabels = async (generateData: Function, planet: Function) => {
-  const labels: any = []
-  const data: any = []
-  const weatherData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
-  const convertedTimeZone = convertTimeZone(weatherData.dt, weatherData.timezone)
-  let time = dayjs(convertedTimeZone)
-  let min
-
-  for (let i = 0; i < 22; i++) {
-    time.minute() > 30 ? min = '30' : min = '00'
-    labels.push(`${time.hour()}:${min}`)
-    const date = new Date(new Date(time.toDate()).setMinutes(Number(min), 0, 0))
-    data.push(await generateData(date, planet))
-    time = time.add(dayjs.duration({ 'minutes': 30 }))
   }
   return {
     labels,

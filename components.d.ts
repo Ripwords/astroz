@@ -18,7 +18,6 @@ declare module '@vue/runtime-core' {
     'IIon:cogOutline': typeof import('~icons/ion/cog-outline')['default']
     'IIon:colorFilterOutline': typeof import('~icons/ion/color-filter-outline')['default']
     'IIon:homeOutline': typeof import('~icons/ion/home-outline')['default']
-    'IIon:iosCameraOutline': typeof import('~icons/ion/ios-camera-outline')['default']
     'IIon:logoGithub': typeof import('~icons/ion/logo-github')['default']
     'IIon:menu': typeof import('~icons/ion/menu')['default']
     'IIon:planetOutline': typeof import('~icons/ion/planet-outline')['default']

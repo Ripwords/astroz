@@ -2,7 +2,7 @@ import { mainStore } from '../store'
 import { createSun } from 'astronomy-bundle/sun'
 import { createTimeOfInterest } from 'astronomy-bundle/time'
 import { createLocation } from 'astronomy-bundle/earth'
-import { convertDeg2Time, convertDeg2Arc, changeBool, returnDate } from './utility'
+import { convertDeg2Time, convertDeg2Arc, returnDate } from './utility'
 import { sunGraph, getTransitAltitude } from '../functions/sun-graph'
 
 const store = mainStore()

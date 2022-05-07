@@ -29,9 +29,11 @@ export default defineConfig({
       dts: 'src/auto-imports.d.ts'
     }),
     VitePWA({
+      workbox: {
+        maximumFileSizeToCacheInBytes: 5000000,
+      },
       base: '/',
       srcDir: 'src',
-      registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
         name: "Astroz 🌌",
@@ -116,7 +118,7 @@ export default defineConfig({
           {
             "name": "Weather",
             "description": "Open the weather page",
-            "url": "https://astroz.netlify.app/menu/weather",
+            "url": "https://astroz.netlify.app/#/menu/weather",
             "icons": [
               // @ts-expect-error
               {
@@ -130,7 +132,7 @@ export default defineConfig({
           {
             "name": "Settings",
             "description": "Open the settings page",
-            "url": "https://astroz.netlify.app/menu/settings",
+            "url": "https://astroz.netlify.app/#/menu/settings",
             "icons": [
               // @ts-expect-error
               {
