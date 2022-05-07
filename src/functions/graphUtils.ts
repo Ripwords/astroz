@@ -37,9 +37,6 @@ export const generateDataLabels = async (generateData: Function, planet?: any) =
   const compareTimestamp = ((new Date().getTime() - store.weatherData.timestamp) > 900000)
   const locationChanged = (store.userLat != store.locationChanged.lat || store.userLong != store.locationChanged.long)
   if (!store.weatherData.data || compareTimestamp || locationChanged) {
-    store.locationChanged.lat = locationChanged ? store.userLat : store.locationChanged.lat
-    store.locationChanged.long = locationChanged ? store.userLong : store.locationChanged.long
-    store.weatherData.timestamp = compareTimestamp ? new Date().getTime() : store.weatherData.timestamp
     try {
       console.log('yo get new data')
       store.weatherData.data = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
@@ -47,6 +44,9 @@ export const generateDataLabels = async (generateData: Function, planet?: any) =
       store.weatherData.data = null
     }
     convertedTimeZone = convertTimeZone(store.weatherData.data.dt, store.weatherData.data.timezone)
+    store.locationChanged.lat = locationChanged ? store.userLat : store.locationChanged.lat
+    store.locationChanged.long = locationChanged ? store.userLong : store.locationChanged.long
+    store.weatherData.timestamp = compareTimestamp ? new Date().getTime() : store.weatherData.timestamp
   } else if (store.weatherData.data) {
     console.log('yo use old data')
     convertedTimeZone = convertTimeZone(store.weatherData.data.dt, store.weatherData.data.timezone)
