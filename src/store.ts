@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { useSessionStorage, useStorage } from '@vueuse/core'
+import { getWeather } from 'vue-openweather'
 
 export const mainStore = defineStore('mainStore', {
   state: () => ({
@@ -24,6 +25,10 @@ export const mainStore = defineStore('mainStore', {
     weatherData: useSessionStorage('weatherData', {
       timestamp: null as any,
       data: {} as any
+    }),
+    locationChanged: useSessionStorage('locationChanged', {
+      lat: null as any,
+      long: null as any
     })
   })
 })
