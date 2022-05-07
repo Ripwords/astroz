@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { useSessionStorage, useStorage } from '@vueuse/core'
-import { getWeather } from 'vue-openweather'
 
 export const mainStore = defineStore('mainStore', {
   state: () => ({

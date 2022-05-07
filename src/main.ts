@@ -22,8 +22,6 @@ import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 
 import './theme.css'
-import { mainStore } from './store'
-import { getWeather } from 'vue-openweather'
 
 const pinia = createPinia()
 const app = createApp(App)
@@ -32,7 +30,5 @@ const app = createApp(App)
   .use(router)
 
 router.isReady().then(async () => {
-  const store = mainStore()
-  store.weatherData.data = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
   app.mount("#app")
 })

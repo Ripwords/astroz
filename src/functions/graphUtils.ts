@@ -39,14 +39,15 @@ export const generateDataLabels = async (generateData: Function, planet?: any) =
   if (!store.weatherData.data || compareTimestamp || locationChanged) {
     try {
       // console.log('yo get new data')
-      store.weatherData.data = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
+      const data = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
+      store.weatherData.data = data
     } catch (e) {
-      store.weatherData.data = null
+      console.log("Weather data unavailable")
     }
     convertedTimeZone = convertTimeZone(store.weatherData.data.dt, store.weatherData.data.timezone)
+    store.weatherData.timestamp = compareTimestamp ? new Date().getTime() : store.weatherData.timestamp
     store.locationChanged.lat = locationChanged ? store.userLat : store.locationChanged.lat
     store.locationChanged.long = locationChanged ? store.userLong : store.locationChanged.long
-    store.weatherData.timestamp = compareTimestamp ? new Date().getTime() : store.weatherData.timestamp
   } else if (store.weatherData.data) {
     // console.log('yo use old data')
     convertedTimeZone = convertTimeZone(store.weatherData.data.dt, store.weatherData.data.timezone)
@@ -55,7 +56,7 @@ export const generateDataLabels = async (generateData: Function, planet?: any) =
   let graphTime = dayjs()
   let min
   for (let i = 0; i < 22; i++) {
-    time.minute() > 30 ? min = '30' : min = '00'
+    time.minute() >= 30 ? min = '30' : min = '00'
     labels.push(`${time.hour()}:${min}`)
     const date = new Date(new Date(graphTime.toDate()).setMinutes(Number(min), 0, 0))
     if (planet != undefined) {
