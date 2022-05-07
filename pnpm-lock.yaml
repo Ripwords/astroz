@@ -22,7 +22,7 @@ specifiers:
   vite-plugin-pwa: ^0.11.13
   vite-plugin-windicss: 1.8.4
   vue: 3.2.33
-  vue-openweather: 0.2.14
+  vue-openweather: 0.2.15
   vue-router: ^4.0.14
   vue-tsc: 0.34.11
   windicss: ^3.5.1
@@ -53,7 +53,7 @@ devDependencies:
   vite: 2.9.6
   vite-plugin-pwa: 0.11.13_vite@2.9.6
   vite-plugin-windicss: 1.8.4_vite@2.9.6
-  vue-openweather: 0.2.14
+  vue-openweather: 0.2.15
   vue-tsc: 0.34.11_typescript@4.6.4
   windicss: 3.5.1
   workbox-window: 6.5.3
@@ -4155,8 +4155,8 @@ packages:
     dependencies:
       vue: 3.2.33
 
-  /vue-openweather/0.2.14:
-    resolution: {integrity: sha512-6zKG+59M3jYhlUCBp0tircMlQ3+SCrfTDWWQ+JdIg0K5mKaVV/sjMuNxPP0jAdcDFLKnsDz0gDoqNKJYcUlgYw==}
+  /vue-openweather/0.2.15:
+    resolution: {integrity: sha512-EDoD+T6XbwZ3xvSrBWRLdU29TMIFtW6Nq/8YOIXo3G6wUfHBkFHK47l4UPiOPtj3SZ8SNvqMuiuKCgBZny+2rw==}
     dependencies:
       vue: 3.2.33
     dev: true

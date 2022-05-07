@@ -14,7 +14,6 @@ const close = async () => {
 </script>
 
 <template>
-  <!-- <div v-if="offlineReady" class="pwa-toast" role="alert"> -->
   <div v-if="offlineReady || needRefresh" class="pwa-toast" role="alert">
     <div class="message">
       <span v-if="offlineReady">App ready to work offline</span>
