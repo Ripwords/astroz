@@ -159,7 +159,12 @@ export const moonCardInit = async () => {
     await updateMoonPosition()
   }, 1000)
   await moonDetails()
-  const transitAltitude = ref(Math.round(await getTransitAltitude() * 180 / Math.PI))
+  const transitAltitude = ref<any>()
+  try {
+    transitAltitude.value = Math.round(await getTransitAltitude() * 180 / Math.PI)
+  } catch (e: any) {
+    transitAltitude.value = "N/A"
+  }
   const t = await getMoonTimes()
   lunaRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
   lunaSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`

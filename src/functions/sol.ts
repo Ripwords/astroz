@@ -143,7 +143,12 @@ export const sunCardInit = async () => {
   interval.value = setInterval(async () => {
     await updateSolPosition()
   }, 1000)
-  const transitAltitude = ref(Math.round(await getTransitAltitude() * 180 / Math.PI))
+  const transitAltitude = ref<any>()
+  try {
+    transitAltitude.value = Math.round(await getTransitAltitude() * 180 / Math.PI)
+  } catch (e: any) {
+    transitAltitude.value = "N/A"
+  }
   const t = await getSunTimes()
   sunRise.value = `${t.riseDatetime[0]}, ${t.riseDatetime[4]}`
   sunSet.value = `${t.setDatetime[0]}, ${t.setDatetime[4]}`

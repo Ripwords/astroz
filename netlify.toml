@@ -15,3 +15,10 @@
     max-age=31536000,
     immutable
     '''
+
+[[plugins]]
+package = "netlify-build-plugin-pushover"
+
+  [plugins.inputs]
+    successMessage = "Astroz update success!" #Optional
+    errorMessage = "Astroz build failed!" #Optional
