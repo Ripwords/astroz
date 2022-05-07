@@ -10,7 +10,9 @@ const {
 const close = async () => {
   offlineReady.value = false
   needRefresh.value = false
+  window.location.reload()
 }
+
 </script>
 
 <template>

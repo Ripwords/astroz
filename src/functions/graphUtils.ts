@@ -34,23 +34,19 @@ export const generateDataLabels = async (generateData: Function, planet?: any) =
   let time: any
   let convertedTimeZone: Date | null = null
 
-  const compareTimestamp = ((new Date().getTime() - store.weatherData.timestamp) > 900000)
-  const locationChanged = (store.userLat != store.locationChanged.lat || store.userLong != store.locationChanged.long)
-  if (!store.weatherData.data || compareTimestamp || locationChanged) {
+  if (!store.weatherData) {
+    const wData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
     try {
-      // console.log('yo get new data')
-      const data = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
-      store.weatherData.data = data
+      if (Object.keys(wData.coord).length > 0) {
+        store.weatherData = wData
+      }
     } catch (e) {
-      console.log("Weather data unavailable")
+      console.log("Can't update weather data")
     }
-    convertedTimeZone = convertTimeZone(store.weatherData.data.dt, store.weatherData.data.timezone)
-    store.weatherData.timestamp = compareTimestamp ? new Date().getTime() : store.weatherData.timestamp
-    store.locationChanged.lat = locationChanged ? store.userLat : store.locationChanged.lat
-    store.locationChanged.long = locationChanged ? store.userLong : store.locationChanged.long
-  } else if (store.weatherData.data) {
-    // console.log('yo use old data')
-    convertedTimeZone = convertTimeZone(store.weatherData.data.dt, store.weatherData.data.timezone)
+    convertedTimeZone = convertTimeZone(store.weatherData.dt, store.weatherData.timezone)
+  } else {
+    console.log('yo use old data')
+    convertedTimeZone = convertTimeZone(store.weatherData.dt, store.weatherData.timezone)
   }
   time = convertedTimeZone ? dayjs(convertedTimeZone) : dayjs()
   let graphTime = dayjs()

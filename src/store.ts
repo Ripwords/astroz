@@ -21,14 +21,7 @@ export const mainStore = defineStore('mainStore', {
       'rgba(50, 207, 191, 0.6)',
       'rgba(38, 55, 189, 0.6)'
     ],
-    weatherData: useStorage('weatherData', {
-      timestamp: null as any,
-      data: {} as any
-    }),
-    locationChanged: useSessionStorage('locationChanged', {
-      lat: null as any,
-      long: null as any
-    })
+    weatherData: useStorage('weatherData', {} as any)
   })
 })
 

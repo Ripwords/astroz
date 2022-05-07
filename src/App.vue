@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { mainStore } from './store'
 import { toastController } from '@ionic/vue'
+import { getWeather } from 'vue-openweather';
 
 const store = mainStore()
 const interval = ref()
@@ -47,10 +48,30 @@ watch([() => store.manual, () => store.locationInterval], () => {
   }
 })
 
+watch([() => store.userLat, () => store.userLong], async () => {
+  console.log('yo get new data')
+  const wData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
+  try {
+    if (Object.keys(wData.coord).length > 0) {
+      store.weatherData = wData
+    }
+  } catch (e) {
+    console.log("Can't update weather data")
+  }
+})
+
 // initializes the app
-onMounted(() => {
+onMounted(async () => {
   if (!store.manual) {
     startLocInterval()
+  }
+  const wData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
+  try {
+    if (Object.keys(wData.coord).length > 0) {
+      store.weatherData = wData
+    }
+  } catch (e) {
+    console.log("Can't update weather data")
   }
   if (!store.toast) {
     store.toast = !store.toast
