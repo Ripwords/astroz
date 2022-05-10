@@ -33,6 +33,6 @@ const app = createApp(App)
 
 router.isReady().then(async () => {
   const store = mainStore()
-  updateWeatherData(store)
+  await updateWeatherData(store)
   app.mount("#app")
 })

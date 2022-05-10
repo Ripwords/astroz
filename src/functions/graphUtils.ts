@@ -35,7 +35,7 @@ export const generateDataLabels = async (generateData: Function, planet?: any) =
   let convertedTimeZone: Date | null = null
 
   if (!store.weatherData) {
-    updateWeatherData(store)
+    await updateWeatherData(store)
     convertedTimeZone = convertTimeZone(store.weatherData.dt, store.weatherData.timezone)
   } else {
     convertedTimeZone = convertTimeZone(store.weatherData.dt, store.weatherData.timezone)

@@ -49,7 +49,7 @@ watch([() => store.manual, () => store.locationInterval], () => {
 })
 
 watch([() => store.userLat, () => store.userLong], async () => {
-  updateWeatherData(store)
+  await updateWeatherData(store)
 })
 
 // initializes the app
