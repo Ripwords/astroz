@@ -18,11 +18,22 @@ let map: any
 
 onMounted(() => {
   map = leaflet.map('map').setView([Number(store.userLat), Number(store.userLong)], 13)
-  leaflet.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  // Open Street Map
+  // leaflet.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  //   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  //   noWrap: true,
+  //   minZoom: 2
+  // }).addTo(map)
+
+  // Google Maps
+  leaflet.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
     noWrap: true,
-    minZoom: 2
+    minZoom: 2,
+    subdomains:['mt0','mt1','mt2','mt3'],
+    attribution: '<a href="https://www.google.com/maps/">Google Maps</a>',
   }).addTo(map)
+  
   const initMarker = leaflet.marker([Number(store.userLat), Number(store.userLong)]).addTo(map);
 
   mapRef.value.style.width = '0'
