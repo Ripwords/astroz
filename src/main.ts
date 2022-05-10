@@ -23,7 +23,7 @@ import '@ionic/vue/css/display.css';
 
 import './theme.css'
 import { mainStore } from './store'
-import { getWeather } from 'vue-openweather'
+import { updateWeatherData } from './functions/utility'
 
 const pinia = createPinia()
 const app = createApp(App)
@@ -33,13 +33,6 @@ const app = createApp(App)
 
 router.isReady().then(async () => {
   const store = mainStore()
-  const wData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
-  try {
-    if (Object.keys(wData.coord).length > 0) {
-      store.weatherData = wData
-    }
-  } catch (e) {
-    console.log("Can't update weather data")
-  }
+  updateWeatherData(store)
   app.mount("#app")
 })

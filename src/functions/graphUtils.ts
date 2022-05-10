@@ -1,8 +1,8 @@
 import { createJupiter, createMars, createMercury, createNeptune, createSaturn, createUranus, createVenus } from 'astronomy-bundle/planets'
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
-import { isDesktop } from './utility'
-import { getWeather, convertTimeZone } from 'vue-openweather'
+import { isDesktop, updateWeatherData } from './utility'
+import { convertTimeZone } from 'vue-openweather'
 import { mainStore } from '../store'
 dayjs.extend(duration)
 
@@ -35,17 +35,9 @@ export const generateDataLabels = async (generateData: Function, planet?: any) =
   let convertedTimeZone: Date | null = null
 
   if (!store.weatherData) {
-    const wData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
-    try {
-      if (Object.keys(wData.coord).length > 0) {
-        store.weatherData = wData
-      }
-    } catch (e) {
-      console.log("Can't update weather data")
-    }
+    updateWeatherData(store)
     convertedTimeZone = convertTimeZone(store.weatherData.dt, store.weatherData.timezone)
   } else {
-    console.log('yo use old data')
     convertedTimeZone = convertTimeZone(store.weatherData.dt, store.weatherData.timezone)
   }
   time = convertedTimeZone ? dayjs(convertedTimeZone) : dayjs()

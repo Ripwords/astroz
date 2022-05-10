@@ -1,4 +1,5 @@
 import { getPlatforms } from '@ionic/vue'
+import { getWeather } from 'vue-openweather'
 
 export const returnDate = () => {
   const date = new Date()
@@ -34,4 +35,14 @@ export const convertDeg2Arc = (deg: number) => {
 
 export const isDesktop = getPlatforms().includes('desktop')
 
-
+export const updateWeatherData = async (store: any) => {
+  const wData = await getWeather("fcd7c46a039d1f8d59ef5c1ed18f9c6d", store.userLat, store.userLong)
+  try {
+    if (Object.keys(wData.coord).length > 0) {
+      store.weatherData = wData
+      console.log('updateWeatherData')
+    }
+  } catch (e) {
+    console.log("Can't update weather data")
+  }
+}
