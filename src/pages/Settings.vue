@@ -73,6 +73,7 @@ onMounted(() => {
 <template>
   <ion-page>
     <ion-content>
+      <Refresher />
       <Header :title="page.title" />
       <ion-list class="noSelect">
           <ion-item>
