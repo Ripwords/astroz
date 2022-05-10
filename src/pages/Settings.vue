@@ -18,14 +18,7 @@ let map: any
 
 onMounted(() => {
   map = leaflet.map('map').setView([Number(store.userLat), Number(store.userLong)], 13)
-  // Open Street Map
-  // leaflet.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-  //   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-  //   noWrap: true,
-  //   minZoom: 2
-  // }).addTo(map)
-
-  // Google Maps
+  
   leaflet.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
     maxZoom: 20,
     noWrap: true,
@@ -73,7 +66,6 @@ onMounted(() => {
 <template>
   <ion-page>
     <ion-content>
-      <Refresher />
       <Header :title="page.title" />
       <ion-list class="noSelect">
           <ion-item>
