@@ -7,6 +7,7 @@ const page = pagesStore().home
 <template>
   <ion-page>
     <ion-content>
+      <Refresher />
       <Header :title="page.title" />
       <Suspense>
         <template #default>

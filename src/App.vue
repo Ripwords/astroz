@@ -69,7 +69,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <ion-app>
+  <ion-app class="noSelect">
     <ReloadPrompt />
     <ion-router-outlet />
   </ion-app>

@@ -46,3 +46,5 @@ export const updateWeatherData = async (store: any) => {
     console.log("Can't update weather data")
   }
 }
+
+export const refreshPage = () => window.location.reload()
