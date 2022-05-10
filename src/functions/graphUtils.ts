@@ -90,7 +90,7 @@ export const generateGraph = async (title: string, gridColor: string, background
     options: {
       plugins: {
         legend: {
-          display: isDesktop
+          display: null
         },
         title: {
           display: true,
