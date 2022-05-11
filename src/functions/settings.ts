@@ -9,12 +9,12 @@ export const units = ref(store.units ? 'time' : 'deg')
 export const changeUnits = () => store.units = changeBool(store.units)
 
 export const updateLabels = () => {
-  if (Number(store.userLat) > 0) {
+  if (Number(store.userLat) >= 0) {
     hemisphere.value = 'N'
   } else {
     hemisphere.value = 'S'
   }
-  if (Number(store.userLong) > 0) {
+  if (Number(store.userLong) >= 0) {
     meridian.value = 'E'
   } else {
     meridian.value = 'W'

@@ -18,7 +18,7 @@ let map: any
 
 onMounted(() => {
   map = leaflet.map('map').setView([Number(store.userLat), Number(store.userLong)], 13)
-  
+
   leaflet.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
     maxZoom: 20,
     noWrap: true,
@@ -26,6 +26,9 @@ onMounted(() => {
     subdomains:['mt0','mt1','mt2','mt3'],
     attribution: '<a href="https://www.google.com/maps/">Google Maps</a>',
   }).addTo(map)
+
+  leaflet.control.scale().addTo(map)
+  map.setZoom(10)
   
   const initMarker = leaflet.marker([Number(store.userLat), Number(store.userLong)]).addTo(map);
 
@@ -54,6 +57,7 @@ onMounted(() => {
       store.userLong = Number(e.latlng.lng).toFixed(dec)
     }
   })
+  
   watchEffect(() => {
     if (store.userLat && store.userLong) {
       initMarker.setLatLng([Number(store.userLat), Number(store.userLong)])

@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
-import { useSessionStorage, useStorage } from '@vueuse/core'
+import { useStorage } from '@vueuse/core'
 
 export const mainStore = defineStore('mainStore', {
   state: () => ({
     decimal: useStorage('decimal', 4),
     units: useStorage('units', false),
-    userLat: useStorage('userLat', "0"),
-    userLong: useStorage('userLong', "0"),
+    userLat: useStorage('userLat', "51.4769"),
+    userLong: useStorage('userLong', "0.0005"),
     hemisphere: useStorage('hemisphere', false),
     meridian: useStorage('meridian', false),
     toast: useStorage('toast', false),

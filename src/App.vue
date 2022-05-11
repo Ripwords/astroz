@@ -13,7 +13,7 @@ const presentToast = async () => {
   const toast = await toastController
     .create({
       header: "GPS :",
-      message: "If no GPS data is available, enter manually in the settings\n\nOtherwise Lat: 0, Long: 0 will be used",
+      message: "If GPS data is unavailable, you can set your location manually.",
       duration: 5000
     })
   await toast.present()
@@ -30,7 +30,6 @@ const getLocation = () => {
   }
 }
 
-// Starts a 5 second loop to update user location
 const startLocInterval = () => {
   getLocation()
   locationInterval.value = setInterval(() => {
