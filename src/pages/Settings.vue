@@ -17,12 +17,13 @@ const mapRef = ref<any>()
 let map: any
 
 onMounted(() => {
-  map = leaflet.map('map').setView([Number(store.userLat), Number(store.userLong)], 13)
+  map = leaflet.map('map', {
+    maxBoundsViscosity: 1.0
+  }).setView([Number(store.userLat), Number(store.userLong)], 13)
 
   leaflet.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
     maxZoom: 20,
     noWrap: true,
-    maxBoundsViscosity: 1,
     minZoom: 2,
     subdomains:['mt0','mt1','mt2','mt3'],
     attribution: '<a href="https://www.google.com/maps/">Google Maps</a>',
