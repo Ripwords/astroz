@@ -6,7 +6,8 @@
     "dev": "vite --open --host --https",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "pnpm build && vite preview",
-    "test": "cypress open"
+    "test": "cypress open",
+    "assets": "cd public && pwa-asset-generator Logo.png -p '0%' ./img/icons && cd .."
   },
   "dependencies": {
     "@ionic/vue": "6.1.3",
@@ -19,6 +20,7 @@
     "@iconify/json": "2.1.34",
     "@types/leaflet": "^1.7.9",
     "@vitejs/plugin-vue": "2.3.1",
+    "pwa-asset-generator": "^6.1.1",
     "@vueuse/core": "8.3.1",
     "astronomy-bundle": "^7.5.3",
     "chart.js": "^3.7.1",
