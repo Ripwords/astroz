@@ -23,12 +23,17 @@ const gridlines_az = useStorage("gridlines_az", false)
 const gridlines_eq = useStorage("gridlines_eq", false)
 const gridlines_gal = useStorage("gridlines_gal", true)
 const live = useStorage("live", true)
-const url = ref("")
 const iframeHeight = ref(0)
+const frame = ref()
 
-watchEffect(() => {
-  iframeHeight.value = window.innerHeight * 0.7
-  url.value = "https://virtualsky.lco.global/embed/index.html?" + long.value + "&" + lat.value + `&projection=${projection.value}` + `&showgalaxy=${showGalaxy.value}` + `&constellations=${constellations.value}` + `&constellationlabels=${constellationLabels.value}` + `&constellationboundaries=${constellationBoundaries.value}` + `&showplanets=${planets.value}` + `&showplanetlabels=${planetLabels.value}` + `&meteorshowers=${meteorShowers.value}` + `&showstarlabels=${showStarLabels.value}` + `&showorbits=${showOrbits.value}` + `&ecliptic=${ecliptic.value}` + `&meridian=${showMeridian.value}` + `&negative=${negative.value}` + `&gridlines_az=${gridlines_az.value}` + `&gridlines_eq=${gridlines_eq.value}` + `&gridlines_gal=${gridlines_gal.value}` + `&live=${live.value}` + `&az=0`
+onMounted(() => {
+  watchEffect(() => {
+    iframeHeight.value = window.innerHeight * 0.7
+    const frameParent = frame.value.parentElement
+    frame.value.remove()
+    frame.value.setAttribute('src', "https://virtualsky.lco.global/embed/index.html?" + long.value + "&" + lat.value + `&projection=${projection.value}` + `&showgalaxy=${showGalaxy.value}` + `&constellations=${constellations.value}` + `&constellationlabels=${constellationLabels.value}` + `&constellationboundaries=${constellationBoundaries.value}` + `&showplanets=${planets.value}` + `&showplanetlabels=${planetLabels.value}` + `&meteorshowers=${meteorShowers.value}` + `&showstarlabels=${showStarLabels.value}` + `&showorbits=${showOrbits.value}` + `&ecliptic=${ecliptic.value}` + `&meridian=${showMeridian.value}` + `&negative=${negative.value}` + `&gridlines_az=${gridlines_az.value}` + `&gridlines_eq=${gridlines_eq.value}` + `&gridlines_gal=${gridlines_gal.value}` + `&live=${live.value}` + `&az=0`)
+    frameParent.append(frame.value)
+  })
 })
 
 window.addEventListener('orientationchange', () => {
@@ -45,8 +50,8 @@ onUnmounted(() => {
     <ion-content>
       <Header :title="page.title" />
       <div class="flex mx-8 mt-5">
-        <iframe class="justify-center" width="100%" :height="iframeHeight" frameborder="0" scrolling="no"
-          marginheight="0" marginwidth="0" :src="url" allowTransparency="true">
+        <iframe ref="frame" class="justify-center" width="100%" :height="iframeHeight" frameborder="0" scrolling="no"
+          marginheight="0" marginwidth="0" src="" allowTransparency="true">
         </iframe>
       </div>
       <div class="flex justify-center">
