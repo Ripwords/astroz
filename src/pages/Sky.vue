@@ -60,7 +60,7 @@ onUnmounted(() => {
                 <div slot="content">
                   <ion-item>
                     <ion-label>Projection</ion-label>
-                    <ion-select :modelValue="projection" @update:modelValue="projection = $event">
+                    <ion-select v-model="projection" interface="action-sheet">
                       <ion-select-option value="polar">Polar</ion-select-option>
                       <ion-select-option value="stereo">Stereo</ion-select-option>
                       <ion-select-option value="lambert">Lambert</ion-select-option>
@@ -72,71 +72,67 @@ onUnmounted(() => {
                   </ion-item>
                   <ion-item>
                     <ion-label>Constellations</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="constellations = $event"
-                      :modelValue="constellations" />
+                    <ion-checkbox slot="end" v-model="constellations" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Constellation Labels</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="constellationLabels = $event"
-                      :modelValue="constellationLabels" />
+                    <ion-checkbox slot="end" v-model="constellationLabels" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Constellation Boundaries</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="constellationBoundaries = $event"
-                      :modelValue="constellationBoundaries" />
+                    <ion-checkbox slot="end" v-model="constellationBoundaries" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Planets</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="planets = $event" :modelValue="planets" />
+                    <ion-checkbox slot="end" v-model="planets" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Planet Labels</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="planetLabels = $event" :modelValue="planetLabels" />
+                    <ion-checkbox slot="end" v-model="planetLabels" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Meteor Showers</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="meteorShowers = $event" :modelValue="meteorShowers" />
+                    <ion-checkbox slot="end" v-model="meteorShowers" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Show Star Labels</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="showStarLabels = $event"
-                      :modelValue="showStarLabels" />
+                    <ion-checkbox slot="end" v-model="showStarLabels" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Show Orbits</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="showOrbits = $event" :modelValue="showOrbits" />
+                    <ion-checkbox slot="end" v-model="showOrbits" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Show Galaxy</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="showGalaxy = $event" :modelValue="showGalaxy" />
+                    <ion-checkbox slot="end" v-model="showGalaxy" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Ecliptic</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="ecliptic = $event" :modelValue="ecliptic" />
+                    <ion-checkbox slot="end" v-model="ecliptic" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Meridian</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="showMeridian = $event" :modelValue="showMeridian" />
+                    <ion-checkbox slot="end" v-model="showMeridian" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Negative</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="negative = $event" :modelValue="negative" />
+                    <ion-checkbox slot="end" v-model="negative" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Gridlines Az</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="gridlines_az = $event" :modelValue="gridlines_az" />
+                    <ion-checkbox slot="end" v-model="gridlines_az" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Gridlines Eq</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="gridlines_eq = $event" :modelValue="gridlines_eq" />
+                    <ion-checkbox slot="end" v-model="gridlines_eq" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Gridlines Gal</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="gridlines_gal = $event" :modelValue="gridlines_gal" />
+                    <ion-checkbox slot="end" v-model="gridlines_gal" />
                   </ion-item>
                   <ion-item>
                     <ion-label>Live Update</ion-label>
-                    <ion-checkbox slot="end" @update:modelValue="live = $event" :modelValue="live" />
+                    <ion-checkbox slot="end" v-model="live" />
                   </ion-item>
                 </div>
               </ion-accordion>
