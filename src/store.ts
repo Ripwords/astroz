@@ -39,6 +39,10 @@ export const pagesStore = defineStore('pages', {
       title: "Weather",
       path: "/menu/weather",
     },
+    sky: {
+      title: "Virtual Sky",
+      path: "/menu/sky",
+    },
     optics: {
       title: "Optics",
       path: "/menu/optics",

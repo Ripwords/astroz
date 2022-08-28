@@ -31,84 +31,53 @@ const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
         <ion-content>
           <ion-list>
             <ion-menu-toggle auto-hide="false" v-for="page in pages" :key="page">
-              <ion-item
-                v-if="page.title == 'Settings'"
-                class="noSelect"
-                @click="router.replace(page.path)"
-                :class="{ active: isActive(page.path) }"
-              >
+              <ion-item v-if="page.title == 'Settings'" class="noSelect" @click="router.replace(page.path)"
+                :class="{ active: isActive(page.path) }">
                 <i-ion:cog-outline></i-ion:cog-outline>
                 &nbsp;&nbsp;{{ page.title }}
               </ion-item>
-              <ion-item
-                v-else-if="page.title == 'Home'"
-                class="noSelect"
-                @click="router.replace(page.path)"
-                :class="{ active: isActive(page.path) }"
-              >
+              <ion-item v-else-if="page.title == 'Home'" class="noSelect" @click="router.replace(page.path)"
+                :class="{ active: isActive(page.path) }">
                 <i-ion:home-outline></i-ion:home-outline>
                 &nbsp;&nbsp;{{ page.title }}
               </ion-item>
-              <ion-item
-                v-else-if="page.title == 'Solar System'"
-                class="noSelect"
-                @click="router.replace(page.path)"
-                :class="{ active: isActive(page.path) }"
-              >
+              <ion-item v-else-if="page.title == 'Solar System'" class="noSelect" @click="router.replace(page.path)"
+                :class="{ active: isActive(page.path) }">
                 <i-ion:planet-outline></i-ion:planet-outline>
                 &nbsp;&nbsp;{{ page.title }}
               </ion-item>
-              <ion-item
-                v-else-if="page.title == 'Weather'"
-                class="noSelect"
-                @click="router.replace(page.path)"
-                :class="{ active: isActive(page.path) }"
-              >
+              <ion-item v-else-if="page.title == 'Weather'" class="noSelect" @click="router.replace(page.path)"
+                :class="{ active: isActive(page.path) }">
                 <i-ion:cloud-outline></i-ion:cloud-outline>
                 &nbsp;&nbsp;{{ page.title }}
               </ion-item>
-              <ion-item
-                v-else-if="page.title == 'CCD Calculations'"
-                class="noSelect"
-                @click="router.replace(page.path)"
-                :class="{ active: isActive(page.path) }"
-              >
-              <i-ion:camera-outline></i-ion:camera-outline>
+              <ion-item v-else-if="page.title == 'Virtual Sky'" class="noSelect" @click="router.replace(page.path)"
+                :class="{ active: isActive(page.path) }">
+                <i-ion:star-outline></i-ion:star-outline>
                 &nbsp;&nbsp;{{ page.title }}
               </ion-item>
-              <ion-item
-                v-else-if="page.title == 'Optics'"
-                class="noSelect"
-                @click="router.replace(page.path)"
-                :class="{ active: isActive(page.path) }"
-              >
+              <ion-item v-else-if="page.title == 'CCD Calculations'" class="noSelect" @click="router.replace(page.path)"
+                :class="{ active: isActive(page.path) }">
+                <i-ion:camera-outline></i-ion:camera-outline>
+                &nbsp;&nbsp;{{ page.title }}
+              </ion-item>
+              <ion-item v-else-if="page.title == 'Optics'" class="noSelect" @click="router.replace(page.path)"
+                :class="{ active: isActive(page.path) }">
                 <i-ion:aperture-outline></i-ion:aperture-outline>
                 &nbsp;&nbsp;{{ page.title }}
               </ion-item>
-              <ion-item
-                v-else-if="page.title == 'Filter'"
-                class="noSelect"
-                @click="router.replace(page.path)"
-                :class="{ active: isActive(page.path) }"
-              >
+              <ion-item v-else-if="page.title == 'Filter'" class="noSelect" @click="router.replace(page.path)"
+                :class="{ active: isActive(page.path) }">
                 <i-ion:color-filter-outline></i-ion:color-filter-outline>
                 &nbsp;&nbsp;{{ page.title }}
               </ion-item>
-              <ion-item
-                v-else-if="page.title == 'Magnification'"
-                class="noSelect"
-                @click="router.replace(page.path)"
-                :class="{ active: isActive(page.path) }"
-              >
+              <ion-item v-else-if="page.title == 'Magnification'" class="noSelect" @click="router.replace(page.path)"
+                :class="{ active: isActive(page.path) }">
                 <i-ion:search-outline></i-ion:search-outline>
                 &nbsp;&nbsp;{{ page.title }}
               </ion-item>
-              <ion-item
-                v-else
-                class="noSelect"
-                @click="router.replace(page.path)"
-                :class="{ active: isActive(page.path) }"
-              >
+              <ion-item v-else class="noSelect" @click="router.replace(page.path)"
+                :class="{ active: isActive(page.path) }">
                 <i-ion:telescope-outline></i-ion:telescope-outline>
                 &nbsp;&nbsp;{{ page.title }}
               </ion-item>

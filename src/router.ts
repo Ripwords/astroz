@@ -28,6 +28,10 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('./pages/Weather.vue')
       },
       {
+        path: 'sky',
+        component: () => import('./pages/Sky.vue')
+      },
+      {
         path: 'optics',
         component: () => import('./pages/Optics.vue')
       },
