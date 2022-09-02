@@ -21,7 +21,7 @@ export const convertDeg2Time = (deg: number) => {
   return {
     hour: Math.floor(deg / 15),
     min: Math.abs(Math.floor((deg % 15) * 4)),
-    sec: Math.abs(Math.round(((deg % 15) * 4 - Math.floor((deg % 15) * 4)) * 60)) 
+    sec: Math.abs(Math.round(((deg % 15) * 4 - Math.floor((deg % 15) * 4)) * 60))
   }
 }
 
@@ -29,8 +29,18 @@ export const convertDeg2Arc = (deg: number) => {
   return {
     arc: Math.floor(deg),
     min: Math.abs(Math.floor((deg % 1) * 60)),
-    sec: Math.abs(Math.round(((deg % 1) * 60 - Math.floor((deg % 1) * 60)) * 60)) 
+    sec: Math.abs(Math.round(((deg % 1) * 60 - Math.floor((deg % 1) * 60)) * 60))
   }
+}
+
+export const convertRA2Deg = (ra: string) => {
+  const [hour, min, sec] = ra.split(':')
+  return (Number(hour) * 15) + (Number(min) / 4) + (Number(sec) / 240)
+}
+
+export const convertDEC2Deg = (dec: string) => {
+  const [deg, min, sec] = dec.split(':')
+  return Number(deg) + (Number(min) / 60) + (Number(sec) / 3600)
 }
 
 export const isDesktop = getPlatforms().includes('desktop')

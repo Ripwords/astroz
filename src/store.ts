@@ -43,6 +43,10 @@ export const pagesStore = defineStore('pages', {
       title: "Virtual Sky",
       path: "/menu/sky",
     },
+    fov: {
+      title: "FOV Calculator",
+      path: "/menu/fov",
+    },
     optics: {
       title: "Optics",
       path: "/menu/optics",

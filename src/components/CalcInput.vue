@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const cond = ref()
-const props = withDefaults(defineProps<{ val: any, label: string, suffix: string, readonly?: boolean, size?: number, condition?: any }>(), {
+const props = withDefaults(defineProps<{ val: any, label: string, suffix: string, readonly?: boolean, size?: number, condition?: any, type?: string }>(), {
   readonly: false,
   size: 7
 })
@@ -21,37 +21,16 @@ watchEffect(() => {
     <ion-col>
       <ion-item>
         <div v-if="!condition">
-          <ion-input 
-            v-if="!readonly" 
-            v-model="val" 
-            type="number" 
-            :placeholder="props.suffix" 
-            @ionChange="$emit('update:val', $event.target.value)"
-          />
-          <ion-input 
-            v-else-if="readonly"
-            v-model="val" 
-            type="number" 
-            :placeholder="props.suffix" 
-            @ionChange="$emit('update:val', $event.target.value)"
-            readonly
-          />
+          <ion-input v-if="!readonly" v-model="val" :type="type === 'text' ? 'text' : 'number'"
+            :placeholder="props.suffix" @ionChange="$emit('update:val', $event.target.value)" />
+          <ion-input v-else-if="readonly" v-model="val" :type="type === 'text' ? 'text' : 'number'"
+            :placeholder="props.suffix" @ionChange="$emit('update:val', $event.target.value)" readonly />
         </div>
         <div v-else>
-          <ion-input
-            v-if="!cond"
-            v-model="val"
-            type="number"
-            :placeholder="props.suffix"
-            @ionChange="$emit('update:val', $event.target.value)"
-          />
-          <ion-input
-            v-else
-            :value="cond"
-            type="number"
-            :placeholder="props.suffix"
-            readonly
-          />
+          <ion-input v-if="!cond" v-model="val" :type="type === 'text' ? 'text' : 'number'" :placeholder="props.suffix"
+            @ionChange="$emit('update:val', $event.target.value)" />
+          <ion-input v-else :value="cond" :type="type === 'text' ? 'text' : 'number'" :placeholder="props.suffix"
+            readonly />
         </div>
         <div v-if="!condition">
           <span class="ml-2" v-if="val != ''">{{ props.suffix }}</span>

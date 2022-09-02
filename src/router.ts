@@ -32,6 +32,10 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('./pages/Sky.vue')
       },
       {
+        path: 'fov',
+        component: () => import('./pages/FOV.vue')
+      },
+      {
         path: 'optics',
         component: () => import('./pages/Optics.vue')
       },
