@@ -2,6 +2,7 @@
 import { pagesStore } from '../store'
 import { varRefs, genFOV, getFOV, retrieveFromAPI } from '../functions/FOV'
 
+const scaling = 2
 const page = pagesStore().fov
 const {
   focalLength,
@@ -12,7 +13,9 @@ const {
 const target = ref("")
 const doneLoad = ref()
 const frame = ref()
+const wrapper = ref()
 const isErr = ref(false)
+const accGroup = ref()
 const fov_x = ref(computed(() => {
   return getFOV(Number(focalLength.value), Number(frameWidth.value))
 }))
@@ -27,16 +30,67 @@ const getWidthOfParent = () => {
 
 const fetchFromAPI = () => {
   if (target.value == '' || !genFOV) return
+  // Reset all wrapper css
+  wrapper.value.style.border = "0px"
+  // remove crosshair
+  while (wrapper.value.firstChild) {
+    wrapper.value.removeChild(wrapper.value.lastChild)
+  }
   doneLoad.value = false
   isErr.value = false
   frame.value.src = ""
   frame.value.style.border = "0px"
-  const data = retrieveFromAPI({ width: fov_x.value, height: fov_y.value }, getWidthOfParent() / fov_x.value, target.value)
+  const data = retrieveFromAPI({ width: fov_x.value, height: fov_y.value }, scaling, getWidthOfParent() / fov_x.value, target.value)
   frame.value.src = data
+  const nativeEl = accGroup.value.$el
+  nativeEl.value = undefined
+}
+
+const drawSensorCrosshair = () => {
+  const crosshair = document.createElement("div")
+  crosshair.style.width = "2px"
+  crosshair.style.height = "100%"
+  crosshair.style.backgroundColor = "red"
+  crosshair.style.position = "absolute"
+  crosshair.style.marginLeft = "auto"
+  crosshair.style.marginRight = "auto"
+  crosshair.style.left = "0"
+  crosshair.style.right = "0"
+  crosshair.style.top = "0"
+  crosshair.style.opacity = "0.2"
+  wrapper.value.appendChild(crosshair)
+  const crosshair2 = document.createElement("div")
+  crosshair2.style.width = "100%"
+  crosshair2.style.height = "2px"
+  crosshair2.style.backgroundColor = "red"
+  crosshair2.style.position = "absolute"
+  crosshair2.style.marginLeft = "auto"
+  crosshair2.style.marginRight = "auto"
+  crosshair2.style.left = "0"
+  crosshair2.style.right = "0"
+  crosshair2.style.top = "0"
+  crosshair2.style.top = `${(frame.value.height - wrapper.value.offsetHeight) / 2}px`
+  crosshair2.style.opacity = "0.2"
+  wrapper.value.appendChild(crosshair2)
+}
+
+const drawSensorFrame = () => {
+  wrapper.value.style.width = `${frame.value.width / scaling}px`
+  wrapper.value.style.height = `${frame.value.height / scaling}px`
+  wrapper.value.style.border = "2px solid red"
+  wrapper.value.style.position = "absolute"
+  wrapper.value.style.marginLeft = "auto"
+  wrapper.value.style.marginRight = "auto"
+  wrapper.value.style.left = "0"
+  wrapper.value.style.right = "0"
+  wrapper.value.style.textAlign = "center"
+  wrapper.value.style.top = `${(frame.value.height - wrapper.value.offsetHeight) / 2}px`
+  drawSensorCrosshair()
 }
 
 const imgLoaded = () => {
   frame.value.style.border = "5px solid white"
+  drawSensorFrame()
   doneLoad.value = true
 }
 
@@ -52,8 +106,8 @@ const err = () => {
     <ion-content>
       <Header :title="page.title" />
       <CalcContainer>
-        <Calc title="FOV Calculator">
-          <ion-accordion-group value="first">
+        <Calc title="Field of View">
+          <ion-accordion-group ref="accGroup" value="first">
             <ion-accordion value="first">
               <ion-item slot="header">
                 Optics setup
@@ -71,7 +125,7 @@ const err = () => {
         <Calc title="Target">
           <CalcInput v-model:val="target" label="Target Name" type="text" suffix="" />
           <div class="flex justify-center">
-            <ion-button @keyup.enter="fetchFromAPI" @click="fetchFromAPI" :disabled="target == '' || !genFOV">Search
+            <ion-button @keypress.enter="fetchFromAPI" @click="fetchFromAPI" :disabled="target == '' || !genFOV">Search
             </ion-button>
           </div>
           <div class="flex justify-center">
@@ -81,10 +135,11 @@ const err = () => {
               </div>
             </div>
           </div>
-          <div class="flex justify-center">
+          <div class="flex justify-center relative">
             <img v-show="!isErr" ref="frame" @load="imgLoaded()" @error="err" />
+            <div ref="wrapper"></div>
             <ion-item v-show="isErr">
-              <n-text>Target could not be found</n-text>
+              <ion-text>Target could not be found</ion-text>
             </ion-item>
           </div>
         </Calc>

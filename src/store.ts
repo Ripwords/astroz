@@ -44,7 +44,7 @@ export const pagesStore = defineStore('pages', {
       path: "/menu/sky",
     },
     fov: {
-      title: "FOV Calculator",
+      title: "Field of View",
       path: "/menu/fov",
     },
     optics: {

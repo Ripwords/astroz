@@ -56,7 +56,7 @@ const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
                 <i-ion:star-outline></i-ion:star-outline>
                 &nbsp;&nbsp;{{ page.title }}
               </ion-item>
-              <ion-item v-else-if="page.title == 'FOV Calculator'" class="noSelect" @click="router.replace(page.path)"
+              <ion-item v-else-if="page.title == 'Field of View'" class="noSelect" @click="router.replace(page.path)"
                 :class="{ active: isActive(page.path) }">
                 <i-ion:ios-grid></i-ion:ios-grid>
                 &nbsp;&nbsp;{{ page.title }}

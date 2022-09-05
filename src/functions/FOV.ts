@@ -1,7 +1,4 @@
 import { convertRA2Deg, convertDEC2Deg } from './utility'
-import { mainStore } from '../store'
-
-const store = mainStore()
 
 const focalLength = ref('')
 const pixelSize = ref('')
@@ -28,18 +25,11 @@ export const getFrameLength = (pixelSize: number, numPixels: number) => {
   return (pixelSize * numPixels * 1000)
 }
 
-export const retrieveFromAPI = (fov: { width: number, height: number }, scale: number, target?: string, coord?: { ra: string, dec: string }) => {
-  let url
-  const margin = 1
-  scale = scale * margin
-  if (!target) {
-    let ra = coord?.ra ?? '00:00:00'
-    let dec = coord?.dec ?? '00:00:00'
-    url = `https://skyview.gsfc.nasa.gov/current/cgi/runquery.pl?Survey=dss2r&Position=${convertRA2Deg(ra)},${convertDEC2Deg(dec)}&Size=${fov.width * margin},${fov.height * margin}&Pixels=${(fov.width * scale).toFixed(0)},${(fov.height * scale).toFixed(0)}&Return=jpg`
-  } else {
-    url = `https://skyview.gsfc.nasa.gov/current/cgi/runquery.pl?Survey=dss2r&Position=${target}&Size=${fov.width * margin},${fov.height * margin}&Pixels=${(fov.width * scale).toFixed(0)},${(fov.height * scale).toFixed(0)}&Return=jpg`
-  }
-  return url
+export const retrieveFromAPI = (fov: { width: number, height: number }, margin: number, scale: number, target?: string, coord?: { ra: string, dec: string }) => {
+  let ra = coord?.ra ?? '00:00:00'
+  let dec = coord?.dec ?? '00:00:00'
+  let position = target != undefined ? target : `${convertRA2Deg(ra)} ${convertDEC2Deg(dec)}`
+  return `https://skyview.gsfc.nasa.gov/current/cgi/runquery.pl?Survey=dss2r&Position=${position}&Size=${fov.width * margin},${fov.height * margin}&Pixels=${(fov.width * scale).toFixed(0)},${(fov.height * scale).toFixed(0)}&Scaling=Linear&Return=jpg`
 }
 
 export const genFOV = computed(() => {
