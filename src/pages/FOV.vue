@@ -10,12 +10,12 @@ const {
   frameWidth,
   frameHeight
 } = varRefs
+const accToggle = ref("first")
 const target = ref("")
 const doneLoad = ref()
 const rangeVal = ref(180)
 const frame = ref()
 const wrapper = ref()
-const accGroup = ref()
 const pinFormatter = (val: number) => {
   return `${val}`
 }
@@ -41,7 +41,7 @@ const clearSensor = () => {
 }
 
 const fetchFromAPI = () => {
-  if (target.value == '' || !genFOV) return
+  accToggle.value = ""
   clearSensor()
   doneLoad.value = false
   isErr.value = false
@@ -49,8 +49,6 @@ const fetchFromAPI = () => {
   frame.value.style.border = "0px"
   const data = retrieveFromAPI({ width: fov_x.value, height: fov_y.value }, scaling, getWidthOfParent() / fov_x.value, target.value)
   frame.value.src = data
-  const nativeEl = accGroup.value.$el
-  nativeEl.value = undefined
 }
 
 const drawSensorCrosshair = () => {
@@ -59,11 +57,8 @@ const drawSensorCrosshair = () => {
   crosshair.style.height = "100%"
   crosshair.style.backgroundColor = "red"
   crosshair.style.position = "absolute"
-  crosshair.style.marginLeft = "auto"
-  crosshair.style.marginRight = "auto"
-  crosshair.style.left = "0"
-  crosshair.style.right = "0"
-  crosshair.style.top = "0"
+  crosshair.style.left = "50%"
+  crosshair.style.transform = "translateX(-50%)"
   crosshair.style.opacity = "0.2"
   wrapper.value.appendChild(crosshair)
   const crosshair2 = document.createElement("div")
@@ -71,11 +66,9 @@ const drawSensorCrosshair = () => {
   crosshair2.style.height = "2px"
   crosshair2.style.backgroundColor = "red"
   crosshair2.style.position = "absolute"
-  crosshair2.style.marginLeft = "auto"
-  crosshair2.style.marginRight = "auto"
-  crosshair2.style.left = "0"
-  crosshair2.style.right = "0"
-  crosshair2.style.top = `${(frame.value.height - wrapper.value.offsetHeight) / 2}px`
+  crosshair2.style.top = "50%"
+  crosshair2.style.marginTop = "-0.5px"
+  crosshair2.style.transform = "translateY(-50%)"
   crosshair2.style.opacity = "0.2"
   wrapper.value.appendChild(crosshair2)
 }
@@ -90,7 +83,7 @@ const drawSensorFrame = () => {
   wrapper.value.style.left = "0"
   wrapper.value.style.right = "0"
   wrapper.value.style.textAlign = "center"
-  wrapper.value.style.top = `${(frame.value.height - wrapper.value.offsetHeight) / 2}px`
+  wrapper.value.style.top = `${(frame.value.offsetHeight - wrapper.value.offsetHeight) / 2}px`
   drawSensorCrosshair()
 }
 
@@ -113,6 +106,7 @@ window.addEventListener('orientationchange', () => {
 
 onMounted(() => {
   watchEffect(() => {
+    wrapper.value.style.transformOrigin = "center"
     wrapper.value.style.transform = `rotate(${rangeVal.value}deg)`
   })
 })
@@ -128,7 +122,7 @@ onUnmounted(() => {
       <Header :title="page.title" />
       <CalcContainer>
         <Calc title="Field of View">
-          <ion-accordion-group ref="accGroup" value="first">
+          <ion-accordion-group :value="accToggle">
             <ion-accordion value="first">
               <ion-item slot="header">
                 Optics setup
@@ -142,9 +136,9 @@ onUnmounted(() => {
               </div>
             </ion-accordion>
           </ion-accordion-group>
-          <CalcInput v-model:val="target" label="Target Name" type="text" suffix="" />
+          <CalcInput @keypress.enter="fetchFromAPI" v-model:val="target" label="Target Name" type="text" suffix="" />
           <div class="flex justify-center">
-            <ion-button @keypress.enter="fetchFromAPI" @click="fetchFromAPI" :disabled="target == '' || !genFOV">Search
+            <ion-button @click="fetchFromAPI" :disabled="target == '' || !genFOV">Search
             </ion-button>
           </div>
           <div class="flex justify-center">
@@ -154,7 +148,7 @@ onUnmounted(() => {
               </div>
             </div>
           </div>
-          <div class="flex justify-center" v-show="doneLoad">
+          <div class="flex justify-center" v-show="doneLoad && !isErr">
             <div class="w-[70vw] max-w-[400px]">
               <div class="flex justify-center">
                 <ion-range :pin="true" :pin-formatter="pinFormatter" :min="0" :max="360" v-model="rangeVal">
@@ -164,14 +158,14 @@ onUnmounted(() => {
             </div>
           </div>
         </Calc>
+        <div class="flex justify-center relative">
+          <img v-show="!isErr" ref="frame" @load="imgLoaded()" @error="err" />
+          <div ref="wrapper"></div>
+          <ion-item v-show="isErr">
+            <ion-text>Target could not be found</ion-text>
+          </ion-item>
+        </div>
       </CalcContainer>
-      <div class="flex justify-center relative mx-2 mt-[-20px]">
-        <img v-show="!isErr" ref="frame" @load="imgLoaded()" @error="err" />
-        <div ref="wrapper"></div>
-        <ion-item v-show="isErr">
-          <ion-text>Target could not be found</ion-text>
-        </ion-item>
-      </div>
     </ion-content>
   </ion-page>
 </template>
