@@ -25,6 +25,16 @@ export const getFrameLength = (pixelSize: number, numPixels: number) => {
   return (pixelSize * numPixels * 1000)
 }
 
+/**
+ * It takes in a field of view, a margin, a scale, a target, and a coordinate, and returns a URL to an
+ * image of the sky
+ * @param fov - { width: number, height: number }
+ * @param {number} margin - the margin of the image, in pixels, from the edge of the canvas.
+ * @param {number} scale - the scale of the image, 1 is the original size, 2 is double the size, etc.
+ * @param {string} [target] - The name of the target you want to retrieve the image of.
+ * @param [coord] - { ra: string, dec: string }
+ * @returns A string.
+ */
 export const retrieveFromAPI = (fov: { width: number, height: number }, margin: number, scale: number, target?: string, coord?: { ra: string, dec: string }) => {
   let ra = coord?.ra ?? '00:00:00'
   let dec = coord?.dec ?? '00:00:00'
@@ -32,6 +42,7 @@ export const retrieveFromAPI = (fov: { width: number, height: number }, margin: 
   return `https://skyview.gsfc.nasa.gov/current/cgi/runquery.pl?Survey=dss2r&Position=${position}&Size=${fov.width * margin},${fov.height * margin}&Pixels=${(fov.width * scale).toFixed(0)},${(fov.height * scale).toFixed(0)}&Scaling=Linear&Return=jpg`
 }
 
+/* A computed property that returns a string. */
 export const genFOV = computed(() => {
   if (focalLength.value != '' && pixelSize.value != '' && frameWidth.value != '' && frameHeight.value != '') {
     return `${getFOV(Number(focalLength.value), Number(frameWidth.value)).toFixed(2)} x ${getFOV(Number(focalLength.value), Number(frameHeight.value)).toFixed(2)}`

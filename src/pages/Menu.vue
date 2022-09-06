@@ -115,4 +115,8 @@ const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
 .active-link {
   --ion-text-color: var(--ion-color-primary);
 }
+
+ion-split-pane {
+  --side-width: 1px;
+}
 </style>
