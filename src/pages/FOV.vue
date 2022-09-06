@@ -12,10 +12,15 @@ const {
 } = varRefs
 const target = ref("")
 const doneLoad = ref()
+const rangeVal = ref(180)
 const frame = ref()
 const wrapper = ref()
-const isErr = ref(false)
 const accGroup = ref()
+const pinFormatter = (val: number) => {
+  return `${val}`
+}
+const isErr = ref(false)
+
 const fov_x = ref(computed(() => {
   return getFOV(Number(focalLength.value), Number(frameWidth.value))
 }))
@@ -28,14 +33,16 @@ const getWidthOfParent = () => {
   return parent.offsetWidth
 }
 
-const fetchFromAPI = () => {
-  if (target.value == '' || !genFOV) return
-  // Reset all wrapper css
+const clearSensor = () => {
   wrapper.value.style.border = "0px"
-  // remove crosshair
   while (wrapper.value.firstChild) {
     wrapper.value.removeChild(wrapper.value.lastChild)
   }
+}
+
+const fetchFromAPI = () => {
+  if (target.value == '' || !genFOV) return
+  clearSensor()
   doneLoad.value = false
   isErr.value = false
   frame.value.src = ""
@@ -68,7 +75,6 @@ const drawSensorCrosshair = () => {
   crosshair2.style.marginRight = "auto"
   crosshair2.style.left = "0"
   crosshair2.style.right = "0"
-  crosshair2.style.top = "0"
   crosshair2.style.top = `${(frame.value.height - wrapper.value.offsetHeight) / 2}px`
   crosshair2.style.opacity = "0.2"
   wrapper.value.appendChild(crosshair2)
@@ -99,6 +105,21 @@ const err = () => {
   doneLoad.value = true
   isErr.value = true
 }
+
+window.addEventListener('orientationchange', () => {
+  clearSensor()
+  drawSensorFrame()
+})
+
+onMounted(() => {
+  watchEffect(() => {
+    wrapper.value.style.transform = `rotate(${rangeVal.value}deg)`
+  })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('orientationchange', () => { })
+})
 </script>
 
 <template>
@@ -121,8 +142,6 @@ const err = () => {
               </div>
             </ion-accordion>
           </ion-accordion-group>
-        </Calc>
-        <Calc title="Target">
           <CalcInput v-model:val="target" label="Target Name" type="text" suffix="" />
           <div class="flex justify-center">
             <ion-button @keypress.enter="fetchFromAPI" @click="fetchFromAPI" :disabled="target == '' || !genFOV">Search
@@ -135,15 +154,24 @@ const err = () => {
               </div>
             </div>
           </div>
-          <div class="flex justify-center relative">
-            <img v-show="!isErr" ref="frame" @load="imgLoaded()" @error="err" />
-            <div ref="wrapper"></div>
-            <ion-item v-show="isErr">
-              <ion-text>Target could not be found</ion-text>
-            </ion-item>
+          <div class="flex justify-center" v-show="doneLoad">
+            <div class="w-[70vw] max-w-[400px]">
+              <div class="flex justify-center">
+                <ion-range :pin="true" :pin-formatter="pinFormatter" :min="0" :max="360" v-model="rangeVal">
+                  <i-ion:refresh slot="start"></i-ion:refresh>
+                </ion-range>
+              </div>
+            </div>
           </div>
         </Calc>
       </CalcContainer>
+      <div class="flex justify-center relative mx-2 mt-[-20px]">
+        <img v-show="!isErr" ref="frame" @load="imgLoaded()" @error="err" />
+        <div ref="wrapper"></div>
+        <ion-item v-show="isErr">
+          <ion-text>Target could not be found</ion-text>
+        </ion-item>
+      </div>
     </ion-content>
   </ion-page>
 </template>
