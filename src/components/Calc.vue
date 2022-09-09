@@ -10,11 +10,11 @@ const props = defineProps<{ title: string }>()
   </ion-card>
   <div class="flex justify-center">
     <div class="w-[95%]">
-      <ion-grid  class="ion-no-padding ion-align-items-center">
+      <ion-grid class="ion-no-padding ion-align-items-center">
 
         <slot></slot>
       </ion-grid>
     </div>
   </div>
-  
+
 </template>
