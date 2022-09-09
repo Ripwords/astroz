@@ -88,7 +88,16 @@ onMounted(() => {
   color: var(--ion-color-primary);
 }
 
-ion-content {
-  --background: url('/img/bg.svg') no-repeat center/cover fixed;
+/* media query light/dark theme */
+@media (prefers-color-scheme: dark) {
+  ion-content {
+    --background: url('/img/bg.svg') no-repeat center/cover fixed;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  ion-content {
+    --background: url('/img/bg_l.svg') no-repeat center/cover fixed;
+  }
 }
 </style>
