@@ -2,7 +2,7 @@
 import { pagesStore } from '../store'
 import { varRefs, genFOV, getFOV, retrieveFromAPI } from '../functions/FOV'
 
-const scaling = 2
+const marginScale = 2
 const page = pagesStore().fov
 const {
   focalLength,
@@ -44,7 +44,8 @@ const fetchFromAPI = () => {
   isErr.value = false
   frame.value.src = ""
   frame.value.style.border = "0px"
-  const data = retrieveFromAPI({ width: fov_y.value, height: fov_x.value }, scaling, getWidthOfParent() / fov_x.value, target.value)
+  // Value inverted to get a horizontal image from NASA API
+  const data = retrieveFromAPI({ width: fov_y.value, height: fov_x.value }, marginScale, getWidthOfParent() / (fov_x.value), target.value)
   frame.value.src = data
 }
 
@@ -71,8 +72,8 @@ const drawSensorCrosshair = () => {
 }
 
 const drawSensorFrame = () => {
-  wrapper.value.style.width = `${frame.value.width / scaling}px`
-  wrapper.value.style.height = `${frame.value.height / scaling}px`
+  wrapper.value.style.width = `${frame.value.width / marginScale}px`
+  wrapper.value.style.height = `${frame.value.height / marginScale}px`
   wrapper.value.style.border = "2px solid red"
   wrapper.value.style.position = "absolute"
   wrapper.value.style.marginLeft = "auto"
@@ -126,7 +127,7 @@ onUnmounted(() => {
       <Header :title="page.title" />
       <CalcContainer>
         <Calc title="Field of View">
-          <ion-accordion-group :value="accToggle">
+          <ion-accordion-group :value="accToggle" @click="accToggle = 'first'">
             <ion-accordion value="first">
               <ion-item slot="header">
                 Optics setup
