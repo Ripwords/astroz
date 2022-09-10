@@ -23,7 +23,7 @@ const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
       <ion-menu content-id="menu-items">
         <ion-header color="primary">
           <ion-toolbar>
-            <ion-title>
+            <ion-title @click="router.replace('/menu/home')">
               Astroz 🌌
             </ion-title>
           </ion-toolbar>

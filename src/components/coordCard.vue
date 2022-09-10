@@ -14,8 +14,8 @@ watch([() => store.userLat, () => store.userLong], () => {
 <template>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Coordinates 🗺</ion-card-title>
-      <ion-card-subtitle>Your current location on Earth 🌍</ion-card-subtitle>
+      <ion-card-title>Location 🗺</ion-card-title>
+      <ion-card-subtitle>Your current position on Earth 🌍</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
       <div class="flex justify-between max-w-[165px]">

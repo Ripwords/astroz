@@ -18,11 +18,16 @@ const { chartKey, graphConfig } = await planetsCardsInit()
   <ion-card>
     <ion-card-header>
       <ion-card-title>Planets 🪐</ion-card-title>
+      <ion-card-subtitle>
+        Planets altitudes relative to you
+        <i-whh:solarsystem></i-whh:solarsystem>
+      </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content v-if="!isDesktop || props.showCard">
       <div class="flex">
         <div>
-          <div class="flex justify-start max-w-[175px]" v-for="(planet, index) in planetNames.slice(0, 4)" :key="planet">
+          <div class="flex justify-start max-w-[175px]" v-for="(planet, index) in planetNames.slice(0, 4)"
+            :key="planet">
             <div class="flex justify-between w-[70px]">
               <div>
                 {{ planet }}
@@ -35,7 +40,8 @@ const { chartKey, graphConfig } = await planetsCardsInit()
         </div>
         <span class="w-[20px]"></span>
         <div>
-          <div class="flex justify-start max-w-[175px]" v-for="(planet, index) in planetNames.slice(4, 7)" :key="planet">
+          <div class="flex justify-start max-w-[175px]" v-for="(planet, index) in planetNames.slice(4, 7)"
+            :key="planet">
             <div class="flex justify-between w-[70px]">
               <div>
                 {{ planet }}

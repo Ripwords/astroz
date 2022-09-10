@@ -6,7 +6,6 @@ import { updateWeatherData } from './functions/utility';
 const store = mainStore()
 const interval = ref()
 const locationInterval = ref()
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) { console.log('changed!!'); })
 
 // Provide basic info to first time users
 const presentToast = async () => {

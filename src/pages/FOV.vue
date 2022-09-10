@@ -11,6 +11,7 @@ const {
   frameHeight
 } = varRefs
 const accToggle = ref("first")
+const showSensor = ref(true)
 const target = ref("")
 const doneLoad = ref()
 const rangeVal = ref(90)
@@ -104,6 +105,10 @@ const err = () => {
   isErr.value = true
 }
 
+const toggleSensor = () => {
+  showSensor.value = !showSensor.value
+}
+
 window.addEventListener('orientationchange', () => {
   clearSensor()
   drawSensorFrame()
@@ -125,6 +130,11 @@ onUnmounted(() => {
   <ion-page>
     <ion-content>
       <Header :title="page.title" />
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button @click="toggleSensor" :disabled="!doneLoad">
+          <i-mdi:camera-focus></i-mdi:camera-focus>
+        </ion-fab-button>
+      </ion-fab>
       <CalcContainer>
         <Calc title="Field of View">
           <ion-accordion-group :value="accToggle" @click="accToggle = 'first'">
@@ -165,7 +175,7 @@ onUnmounted(() => {
         </Calc>
         <div class="flex justify-center relative mx-2">
           <img v-show="!isErr" ref="frame" @load="imgLoaded()" @error="err" />
-          <div ref="wrapper"></div>
+          <div ref="wrapper" v-show="showSensor"></div>
           <ion-item v-show="isErr">
             <ion-text>Target could not be found</ion-text>
           </ion-item>
