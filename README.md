@@ -4,8 +4,9 @@
 
 ## A general astrophotography focused application
 
-![image](https://user-images.githubusercontent.com/58784686/150679066-6a191b3d-26db-4ded-a42a-b80852099292.png)
-![image](https://user-images.githubusercontent.com/58784686/150679060-df5067d7-73af-4e29-bb8d-ec3eb3ff8030.png)
+![1664088420337](image/README/1664088420337.png)
+![1664088771513](image/README/1664088771513.png)
+![1664088722108](image/README/1664088722108.png)
 
 
 <br />
@@ -17,12 +18,12 @@
 
 ## Weather Forecast
 ### Provided by [ClearOutside](https://clearoutside.com)
-![image](https://user-images.githubusercontent.com/58784686/150043435-31e742eb-e2be-4758-9568-5c3043000e0e.png)
+![1664088685532](image/README/1664088685532.png)
 
 <br />
 
-## Manual Location with maps
+## Manual Location with Google Maps
 
-![](image/README/1651414785918.png)
+![1664088488439](image/README/1664088488439.png)
 
 ## Astroz 🌌 is installable as PWA on Desktop, iOS and Android!
