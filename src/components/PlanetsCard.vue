@@ -19,7 +19,7 @@ const { chartKey, graphConfig } = await planetsCardsInit()
     <ion-card-header>
       <ion-card-title>Planets 🪐</ion-card-title>
       <ion-card-subtitle>
-        Planets altitudes relative to you
+        Planets' altitudes relative to you
         <i-whh:solarsystem></i-whh:solarsystem>
       </ion-card-subtitle>
     </ion-card-header>
