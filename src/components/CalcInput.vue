@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 const cond = ref()
+const value = ref()
 const props = withDefaults(defineProps<{ val: any, label: string, suffix: string, readonly?: boolean, size?: number, condition?: any, type?: string }>(), {
   readonly: false,
   size: 7
 })
 watchEffect(() => {
+  value.value = props.val
   props.condition ? cond.value = props.condition : null
 })
 </script>
@@ -21,14 +23,14 @@ watchEffect(() => {
     <ion-col>
       <ion-item>
         <div v-if="!condition">
-          <ion-input v-if="!readonly" v-model="val" :type="type === 'text' ? 'text' : 'number'"
+          <ion-input v-if="!readonly" v-model="value" :type="type === 'text' ? 'text' : 'number'"
             :placeholder="props.suffix" @ionChange="$emit('update:val', $event.target.value)" />
-          <ion-input v-else-if="readonly" v-model="val" :type="type === 'text' ? 'text' : 'number'"
+          <ion-input v-else-if="readonly" v-model="value" :type="type === 'text' ? 'text' : 'number'"
             :placeholder="props.suffix" @ionChange="$emit('update:val', $event.target.value)" readonly />
         </div>
         <div v-else>
-          <ion-input v-if="!cond" v-model="val" :type="type === 'text' ? 'text' : 'number'" :placeholder="props.suffix"
-            @ionChange="$emit('update:val', $event.target.value)" />
+          <ion-input v-if="!cond" v-model="value" :type="type === 'text' ? 'text' : 'number'"
+            :placeholder="props.suffix" @ionChange="$emit('update:val', $event.target.value)" />
           <ion-input v-else :value="cond" :type="type === 'text' ? 'text' : 'number'" :placeholder="props.suffix"
             readonly />
         </div>

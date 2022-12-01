@@ -184,3 +184,11 @@ onUnmounted(() => {
     </ion-content>
   </ion-page>
 </template>
+
+<!-- Bug from ion-range disabling the scrollbar when used -->
+<!-- Below is the temporary workaround suggested by a user from the github issue -->
+<style scoped>
+ion-content::part(scroll) {
+  overflow-y: auto !important;
+}
+</style>
