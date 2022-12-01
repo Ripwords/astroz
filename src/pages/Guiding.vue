@@ -32,7 +32,7 @@ const page = pagesStore().guiding
           <CalcInput
             :val="getResolution_1"
             label="🔭 Resolution"
-            suffix='"/px'
+            suffix='&quot;/px'
             :readonly="true"
           />
           <br>
@@ -49,7 +49,7 @@ const page = pagesStore().guiding
           <CalcInput
             :val="getResolution_2"
             label="Guide Resolution"
-            suffix='"/px'
+            suffix='&quot;/px'
             :readonly="true"
           />
           <br>

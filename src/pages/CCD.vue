@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import CalcInput from '../components/CalcInput.vue'
 import { pagesStore } from '../store'
 import { useSessionStorage } from '@vueuse/core'
 import { varRefs, getResolution, getSampling } from '../functions/CCD'
@@ -59,7 +60,7 @@ watchEffect(() => {
           <CalcInput
             :val="getResolution"
             label="Resolution"
-            suffix='"/px'
+            suffix='&quot;/px'
             :readonly="true"
             :size="colWidth"
           />
