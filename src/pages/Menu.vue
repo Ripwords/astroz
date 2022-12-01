@@ -23,7 +23,7 @@ const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
       <ion-menu content-id="menu-items">
         <ion-header color="primary">
           <ion-toolbar>
-            <ion-title @click="router.replace('/menu/home')">
+            <ion-title class="hover:cursor-pointer" @click="router.replace('/menu/home')">
               Astroz 🌌
             </ion-title>
           </ion-toolbar>
@@ -97,7 +97,7 @@ const redirectToGithub = () => window.open("https://github.com/Ripwords/astroz")
               </div>
             </ion-item>
             <ion-item slot="end">
-              <i-ion:logo-github @click="redirectToGithub()"></i-ion:logo-github>
+              <i-ion:logo-github class="hover:cursor-pointer" @click="redirectToGithub()"></i-ion:logo-github>
             </ion-item>
           </ion-toolbar>
         </ion-footer>
