@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite --open --host --https",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "pnpm build && vite preview",
+    "serve": "npm build && vite preview",
     "assets": "cd public && pwa-asset-generator Logo.png -p '0%' ./img/icons && cd .."
   },
   "dependencies": {
