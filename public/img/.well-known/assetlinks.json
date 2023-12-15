@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.netlify.astroz.twa",
+        "sha256_cert_fingerprints": ["BE:59:19:66:9B:92:8E:3A:E9:FA:1A:E2:FC:2F:BF:33:9A:E1:6F:01:4B:56:46:FD:35:5A:89:13:84:A8:37:CA"]
+      }
+    }]
